@@ -7,7 +7,7 @@ def main():
     print('LOADING ROSTERS')
     for year in ROS_FILES:
         for ros in ROS_FILES[year]:
-            if not parse_roster(ros, ros[6:10]):
+            if not parse_roster(ros):
                 print(f'FAILED TO OPEN ROSTER {ros}')
                 print('-' * 50, end='\n\n')
                 return False
@@ -24,6 +24,18 @@ def main():
             print('-' * 50, end='\n\n')
             return False
         print(gl)
+    print('\nLOADED')
+    print('-' * 50, end='\n\n')
+
+    # Loads the PBP files
+    print('-' * 50)
+    print('LOADING PBPs')
+    for pbp in PBP_FILES:
+        if not parse_pbp(pbp):
+            print(f'FAILED TO OPEN FILE {pbp}')
+            print('-' * 50, end='\n\n')
+            return False
+        print(pbp)
     print('\nLOADED')
     print('-' * 50, end='\n\n')
 
