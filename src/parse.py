@@ -10,16 +10,15 @@ def parse_roster(filename='ros/2023/ANA2023.ROS'):
     try:
         with open(filename) as file:
             for line in file:
+                line = line.strip('\n')
                 if (line[-1] == 'P'):
                     pitcher = Pitcher(line)
                     if pitcher.id not in PITCHERS:
                         PITCHERS[pitcher.id] = pitcher
-                    print(pitcher)
                 else:
                     player = Player(line)
                     if player.id not in PLAYERS:
                         PLAYERS[player.id] = player
-                    print(player)
     except:
         return False
     return True

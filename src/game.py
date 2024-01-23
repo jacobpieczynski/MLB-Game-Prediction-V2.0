@@ -4,6 +4,7 @@ class Game:
     def __init__(self, data):
         self.reset_stats()
         self.info_lines, self.start_lines, self.pbp_lines, self.data_lines = [], [], [], []
+        self.home_lineup, self.visitor_lineup = [], [] # Array linking to the player object
         self.sort_info(data)
         self.GameLog = GAMELOG[self.year][self.id] # Links to GameLog for this game
         self.GameLog.connect_game(self)
@@ -34,7 +35,26 @@ class Game:
             else:
                 print(f"Line : {line} could not be processed")
                 return False
+        self.set_lineups()
         return True
+    
+    def set_lineups(self):
+        for line in self.start_lines:
+            line = line.split(',')
+            playerid = line[1]
+            is_home = int(line[3]) == 0
+            pos = int(line[4])
+            print(line)
+            # Pitchers
+            if pos == 0 and is_home:
+                self.home_starter = PITCHERS[playerid]
+            elif pos == 0:
+                self.visitor_starter = PITCHERS[playerid]
+            # Batting starting lineup
+            elif is_home:
+                self.home_lineup.append(PLAYERS[playerid])
+            else:
+                self.visitor_lineup.append(PLAYERS[playerid])
 
     def reset_stats(self):
         # Add all variables here to reset
