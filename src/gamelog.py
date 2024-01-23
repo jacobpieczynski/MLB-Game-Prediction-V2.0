@@ -9,6 +9,7 @@ class GameLog:
         self.home_score = self.metadata['hscore']
         self.visitor_score = self.metadata['vscore']
         self.id = self.date + self.home + self.visitor
+        self.game = None
 
     def parse_gl_data(self, game):
         data = game.split(',')
@@ -20,6 +21,9 @@ class GameLog:
         if len(data) > len(CATEGORIES):
             metadata['misc'] = data[len(CATEGORIES):]
         return metadata
+    
+    def connect_game(self, game):
+        self.game = game
 
     def __repr__(self):
         return f"GameLog object on {self.date} with {self.visitor} at {self.home}"

@@ -6,6 +6,7 @@ class Game:
         self.info_lines, self.start_lines, self.pbp_lines, self.data_lines = [], [], [], []
         self.sort_info(data)
         self.GameLog = GAMELOG[self.year][self.id] # Links to GameLog for this game
+        self.GameLog.connect_game(self)
 
     def sort_info(self, data):
         # Creates an ID from the ID line (first line)
