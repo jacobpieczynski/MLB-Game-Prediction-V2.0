@@ -22,4 +22,4 @@ class GameLog:
         return metadata
 
     def __repr__(self):
-        return f"Game on {self.date} with {self.visitor} at {self.home}"
+        return f"GameLog object on {self.date} with {self.visitor} at {self.home}"
