@@ -9,6 +9,10 @@ class Player():
         self.throws = info[4]
         self.team = info[5]
         self.pos = info[6]
+        self.reset_stats()
+
+    def reset_stats(self):
+        self.hits = 0
 
     def __repr__(self):
         return f'Player object of {self.name} on {self.team} with id {self.id}'

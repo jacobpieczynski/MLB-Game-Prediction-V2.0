@@ -18,7 +18,6 @@ class Game:
         self.year = data[0][6:10]
 
         # Sorts lines based on data type - each will be treated differently
-        # RULE - DO NOT WORK WITH DATA UNTIL NECESSARY
         for line in data:
             if line.startswith('id,'):
                 pass
@@ -36,6 +35,8 @@ class Game:
                 print(f"Line : {line} could not be processed")
                 return False
         self.set_lineups()
+        # SIMULATE GAME
+        self.simulate_game()
         return True
     
     def set_lineups(self):
@@ -44,7 +45,6 @@ class Game:
             playerid = line[1]
             is_home = int(line[3]) == 0
             pos = int(line[4])
-            print(line)
             # Pitchers
             if pos == 0 and is_home:
                 self.home_starter = PITCHERS[playerid]
@@ -55,6 +55,13 @@ class Game:
                 self.home_lineup.append(PLAYERS[playerid])
             else:
                 self.visitor_lineup.append(PLAYERS[playerid])
+
+    def simulate_game(self):
+        # Initial variables
+        pass
+
+    def clear_bases(self):
+        self.bases = [0, 0, 0] # 1st 2nd 3rd
 
     def reset_stats(self):
         # Add all variables here to reset
