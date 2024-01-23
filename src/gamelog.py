@@ -8,6 +8,7 @@ class GameLog:
         self.visitor = self.metadata['visitor']
         self.home_score = self.metadata['hscore']
         self.visitor_score = self.metadata['vscore']
+        self.id = self.date + self.home + self.visitor
 
     def parse_gl_data(self, game):
         data = game.split(',')

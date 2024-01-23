@@ -31,8 +31,8 @@ def parse_log(filename="gl/gl2023.txt", year='2023'):
         with open(filename) as file:
             for line in file:
                 game = GameLog(line.rstrip('\n'))
-                GAMELOG[year].setdefault(game.date, [])
-                GAMELOG[year][game.date].append(game)
+                GAMELOG[year].setdefault(game.id, {})
+                GAMELOG[year][game.id] = game
     except:
         return False
     return True
@@ -43,8 +43,17 @@ def parse_pbp(filename='pbp/2023/2023ARI.EVN'):
     try:
         with open(filename) as file:
             for line in file:
-                if line[0:3] == 'id,':
-                    pass
+                # All games begin with the 'id,' line
+                if line[0:3] == 'id,' and data != []:
+                    data.append(line)
+                    game = Game(data)
+                    data = []
+                    GAMES[game.id] = game
+                else:
+                    data.append(line.strip('\n'))
+            # To append final game
+            game = Game(data)
+            GAMES[game.id] = game
     except:
         return False
     return True
