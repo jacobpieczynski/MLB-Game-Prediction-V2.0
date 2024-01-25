@@ -12,7 +12,7 @@ class Pitcher():
         self.reset_stats()
         self.reset_temp_stats()
 
-    def add_temp_stat(self, stat, quantity):
+    def add_temp_stat(self, stat, quantity=1):
         if stat not in self.temp_stats:
             print(f'{stat} not in {self.__repr__()}\'s stats.')
             return False
@@ -39,6 +39,11 @@ class Pitcher():
     
     def get_pitching_totals(self):
         # Use totals and loop through games like we did before
+        # For game in games
+        # if player in players_in_game
+        #   simulate game
+        # After loop
+        # Return self.totals
         pass
 
     def __repr__(self):
