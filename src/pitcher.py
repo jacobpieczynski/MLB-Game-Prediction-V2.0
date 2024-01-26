@@ -32,7 +32,7 @@ class Pitcher():
         self.temp_stats = {'Appearances': 1, 'Wins': 0, 'Losses': 0, 'Starts': 0, 'ER': 0, 'OP': 0, 'SOs': 0, 'Hits': 0, 'Walks': 0, 'HRs': 0, 'HBP': 0, 'BF': 0}
 
     # Convert outs pitched to the more commonly used "Innings Pitched"
-    def convert_op_ip(op):
+    def convert_op_ip(self, op):
         # 7 = 2 1/3
         partial = op % 3
         return ((op - partial) / 3) + round(partial / 3, 2)
