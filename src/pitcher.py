@@ -9,4 +9,6 @@ class Pitcher:
         self.throws = info[4]
         self.team = info[5]
         self.pos = info[6]
-        print(info)
+
+    def __repr__(self):
+        return f'Pitcher object {self.name}, a {self.pos} for {self.team} - ID: {self.id}'

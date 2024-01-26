@@ -13,8 +13,8 @@ def main():
                 return False
             print(ros)
         # SHOHEI RULE
-        tmp = Pitcher('ohtas001,Ohtani,Shohei,L,R,ANA,DH')
-        PITCHERS[tmp.id] = tmp
+    tmp = Pitcher('ohtas001,Ohtani,Shohei,L,R,ANA,DH')
+    PITCHERS[tmp.id] = tmp
     print('\nLOADED')
     print('-' * 50, end='\n\n')
 
