@@ -9,8 +9,10 @@ class Player:
         self.throws = info[4]
         self.team = info[5]
         self.pos = info[6]
-        self.stats = {}
-        self.game_stats = {}
+        self.stats = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'SO': 0, 'RBI': 0, 'SB': 0, 'Sac': 0, 'HBP': 0}
+        self.game_stats = dict()
+        for stat in self.stats:
+            self.game_stats[stat] = 0
 
     # Gets the player statistics between two dates
     def get_totals(self, start_date, end_date):

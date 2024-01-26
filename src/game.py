@@ -59,12 +59,14 @@ class Game:
                     self.home_lineup[field_pos] = PITCHERS[playerid]
                 else:
                     self.visitor_lineup[field_pos] = PITCHERS[playerid]
+                PITCHERS[playerid].reset_game_stats()
                 self.players_in_game.append(PITCHERS[playerid])
             else:
                 if is_home:
                     self.home_lineup[field_pos] = PLAYERS[playerid]
                 else:
                     self.visitor_lineup[field_pos] = PLAYERS[playerid]
+                PLAYERS[playerid].reset_game_stats()
                 self.players_in_game.append(PLAYERS[playerid])   
 
     # Loops through the plays and parses them/collects statistics accordingly
@@ -86,6 +88,7 @@ class Game:
                     pitcher = self.visitor_lineup[1]
                 else:
                     pitcher = self.home_lineup[1]
+            # When a player is substituted for another
             elif line[0] == 'sub':
                 # TODO: The numbers are in the standard notation, with designated hitters being identified as position 10. On sub records 11 indicates a pinch hitter and 12 is used for a pinch runner. When a player pinch hits or pinch runs for the DH, that player automatically becomes the DH, so no 'sub' record is included to identify the new DH.
                 #['sub', 'gonzv001', '"Victor Gonzalez"', '1', '0', '1']
@@ -119,10 +122,12 @@ class Game:
                         player = PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
                     else:
                         player = PLAYERS[playerid]
+                player.reset_game_stats()
                 if is_home:
                     self.home_lineup[field_pos] = player
                 else:
                     self.visitor_lineup[field_pos] = player
+            # Tracks a the ER of each pitcher
             elif line[0] == 'data':
                 pass
             else:
