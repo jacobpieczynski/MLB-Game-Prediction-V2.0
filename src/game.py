@@ -24,6 +24,7 @@ class Game:
                 print(line)
         self.parse_info()
         self.set_lineup()
+        self.simulate_game()
 
     # Takes the info metadata and parses it. Creates a game id and metadata
     def parse_info(self):
@@ -48,6 +49,7 @@ class Game:
             field_pos = int(line[5])
             is_pitcher = (field_pos == 1)
             # TODO: Improve this? Seems a bit of a redundant way to do it
+            # TODO: How do we treat years? Will players be able to fit into a general PLAYERS roster or do we need to sort by year?
             # Adds players into the lineup based on their position - remember, pitchers and players are different objects
             if is_pitcher:
                 if is_home:
@@ -60,5 +62,17 @@ class Game:
                     self.home_lineup[field_pos] = PLAYERS[playerid]
                 else:
                     self.visitor_lineup[field_pos] = PLAYERS[playerid]
-                self.players_in_game.append(PLAYERS[playerid])            
+                self.players_in_game.append(PLAYERS[playerid])   
+
+    # Loops through the plays and parses them/collects statistics accordingly
+    def simulate_game(self):
+        for line in self.plays:
+            line = line.split(',')
+            # 3 types of play info
+            if line[0] == 'info':
+                pass
+            elif line[0] in ['sub', 'badj', 'radj']:
+                pass
+            elif line[0] == 'data':
+                pass
 
