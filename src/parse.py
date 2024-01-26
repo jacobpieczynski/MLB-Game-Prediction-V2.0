@@ -1,9 +1,9 @@
 from const import *
 # Classes
-from game import *
-from gamelog import *
-from pitcher import *
-from player import *
+from game import Game
+from gamelog import GameLog
+from pitcher import Pitcher
+from player import Player
 
 # Parse the roster information
 def parse_roster(filename='ros/2023/ANA2023.ROS'):
