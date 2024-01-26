@@ -23,8 +23,8 @@ class Player:
         if len(stats) != len(quantities):
             print('Invalid number of stats compared to quantities, player inc_game_stat')
             return False
-        for stat, quantity in stats, quantities:
-            self.game_stats[stat] += quantities[quantity]
+        for stat, quantity in zip(stats, quantities):
+            self.game_stats[stat] += quantity
 
     # Adds all game stats to 'perm' stats
     def add_game_stats(self):

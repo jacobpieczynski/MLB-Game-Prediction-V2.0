@@ -60,6 +60,7 @@ class Game:
                 else:
                     self.visitor_lineup[field_pos] = PITCHERS[playerid]
                 PITCHERS[playerid].reset_game_stats()
+                PITCHERS[playerid].inc_game_stat(['G', 'S'], [1, 1])
                 self.players_in_game.append(PITCHERS[playerid])
             else:
                 if is_home:
@@ -75,12 +76,11 @@ class Game:
             line = line.split(',')
             # 3 types of play info
             if line[0] == 'play' and line[-1] != 'NP': #TODO: NP will always (?) preceed a sub/adj, can ignore those lines
-                #['play', '1', '0', 'sprig001', '32', 'SBFBBX', '7/F7LD']
-                #print(line)
-                #print(self.id)
+                # TODO: Account for a new inning
                 is_home = int(line[2]) == 0
                 playerid = line[3]
                 pitch_count = line[4]
+                total_pitches = int(pitch_count[0]) + int(pitch_count[1])
                 pitches_thrown = line[5]
                 play = line[6:]
                 batter = PLAYERS[playerid]
@@ -88,6 +88,8 @@ class Game:
                     pitcher = self.visitor_lineup[1]
                 else:
                     pitcher = self.home_lineup[1]
+
+                pitcher.inc_game_stat(['P'], [total_pitches])
             # When a player is substituted for another
             elif line[0] == 'sub':
                 # TODO: The numbers are in the standard notation, with designated hitters being identified as position 10. On sub records 11 indicates a pinch hitter and 12 is used for a pinch runner. When a player pinch hits or pinch runs for the DH, that player automatically becomes the DH, so no 'sub' record is included to identify the new DH.
