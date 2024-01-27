@@ -48,7 +48,7 @@ class Game:
         for line in self.start:
             line = line.split(',')
             playerid = line[1]
-            is_home = int(line[3]) == 0
+            is_home = int(line[3]) == 1
             field_pos = int(line[5])
             is_pitcher = (field_pos == 1)
             # TODO: Improve this? Seems a bit of a redundant way to do it
@@ -77,7 +77,7 @@ class Game:
             # 3 types of play info
             if line[0] == 'play' and line[-1] != 'NP': #TODO: NP will always (?) preceed a sub/adj, can ignore those lines
                 # TODO: Account for a new inning
-                is_home = int(line[2]) == 0
+                is_home = int(line[2]) == 1
                 playerid = line[3]
                 pitch_count = line[4]
                 total_pitches = int(pitch_count[0]) + int(pitch_count[1])
@@ -88,7 +88,6 @@ class Game:
                     pitcher = self.visitor_lineup[1]
                 else:
                     pitcher = self.home_lineup[1]
-
                 pitcher.inc_game_stat(['P'], [total_pitches])
             # When a player is substituted for another
             elif line[0] == 'sub':
@@ -96,39 +95,39 @@ class Game:
                 #['sub', 'gonzv001', '"Victor Gonzalez"', '1', '0', '1']
                 playerid = line[1]
                 playername = line[2]
-                is_home = int(line[3]) == 0
+                is_home = int(line[3]) == 1
+                bat_pos = int(line[4])
                 field_pos = int(line[5])
                 # TODO: TEMP - adjust to account for pinch runners and hitters
                 if field_pos >= 10:
                     field_pos = 10
-                player = None
-                # The player is being subbed as a pitcher
+                # TODO: adjust for end of a pitcher's outing
+                # Field pos 1 is a pitcher
                 if field_pos == 1:
-                    # TODO: End prior pitcher outing
-                    # Accounts for when a pitcher bats (unusual)
-                    if int(line[4]) != 0:
-                        if playerid in PLAYERS:
-                            player = PLAYERS[playerid]
+                    # CHecks for players being subbed as pitchers
+                    if playerid not in PITCHERS:
+                        PITCHERS[playerid] = Pitcher(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
+                    # If being subbed in as a pitcher, the bat pos will be 0, otherwise they are subbed in as bothj a pitcher and batter (usually extra innings)
+                    if bat_pos != 0:
+                        if playerid not in PLAYERS:
+                            PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
+                        if is_home:
+                            self.home_lineup[bat_pos] = PLAYERS[playerid]
                         else:
-                            player = PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
+                            self.visitor_lineup[bat_pos] = PLAYERS[playerid]
+                    # Regardless, they will be subbed in as a pitcher
+                    if is_home:
+                        self.home_lineup[1] = PITCHERS[playerid]
                     else:
-                        # Accounts for when a player pitches (unusual)
-                        if playerid in PITCHERS:
-                            player = PITCHERS[playerid]
-                        else:
-                            player = PITCHERS[playerid] = Pitcher(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
-                # Otherwise, the player is being subbed as a pitcher
+                        self.visitor_lineup[1] = PITCHERS[playerid]
                 else:
-                    # Accounts for when a pitcher is being subbed in as a batter
+                    # Checks for pitchers being subbed as players
                     if playerid not in PLAYERS:
-                        player = PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
+                        PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
+                    if is_home:
+                        self.home_lineup[field_pos] = PLAYERS[playerid]
                     else:
-                        player = PLAYERS[playerid]
-                player.reset_game_stats()
-                if is_home:
-                    self.home_lineup[field_pos] = player
-                else:
-                    self.visitor_lineup[field_pos] = player
+                        self.visitor_lineup[field_pos] = PLAYERS[playerid]
             # Tracks a the ER of each pitcher
             elif line[0] == 'data':
                 pass
