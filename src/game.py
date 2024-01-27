@@ -72,6 +72,8 @@ class Game:
 
     # Loops through the plays and parses them/collects statistics accordingly
     def simulate_game(self):
+        self.bases = [None] * 4
+        self.op = 0
         for line in self.plays:
             line = line.split(',')
             # 3 types of play info
@@ -82,13 +84,14 @@ class Game:
                 pitch_count = line[4]
                 total_pitches = int(pitch_count[0]) + int(pitch_count[1])
                 pitches_thrown = line[5]
-                play = line[6:]
+                play = line[6]
                 batter = PLAYERS[playerid]
                 if is_home:
                     pitcher = self.visitor_lineup[1]
                 else:
                     pitcher = self.home_lineup[1]
                 pitcher.inc_game_stat(['P'], [total_pitches])
+                self.parse_play(play, batter, pitcher)
             # When a player is substituted for another
             elif line[0] == 'sub':
                 # TODO: The numbers are in the standard notation, with designated hitters being identified as position 10. On sub records 11 indicates a pinch hitter and 12 is used for a pinch runner. When a player pinch hits or pinch runs for the DH, that player automatically becomes the DH, so no 'sub' record is included to identify the new DH.
@@ -135,3 +138,27 @@ class Game:
                 # TODO: Account for radj and badj
                 pass
             
+    def parse_play(self, play, batter, pitcher):
+        # 'Simple Plays'
+        if '/' not in play and '.' not in play:
+            if play == 'W':
+                batter.inc_game_stat(['BB', 'PA'], [1, 1])
+                pitcher.inc_game_stat(['BB', 'BF'], [1, 1])
+                self.bases[1] = batter
+            elif play == 'K':
+                batter.inc_game_stat(['SO', 'PA', 'AB'], [1, 1, 1])
+                pitcher.inc_game_stat(['OP', 'SO', 'BF'], [1, 1, 1])
+                self.op += 1
+            elif play == 'HP':
+                batter.inc_game_stat(['HBP', 'PA'], [1, 1])
+                pitcher.inc_game_stat(['HBP', 'BF'], [1, 1])
+                self.adv_bases(1)
+            print(play)
+        # TODO: How to treat new innings
+        if self.op == 3:
+            self.op = 0
+
+    # Handles base movement and increments runs if someone scores
+    # TODO: does it matter? Do we need to track score like this?
+    def adv_bases(self, mvmt):
+        pass

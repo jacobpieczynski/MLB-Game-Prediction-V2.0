@@ -19,6 +19,7 @@ class Pitcher:
         pass
 
     # Alters a given stat
+    # TODO: Do we need quants? Will it ever be inc. by more than 1?
     def inc_game_stat(self, stats: list, quantities: list):
         if len(stats) != len(quantities):
             print('Invalid number of stats compared to quantities, player inc_game_stat')
