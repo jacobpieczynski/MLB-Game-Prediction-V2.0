@@ -4,6 +4,7 @@ from player import Player
 
 class Game:
     def __init__(self, data):
+        self.com = False # TEMP
         self.sort_data(data)
 
     def __repr__(self):
@@ -132,6 +133,9 @@ class Game:
                     else:
                         self.visitor_lineup[field_pos] = PLAYERS[playerid]
             # Tracks a the ER of each pitcher
+            elif line[0] == 'com':
+                if self.com:
+                    print(line)
             elif line[0] == 'data':
                 pass
             else:
@@ -139,6 +143,7 @@ class Game:
                 pass
             
     def parse_play(self, play, batter, pitcher):
+        self.com = False # TODO: TEMP
         # 'Simple Plays'
         simple = play.split('/')[0]
         mod, runners = None, None
@@ -151,15 +156,141 @@ class Game:
         if simple[0].isnumeric():
             # Parenthesis represents a double play, with the character inside the parenthesis representing the baserunner out
             if '(' in simple:
-                runner = simple.split('(')[1][0]
+                runner = simple.split(')')[0][-1]
                 # 'B' - If the putout is made at a base not normally covered by the fielder the base runner, batter in this example, is given explicitly.
-                if runner != 'B':
+                #if runner != 'B':
+                # If the last digit is a number, it represents a double play
+                if simple[-1].isnumeric():
                     self.bases[int(runner)] = None
-                pitcher.inc_game_stat(['OP', 'BF'], [2, 1])
+                    #print(f'Double play, {runner} out as well as batter - {play}')
+                    pitcher.inc_game_stat(['OP', 'BF'], [2, 1])
+                else:
+                    # Runner in parenthesis represents a force out - B in parenthesis is the batter, so empty base is implied
+                    if runner.isnumeric():
+                        self.bases[int(runner)] = None
+                        #print(f'Force out at, {runner} out - {play}')
+                    #else:
+                        #print(f'Unusual fo, batter out - {play}')
+                    pitcher.inc_game_stat(['OP', 'BF'], [2, 1])
             else:
+                #print(f'Pop/lineout, batter out - {play}')
                 pitcher.inc_game_stat(['OP', 'BF'], [1, 1])
             batter.inc_game_stat(['PA', 'AB'], [1, 1])
-       # elif simple[0]
+        # Interference by a player resulting in batter going to 1 and all others advancing
+        elif 'C/E' in play:
+            batter.inc_game_stat(['PA'], [1])
+            pitcher.inc_game_stat(['BF'], [1])
+            self.adv_bases()
+            #print(f'Interference, all runners advance - {play}')
+        # Single
+        elif simple.startswith('S'):
+            batter.inc_game_stat(['S', 'PA', 'AB', 'H'], [1, 1, 1, 1])
+            pitcher.inc_game_stat(['H', 'BF'], [1, 1])
+            self.adv_bases()
+        # Double
+        elif simple.startswith('D') or simple.startswith('DGR'):
+            batter.inc_game_stat(['D', 'PA', 'AB', 'H'], [1, 1, 1, 1])
+            pitcher.inc_game_stat(['H', 'BF'], [1, 1])
+            self.adv_bases()
+        # Triple
+        elif simple.startswith('T'):
+            batter.inc_game_stat(['T', 'PA', 'AB', 'H'], [1, 1, 1, 1])
+            pitcher.inc_game_stat(['H', 'BF'], [1, 1])
+            self.adv_bases()
+        # Fielding Error
+        elif simple.startswith('E') and simple[1].isnumeric():
+            batter.inc_game_stat(['PA', 'AB'], [1, 1])
+            pitcher.inc_game_stat(['BF'], [1])
+        # Fielders choice - batter goes to first, another runner is attempted to get out
+        elif simple.startswith('FC'):
+            batter.inc_game_stat(['AB', 'PA'], [1, 1])
+            pitcher.inc_game_stat(['BF'], [1])
+            # TODO: make sure to treat outs for the pitcher
+            self.adv_bases()
+        elif 'H/' in play or simple.startswith('HR'):
+            batter.inc_game_stat(['HR', 'AB', 'PA', 'H'], [1, 1, 1, 1])
+            pitcher.inc_game_stat(['HR', 'R', 'BF'], [1, 1, 1])
+            self.adv_bases()
+        # Hit by Pitch
+        elif simple.startswith('HP'):
+            batter.inc_game_stat(['HBP', 'PA', 'AB'], [1, 1, 1])
+            pitcher.inc_game_stat(['HBP', 'BF'], [1, 1])
+            self.adv_bases()
+        # K + something represents a strikout plus another event
+        elif simple.startswith('K+') or (simple.startswith('K') and '+' in simple):
+            # TODO: Treat strikeout edge cases
+            pass
+        elif simple.startswith('K'):
+            batter.inc_game_stat(['K', 'PA', 'AB'], [1, 1, 1])
+            pitcher.inc_game_stat(['K', 'OP', 'BF'], [1, 1, 1])
+        elif simple.startswith('W+') or (simple.startswith('W') and '+' in simple):
+            # TODO: treat walk edge cases
+            pass
+        elif simple.startswith('I') or simple.startswith('IW') or simple.startswith('W'):
+            batter.inc_game_stat(['BB', 'PA'], [1, 1])
+            pitcher.inc_game_stat(['BB', 'BF'], [1, 1])
+        # Balk
+        elif simple.startswith('BK'):
+            # TODO: treat balks, advance all runners
+            self.adv_bases()
+            pass
+        # Player caught stealing
+        elif simple.startswith('CS'):
+            base = simple[2]
+            # TODO: treat caught stealing, general base running
+        # Defensive indifference, runner allowed to steal
+        elif simple.startswith("DI"):
+            # TODO: treat defensive indifference, advance runner
+            pass
+        elif simple.startswith('PB') or simple.startswith('WP'):
+            #TODO: passed ball/wild pitch, not a batter stat but runners may have advanced.
+            pass
+        elif simple.startswith('PO'):
+            # Error, runner advances
+            if '(E' in simple:
+                # TODO: account for the error
+                self.adv_bases()
+            # Picked off and changed with caught stealing
+            elif simple.startswith('POCS'):
+                base = simple[4] 
+                # TODO: Picked off, caught stealing
+                """
+                if base == 'H':
+                    self.bases[3].inc_game_stat(['CS'], [1])
+                    self.bases[3] = None
+                else:
+                    self.bases[int(base) - 1].inc_game_stat(['CS'], [1])
+                    self.bases[int(base) - 1] = None
+                """
+                pitcher.inc_game_stat(['OP'], [1])
+            # Runner picked off, base represets the base they were at
+            else:
+                base = simple[2]
+                if base == 'H':
+                    self.bases[3] = None
+                else:
+                    self.bases[int(base) - 1] = None
+                pitcher.inc_game_stat(['OP'], [1])
+        # Stolen Base
+        elif simple.startswith('SB'):
+            steals = simple.split(';')
+            for steal in steals:
+                base = steal[2]
+                if base == 'H':
+                    self.bases[3].inc_game_stat(['SB'], [1])
+                    # TODO: Account for run scored ??
+                else:
+                    self.bases[int(base) - 1].inc_game_stat(['SB'], [1])
+        # Fielding error on fly ball
+        elif simple.startswith('FLE'):
+            # TODO: if we track fielding stats, update with this. Otherwise, ignore/pass
+            pass
+        # Other action
+        elif simple.startswith('OA'):
+            print(play)
+            self.com = True
+        else:
+            print(f'MISSED CASE: {play}')
 
         """
         if '/' not in play and '.' not in play:
@@ -176,12 +307,12 @@ class Game:
                 pitcher.inc_game_stat(['HBP', 'BF'], [1, 1])
                 self.adv_bases(1)
         """
-        print(f'Simple: {simple}, mod {mod}, run mvmt {runners}, full {play}')
+        #print(f'Simple: {simple}, mod {mod}, run mvmt {runners}, full {play}')
         # TODO: How to treat new innings
         if self.op == 3:
             self.op = 0
 
     # Handles base movement and increments runs if someone scores
     # TODO: does it matter? Do we need to track score like this?
-    def adv_bases(self, mvmt):
+    def adv_bases(self, mvmt=1):
         pass

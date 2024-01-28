@@ -9,7 +9,7 @@ class Pitcher:
         self.throws = info[4]
         self.team = info[5]
         self.pos = info[6]
-        self.stats = {'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'SO': 0, 'BF': 0, 'P': 0}
+        self.stats = {'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
         self.game_stats = dict()
         for stat in self.stats:
             self.game_stats[stat] = 0

@@ -9,7 +9,7 @@ class Player:
         self.throws = info[4]
         self.team = info[5]
         self.pos = info[6]
-        self.stats = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'SO': 0, 'RBI': 0, 'SB': 0, 'Sac': 0, 'HBP': 0}
+        self.stats = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'Sac': 0, 'HBP': 0}
         self.game_stats = dict()
         for stat in self.stats:
             self.game_stats[stat] = 0
@@ -22,6 +22,7 @@ class Player:
     def inc_game_stat(self, stats: list, quantities: list):
         if len(stats) != len(quantities):
             print('Invalid number of stats compared to quantities, player inc_game_stat')
+            print(stats)
             return False
         for stat, quantity in zip(stats, quantities):
             self.game_stats[stat] += quantity
