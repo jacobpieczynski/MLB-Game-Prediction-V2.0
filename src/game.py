@@ -140,6 +140,28 @@ class Game:
             
     def parse_play(self, play, batter, pitcher):
         # 'Simple Plays'
+        simple = play.split('/')[0]
+        mod, runners = None, None
+        if '/' in play:
+            mod = play.split('.')[0].split('/')[1:]
+        if '.' in play:
+            runners = play.split('.')[1:]
+
+        # Number beginning a simple play represents a ground/line out
+        if simple[0].isnumeric():
+            # Parenthesis represents a double play, with the character inside the parenthesis representing the baserunner out
+            if '(' in simple:
+                runner = simple.split('(')[1][0]
+                # 'B' - If the putout is made at a base not normally covered by the fielder the base runner, batter in this example, is given explicitly.
+                if runner != 'B':
+                    self.bases[int(runner)] = None
+                pitcher.inc_game_stat(['OP', 'BF'], [2, 1])
+            else:
+                pitcher.inc_game_stat(['OP', 'BF'], [1, 1])
+            batter.inc_game_stat(['PA', 'AB'], [1, 1])
+       # elif simple[0]
+
+        """
         if '/' not in play and '.' not in play:
             if play == 'W':
                 batter.inc_game_stat(['BB', 'PA'], [1, 1])
@@ -153,7 +175,8 @@ class Game:
                 batter.inc_game_stat(['HBP', 'PA'], [1, 1])
                 pitcher.inc_game_stat(['HBP', 'BF'], [1, 1])
                 self.adv_bases(1)
-            print(play)
+        """
+        print(f'Simple: {simple}, mod {mod}, run mvmt {runners}, full {play}')
         # TODO: How to treat new innings
         if self.op == 3:
             self.op = 0
