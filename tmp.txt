@@ -1,0 +1,210 @@
+id,ANA202304090
+version,2
+info,visteam,TOR
+info,hometeam,ANA
+info,site,ANA01
+info,date,2023/04/09
+info,number,0
+info,gametype,regular
+info,starttime,1:07PM
+info,daynight,day
+info,innings,9
+info,tiebreaker,2
+info,usedh,true
+info,umphome,macka901
+info,ump1b,ticht901
+info,ump2b,knigb901
+info,ump3b,randt901
+info,umplf,(none)
+info,umprf,(none)
+info,inputtime,2023/05/20 17:38:55
+info,howscored,unknown
+info,pitches,pitches
+info,oscorer,munse701
+info,temp,72
+info,winddir,tocf
+info,windspeed,5
+info,fieldcond,unknown
+info,precip,none
+info,sky,sunny
+info,timeofgame,211
+info,attendance,31092
+info,wp,romaj004
+info,lp,estec001
+info,save,mayzt001
+start,sprig001,"George Springer",0,1,10
+start,bichb001,"Bo Bichette",0,2,6
+start,guerv002,"Vladimir Guerrero Jr.",0,3,3
+start,chapm001,"Matt Chapman",0,4,5
+start,varsd001,"Daulton Varsho",0,5,7
+start,merrw001,"Whit Merrifield",0,6,9
+start,espis001,"Santiago Espinal",0,7,4
+start,jansd001,"Danny Jansen",0,8,2
+start,kierk001,"Kevin Kiermaier",0,9,8
+start,kikuy001,"Yusei Kikuchi",0,0,1
+start,wardt002,"Taylor Ward",1,1,7
+start,troum001,"Mike Trout",1,2,8
+start,ohtas001,"Shohei Ohtani",1,3,10
+start,renda001,"Anthony Rendon",1,4,5
+start,renfh001,"Hunter Renfroe",1,5,9
+start,drurb001,"Brandon Drury",1,6,3
+start,rengl001,"Luis Rengifo",1,7,4
+start,urshg001,"Gio Urshela",1,8,6
+start,ohopl001,"Logan O'Hoppe",1,9,2
+start,detmr001,"Reid Detmers",1,0,1
+play,1,0,sprig001,12,FFBFFS,K
+play,1,0,bichb001,10,BX,3/G3+
+play,1,0,guerv002,10,BX,8/L8
+play,1,1,wardt002,22,BCBFX,31/G34+
+play,1,1,troum001,11,BFX,S16/G6
+play,1,1,ohtas001,12,CCBX,36(1)/FO/G34S.B-1
+play,1,1,renda001,12,1BSCX,S7/F78S.1-H
+play,1,1,renfh001,10,BX,HR/F7LD.1-H
+play,1,1,drurb001,22,SBBSFFS,K
+play,2,0,chapm001,11,FBX,S7/L7D+
+play,2,0,varsd001,12,CBSS,K
+play,2,0,merrw001,22,SFB+1FBX,7/F7D
+play,2,0,espis001,02,FTFFB,WP.1-2
+play,2,0,espis001,22,FTFFB.FBX,9/F9LS
+play,2,1,rengl001,22,FBFBFT,K
+play,2,1,urshg001,10,BX,S8/L8S
+play,2,1,ohopl001,32,BCSBBX,64(1)3/GDP/G6
+play,3,0,jansd001,32,CSBFBFBS,K
+play,3,0,kierk001,01,CX,7/F7S
+play,3,0,sprig001,22,CBBCS,K
+play,3,1,wardt002,10,BX,5/P56S
+play,3,1,troum001,32,CBBCBX,S8/L78
+play,3,1,ohtas001,21,BFBX,HR/F78XD.1-H
+play,3,1,renda001,32,BFBSBB,W
+play,3,1,renfh001,12,FBFX,S9/G34.1-2
+play,3,1,drurb001,12,SBFFFS,K
+play,3,1,rengl001,32,BBFFB>S,K
+play,4,0,bichb001,11,CBX,4/L4
+play,4,0,guerv002,31,CBBBX,4/F8S
+play,4,0,chapm001,32,BBBCFB,W
+play,4,0,varsd001,11,BCX,13/G1S-
+play,4,1,urshg001,32,BFBBCS,K
+play,4,1,ohopl001,10,BX,HR/F7D
+play,4,1,wardt002,00,X,9/F9D
+play,4,1,troum001,22,CBSBFFT,K
+play,5,0,merrw001,00,X,S7/L7
+play,5,0,espis001,12,CFBX,54(1)/FO/G56S.B-1
+play,5,0,jansd001,22,BBC+1FS,K
+play,5,0,kierk001,01,SX,43/G34
+play,5,1,ohtas001,32,BSBCBX,S8/G4M+
+play,5,1,renda001,21,BCBX,6/F6D
+play,5,1,renfh001,00,,NP
+sub,pop-z001,"Zach Pop",0,0,1
+play,5,1,renfh001,22,.BCSB>F>FX,6/P6D
+play,5,1,drurb001,00,X,53/G5
+play,6,0,sprig001,32,FFBBBFB,W
+play,6,0,bichb001,02,CFX,S7/G56.1-2
+play,6,0,guerv002,01,*SH,HP.2-3;1-2
+play,6,0,chapm001,00,X,HR/F89XD.3-H;2-H;1-H
+play,6,0,varsd001,00,X,S3/BG13
+play,6,0,merrw001,00,,NP
+sub,wanta001,"Andrew Wantz",1,0,1
+play,6,0,merrw001,21,.BFB>X,E1/G6MS-.1-2;B-1
+play,6,0,espis001,00,,NP
+sub,biggc002,"Cavan Biggio",0,7,11
+play,6,0,biggc002,10,.BX,8/F8XD.2-3
+play,6,0,jansd001,12,C1FBFFT,K
+play,6,0,kierk001,21,BBSX,T9/L9L+.3-H(UR);1-H(UR)
+play,6,0,sprig001,22,TBBFX,3/P3
+play,6,1,rengl001,00,,NP
+sub,biggc002,"Cavan Biggio",0,7,4
+play,6,1,rengl001,00,.,NP
+sub,cimba001,"Adam Cimber",0,0,1
+play,6,1,rengl001,22,..FBSFFFBX,6/F8S
+play,6,1,urshg001,11,CBX,9/L9L
+play,6,1,ohopl001,11,BFX,7/L78XD+
+play,7,0,bichb001,00,,NP
+sub,teper001,"Ryan Tepera",1,0,1
+play,7,0,bichb001,11,.FBH,HP
+play,7,0,guerv002,00,X,S9/F3D.1-3
+play,7,0,chapm001,22,BS*BSX,S8/F8S.3-H;1-2
+play,7,0,varsd001,00,X,9/F9D.2-3
+play,7,0,merrw001,22,FFBBFX,S7/G6S.3-H;1-2
+play,7,0,biggc002,00,,NP
+sub,loupa001,"Aaron Loup",1,0,1
+play,7,0,biggc002,00,.>C,SB3;SB2
+play,7,0,biggc002,22,.>C.BBSFS,K
+play,7,0,jansd001,00,,NP
+sub,kirka001,"Alejandro Kirk",0,8,11
+play,7,0,kirka001,30,.VVVV,IW
+play,7,0,kierk001,11,BCX,S7/F7S.3-H;2-H;1-2
+play,7,0,sprig001,22,CFB*BFX,4/F3D
+play,7,1,wardt002,00,,NP
+sub,kirka001,"Alejandro Kirk",0,8,2
+play,7,1,wardt002,00,.,NP
+sub,garcy001,"Yimi Garcia",0,0,1
+play,7,1,wardt002,22,..CBBCFT,K
+play,7,1,troum001,22,BCBCS,K
+play,7,1,ohtas001,32,CBBBCX,43/G34
+play,8,0,bichb001,00,,NP
+sub,barrj003,"Jaime Barria",1,0,1
+play,8,0,bichb001,31,.BBCBX,53/G5
+play,8,0,guerv002,01,TX,13/G1S
+play,8,0,chapm001,12,BFFX,13/G1S
+play,8,1,renda001,00,,NP
+sub,swane001,"Erik Swanson",0,0,1
+play,8,1,renda001,21,.BBFX,7/L7D
+play,8,1,renfh001,02,CSX,4/P34D
+play,8,1,drurb001,10,BX,HR/F8XD
+play,8,1,rengl001,02,CSS,K
+play,9,0,varsd001,32,FBFBBB,W
+play,9,0,merrw001,11,CBX,54(1)/FO/G5.B-1
+play,9,0,biggc002,00,1,PO1(13)
+play,9,0,biggc002,22,1.BCSBC,K
+play,9,1,urshg001,00,,NP
+sub,romaj004,"Jordan Romano",0,0,1
+play,9,1,urshg001,00,.X,S8/L89
+play,9,1,ohopl001,02,SFF*S,K
+play,9,1,wardt002,32,FBBSBB,W.1-2
+play,9,1,troum001,12,CSBT,K
+play,9,1,ohtas001,30,BBBB,W.2-3;1-2
+play,9,1,renda001,22,BCBFH,HP.3-H;2-3;1-2
+play,9,1,renfh001,00,,NP
+sub,philb002,"Brett Phillips",1,4,12
+play,9,1,renfh001,01,.CX,D7/G5+.3-H;2-H;1-3
+play,9,1,drurb001,22,*BBCSS,K
+play,10,0,kirka001,00,,NP
+sub,fletd002,"David Fletcher",1,4,6
+play,10,0,kirka001,00,.,NP
+sub,urshg001,"Gio Urshela",1,8,5
+play,10,0,kirka001,00,..,NP
+sub,estec001,"Carlos Estevez",1,0,1
+radj,biggc002,2
+com,"Cavan Biggio starts inning at 2nd base."
+play,10,0,kirka001,32,....FBBFFBX,63/G6.2-3
+play,10,0,kierk001,01,SX,DGR/F9LD.3-H(UR)
+play,10,0,sprig001,12,BCFX,S9/L89.2-H
+play,10,0,bichb001,22,C*BFBT,K
+play,10,0,guerv002,11,SB1X,S8/L89.1-3
+play,10,0,chapm001,12,BFSC,K
+play,10,1,rengl001,00,,NP
+sub,richt001,"Trevor Richards",0,0,1
+radj,drurb001,2
+com,"Brandon Drury starts inning at 2nd base."
+play,10,1,rengl001,22,..CBFBS,K
+play,10,1,urshg001,00,X,S8/L8D.2-3
+play,10,1,ohopl001,12,*BCSS,K
+play,10,1,wardt002,32,*BC1*BF*B>B,W.1-2
+play,10,1,troum001,32,FBBBF>B,W.3-H(UR);2-3;1-2
+play,10,1,ohtas001,00,,NP
+sub,mayzt001,"Tim Mayza",0,0,1
+play,10,1,ohtas001,02,.CSX,43/G34
+data,er,mayzt001,0
+data,er,pop-z001,0
+data,er,richt001,0
+data,er,garcy001,0
+data,er,kikuy001,6
+data,er,cimba001,0
+data,er,swane001,1
+data,er,romaj004,3
+data,er,loupa001,0
+data,er,wanta001,0
+data,er,barrj003,0
+data,er,estec001,1
+data,er,detmr001,4
+data,er,teper001,4
