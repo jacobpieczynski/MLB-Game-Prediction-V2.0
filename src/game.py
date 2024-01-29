@@ -74,9 +74,11 @@ class Game:
     # Loops through the plays and parses them/collects statistics accordingly
     def simulate_game(self):
         self.bases = [None] * 4
-        self.op = 0
+        self.op, self.inning, self.side = 0, 0, 0
+        radj = False
         for line in self.plays:
             line = line.split(',')
+            print(f'line; {line}')
             # 3 types of play info
             if line[0] == 'play' and line[-1] != 'NP': #TODO: NP will always (?) preceed a sub/adj, can ignore those lines
                 # TODO: Account for a new inning
@@ -87,12 +89,25 @@ class Game:
                 pitches_thrown = line[5]
                 play = line[6]
                 batter = PLAYERS[playerid]
+                # TODO: How to treat new innings
+                inning, side = int(line[1]), int(line[2])
+                if self.inning != inning or self.side != side: # self.op == 3 or 
+                    self.inning = inning
+                    self.side = side
+                    if not radj:
+                        self.bases = [None] * 4
+                    self.op = 0
+
                 if is_home:
                     pitcher = self.visitor_lineup[1]
                 else:
                     pitcher = self.home_lineup[1]
+                print(f'{pitcher.name} is pitching')
                 pitcher.inc_game_stat(['P'], [total_pitches])
                 self.parse_play(play, batter, pitcher)
+                print(self.bases)
+                print(f'{self.inning} inning, {self.op} outs', end='\n\n')
+                radj = False
             # When a player is substituted for another
             elif line[0] == 'sub':
                 # TODO: The numbers are in the standard notation, with designated hitters being identified as position 10. On sub records 11 indicates a pinch hitter and 12 is used for a pinch runner. When a player pinch hits or pinch runs for the DH, that player automatically becomes the DH, so no 'sub' record is included to identify the new DH.
@@ -141,10 +156,15 @@ class Game:
             # Runner Adjustment, for when an inning starts with someone on base (extra innings rule)
             elif line[0] == 'radj':
                 #info = line.split(',')
+                print(line)
+                radj = True
                 self.bases[int(line[2])] = PLAYERS[line[1]]
+                print(f'{PLAYERS[line[1]].name} starts the inning at {int(line[2])}')
+                print(self.bases)
             else:
-                # TODO: Account for radj and badj
+                # TODO: Account for badj
                 pass
+        
             
     def parse_play(self, play, batter, pitcher):
         self.com = False # TODO: TEMP
@@ -163,85 +183,103 @@ class Game:
             # Parenthesis represents a double play, with the character inside the parenthesis representing the baserunner out
             if '(' in simple:
                 runner = simple.split(')')[0][-1]
+                #print(f'{batter.name} hit a double play, {runner} out')
                 # 'B' - If the putout is made at a base not normally covered by the fielder the base runner, batter in this example, is given explicitly.
-                #if runner != 'B':
                 # If the last digit is a number, it represents a double play
                 if simple[-1].isnumeric():
                     self.bases[int(runner)] = None
-                    #print(f'Double play, {runner} out as well as batter - {play}')
+                    print(f'Double play, {runner} out as well as batter - {play}')
                     pitcher.inc_game_stat(['OP', 'BF'], [2, 1])
+                    self.op += 2
                 else:
                     # Runner in parenthesis represents a force out - B in parenthesis is the batter, so empty base is implied
                     if runner.isnumeric():
                         self.bases[int(runner)] = None
-                        #print(f'Force out at, {runner} out - {play}')
+                        print(f'Force out at, {runner} out - {play}')
                     #else:
-                        #print(f'Unusual fo, batter out - {play}')
-                    pitcher.inc_game_stat(['OP', 'BF'], [2, 1])
+                        print(f'Unusual fo, batter out - {play}')
+                    pitcher.inc_game_stat(['OP', 'BF'], [1, 1])
+                    self.op += 1
             else:
-                #print(f'Pop/lineout, batter out - {play}')
+                print(f'Pop/lineout, batter out - {play}')
                 pitcher.inc_game_stat(['OP', 'BF'], [1, 1])
+                self.op += 1
             batter.inc_game_stat(['PA', 'AB'], [1, 1])
         # Interference by a player resulting in batter going to 1 and all others advancing
         elif 'C/E' in play:
             batter.inc_game_stat(['PA'], [1])
             pitcher.inc_game_stat(['BF'], [1])
             #self.adv_bases()
-            #print(f'Interference, all runners advance - {play}')
+            print(f'Interference, all runners advance - {play}')
         # Single
-        elif simple.startswith('S'):
+        elif simple.startswith('S') and not simple.startswith('SB'):
             batter.inc_game_stat(['S', 'PA', 'AB', 'H'], [1, 1, 1, 1])
             pitcher.inc_game_stat(['H', 'BF'], [1, 1])
             #self.adv_bases()
+            print(f'{batter.name} hit a single')
         # Double
         elif simple.startswith('D') or simple.startswith('DGR'):
             batter.inc_game_stat(['D', 'PA', 'AB', 'H'], [1, 1, 1, 1])
             pitcher.inc_game_stat(['H', 'BF'], [1, 1])
             #self.adv_bases()
+            print(f'{batter.name} hit a double')
         # Triple
         elif simple.startswith('T'):
             batter.inc_game_stat(['T', 'PA', 'AB', 'H'], [1, 1, 1, 1])
             pitcher.inc_game_stat(['H', 'BF'], [1, 1])
+            print(f'{batter.name} hit a triple')
             #self.adv_bases()
         # Fielding Error
         elif simple.startswith('E') and simple[1].isnumeric():
             batter.inc_game_stat(['PA', 'AB'], [1, 1])
             pitcher.inc_game_stat(['BF'], [1])
+            print(f'{batter.name} hit a fielding error')
         # Fielders choice - batter goes to first, another runner is attempted to get out
         elif simple.startswith('FC'):
             batter.inc_game_stat(['AB', 'PA'], [1, 1])
-            pitcher.inc_game_stat(['BF'], [1])
+            pitcher.inc_game_stat(['BF', 'OP'], [1, 1])
+            self.op += 1
+            print(f'{batter.name} hit into a fielders choice')
             # TODO: make sure to treat outs for the pitcher
             #self.adv_bases()
         elif 'H/' in play or simple.startswith('HR'):
             batter.inc_game_stat(['HR', 'AB', 'PA', 'H'], [1, 1, 1, 1])
             pitcher.inc_game_stat(['HR', 'R', 'BF'], [1, 1, 1])
+            print(f'{batter.name} hit a home run')
             #self.adv_bases()
         # Hit by Pitch
         elif simple.startswith('HP'):
             batter.inc_game_stat(['HBP', 'PA', 'AB'], [1, 1, 1])
             pitcher.inc_game_stat(['HBP', 'BF'], [1, 1])
+            print(f'{batter.name} hit by pitch')
             #self.adv_bases()
         # K + something represents a strikout plus another event
         elif simple.startswith('K+') or (simple.startswith('K') and '+' in simple):
             # TODO: Treat strikeout edge cases
+            print(f'{batter.name} hit a odd strikout')
             pass
         elif simple.startswith('K'):
             batter.inc_game_stat(['K', 'PA', 'AB'], [1, 1, 1])
             pitcher.inc_game_stat(['K', 'OP', 'BF'], [1, 1, 1])
+            self.op += 1
+            print(f'{batter.name} struck out')
         elif simple.startswith('WP'):
             # TODO: treat wild pitches, use run movement
+            print(f'Wild pitch! adv_bases should track mvmt')
             pass
         elif simple.startswith('W+') or (simple.startswith('W') and '+' in simple):
             # TODO: treat walk edge cases
+            print(f'{batter.name} hit an odd walk')
             pass
         elif simple.startswith('I') or simple.startswith('IW') or simple.startswith('W'):
             batter.inc_game_stat(['BB', 'PA'], [1, 1])
             pitcher.inc_game_stat(['BB', 'BF'], [1, 1])
+            print(f'{batter.name} walked')
             #print(play)
         # Balk
         elif simple.startswith('BK'):
             # TODO: treat balks, advance all runners
+            print(f'{pitcher.name} balked!')
             #self.adv_bases()
             pass
         # Player caught stealing
@@ -255,22 +293,25 @@ class Game:
             if 'E' not in simple and self.bases[base] != None:
                 #print(play)
                 self.bases[base].inc_game_stat(['CS'], [1])
-                self.bases[base] = None
             else:
                 #print(f'CAught stealing, {play}')
                 pass
+            pitcher.inc_game_stat(['OP'], [1])
+            self.op += 1
+            print(f'Caught stealing - make sure to track in adv_bases, delete tracking here')
         # Defensive indifference, runner allowed to steal
         elif simple.startswith("DI"):
             # TODO: treat defensive indifference, advance runner
+            print(f'Someone stole a base')
             pass
         elif simple.startswith('PB') or simple.startswith('WP'):
             #TODO: passed ball/wild pitch, not a batter stat but runners may have advanced.
+            print(f'Wild pitch or passed ball')
             pass
         elif simple.startswith('PO'):
             # Error, runner advances
             if '(E' in simple:
                 # TODO: account for the error
-                #self.adv_bases()
                 pass
             # Picked off and changed with caught stealing
             elif simple.startswith('POCS'):
@@ -285,6 +326,7 @@ class Game:
                     self.bases[int(base) - 1] = None
                 """
                 pitcher.inc_game_stat(['OP'], [1])
+                self.op += 1
             # Runner picked off, base represets the base they were at
             else:
                 base = simple[2]
@@ -293,46 +335,52 @@ class Game:
                 else:
                     self.bases[int(base) - 1] = None
                 pitcher.inc_game_stat(['OP'], [1])
+                self.op += 1
+            print(f'Picked off!')
+            print(self.bases)
         # Stolen Base
         elif simple.startswith('SB'):
-            steals = simple.split(';')
+            steals = simple.split('.')[0].split(';')
             for steal in steals:
                 base = steal[2]
                 if base == 'H':
+                    print(simple)
+                    print()
                     self.bases[3].inc_game_stat(['SB'], [1])
                     # TODO: Account for run scored ??
                 else:
                     self.bases[int(base) - 1].inc_game_stat(['SB'], [1])
+            print(f'Stolen base')
         # Fielding error on fly ball
         elif simple.startswith('FLE'):
             # TODO: if we track fielding stats, update with this. Otherwise, ignore/pass
+            print('Foul ball error')
             pass
         # Other action
         elif simple.startswith('OA'):
-            print(play)
+            print(f'Other action?')
             self.com = True
         else:
             print(f'MISSED CASE: {play}')
         self.adv_bases(batter, simple, runners[0], play)
         #print(f'Simple: {simple}, mod {mod}, run mvmt {runners}, full {play}')
-        # TODO: How to treat new innings
-        if self.op == 3:
-            self.op = 0
 
     def adv_bases(self, batter, simple, runners=None, play=None):
-        print(play)
+        if 'OA' in simple and 'X' in runners:
+            return False
+
+        #print(play)
         if runners == None:
-            if (simple.startswith('S') or simple.startswith('HP') or simple.startswith('W') or simple.startswith('IW')) and not simple.startswith('SB'):
+            if (simple.startswith('S') or simple.startswith('HP') or simple.startswith('W') or simple.startswith('IW')) and not simple.startswith('SB') and not simple.startswith('W+'):
                 self.bases[1] = batter
                 print(f'{batter.name} goes to first')
-                print(self.bases)
             elif simple.startswith('D'):
                 print(f'{batter.name} goes to second')
                 self.bases[2] = batter
             elif simple.startswith('T'):
                 print(f'{batter.name} goes to third')
                 self.bases[3] = batter
-            elif simple[0].isnumeric() or simple.startswith('K') or simple.startswith('HR'):
+            elif (simple[0].isnumeric() or simple.startswith('K') or simple.startswith('HR')) and not simple.startswith('K+') and 'E' not in simple:
                 print(f'{batter.name} hit a home run, strikeout or line/groundout')
                 pass
             elif simple.startswith('SB'):
@@ -344,6 +392,27 @@ class Game:
                     else:
                         print(f'{self.bases[int(base[-1]) - 1].name} stole {int(base[-1])}')
                         self.bases[int(base[-1])] = self.bases[int(base[-1]) - 1]
+            elif 'SB' in simple:
+                if simple.startswith('W+'):
+                    self.bases[1] = batter
+                bases = simple[2:].split(';')
+                for base in bases:
+                    print(base)
+                    if base[-1] == 'H':
+                            print(f'{self.bases[3].name} stole home')
+                            self.bases[3] = None
+                    else:
+                        print(f'{self.bases[int(base[-1]) - 1].name} stole {int(base[-1])}')
+                        self.bases[int(base[-1])] = self.bases[int(base[-1]) - 1]
+            elif simple.startswith('POCS'):
+                print(f'{self.bases[int(simple[4]) - 1].name} picked off, caught stealing!')
+                self.bases[int(simple[4]) - 1] = None
+            elif simple.startswith('PO'):
+                print(f'{self.bases[int(simple[2])].name} picked off!')
+                self.bases[int(simple[2])] = None
+            elif 'E' in simple:
+                self.bases[1] = batter
+                print(f'{batter.name} reached on an error')
             else:
                 print(f'Simple {simple}')
         else:
@@ -353,47 +422,64 @@ class Game:
                 for runner in runners:
                     # TODO: Fix this
                     if runners != None and 'X' in runner:
+                        if 'E' in runner:
+                            start = runner[0]
+                            end = runner[2]
+                            if start == 'B':
+                                self.bases[int(end)] = batter
+                            elif end == 'H':
+                                self.bases[int(start)] = None
+                            else:
+                                self.bases[int(end)] = self.bases[int(start)]
                         print(runner)
+                        print(self.bases)
                         print('X, pass 1')
                     else:
                         start = runner[0]
                         end = runner.split('-')[1][0]
-                        if end == 'H' and start !='B':
-                            print(runner)
-                            print(self.bases)
-                            print(f'{self.bases[int(start)].name} scored')
-                            self.bases[int(start)] = None
-                        elif end == 'H' and start == 'B':
-                            # Do nothing, batter doesn't end up on a base
-                            # TODO: Wherever ends in "H" and doesn't include 'UR', batter gets an rbi
-                            # TODO: Deal with outs
-                            print(f'{batter.name} score a home run')
-                            pass
-                        elif start == 'B':
-                            print(f'{batter.name} went to {int(end)}')
-                            self.bases[int(end)] = batter
-                        else:
-                            print(f'{self.bases[int(start)].name} went to {int(end)}')
-                            self.bases[int(end)] = self.bases[int(start)]
+                        if start != end:
+                            if end == 'H' and start !='B':
+                                print(runner)
+                                print(self.bases)
+                                print(f'{self.bases[int(start)].name} scored')
+                                self.bases[int(start)] = None
+                            elif end == 'H' and start == 'B':
+                                # Do nothing, batter doesn't end up on a base
+                                # TODO: Wherever ends in "H" and doesn't include 'UR', batter gets an rbi
+                                # TODO: Deal with outs
+                                print(f'{batter.name} score a home run')
+                                pass
+                            elif start == 'B':
+                                print(f'{batter.name} went to {int(end)}')
+                                self.bases[int(end)] = batter
+                            else:
+                                print(f'{self.bases[int(start)].name} went to {int(end)}')
+                                self.bases[int(end)] = self.bases[int(start)]
+                                self.bases[int(start)] = None
             else:
                 runners = runners.split(';')
+                print(runners)
                 for runner in runners:
-
+                    print(runner)
                     # TODO: Fix this
                     if 'X' in runner:
                         print(runner)
                         print('X, pass 2')
-                        break
-                    start = runner[0]
-                    end = runner.split('-')[1][0]
-                    if end == 'H':
-                        print(f'{self.bases[int(start)].name} scored')
-                        self.bases[int(start)] = None
+                        pass
                     else:
-                        print(self.id)
-                        print(f'{self.bases[int(start)].name} went to {int(end)}')
-                        self.bases[int(end)] = self.bases[int(start)]
-                if (simple.startswith('S') or simple.startswith('HP') or simple.startswith('W')) and not simple.startswith('SB') and not simple.startswith('WP'):
+                        start = runner[0]
+                        end = runner.split('-')[1][0]
+                        if start != end:
+                            if end == 'H':
+                                print(f'{self.bases[int(start)].name} scored')
+                                self.bases[int(start)] = None
+                            else:
+                                print(self.id)
+                                print(self.bases)
+                                print(f'{self.bases[int(start)].name} went to {int(end)}')
+                                self.bases[int(end)] = self.bases[int(start)]
+                                self.bases[int(start)] = None
+                if (simple.startswith('S') or simple.startswith('HP') or simple.startswith('W') or simple.startswith('IW')) and not simple.startswith('SB') and not simple.startswith('WP'):
                     print(f'{batter.name} went to 1')
                     self.bases[1] = batter
                 elif simple.startswith('D'):
@@ -402,18 +488,34 @@ class Game:
                 elif simple.startswith('T'):
                     print(f'{batter.name} went to 3')
                     self.bases[3] = batter
-                elif simple[0].isnumeric() or simple.startswith('K') or simple.startswith('HR'):
+                elif (simple[0].isnumeric() or simple.startswith('K') or simple.startswith('HR')) and not simple.startswith('K+') and 'E' not in simple:
                     print(f'{batter.name} hit a home run, strikeout or line/groundout')
                     pass
-                elif simple.startswith('SB'):
+                elif simple.startswith('SB') or (simple.startswith('K+') and 'SB' in simple):
                     # TODO: Check that stolen bases are being measured correctly
+                    print(simple)
+                    if simple.startswith('K+'):
+                        simple = simple[2:]
+                        print(simple)
+                    bases = simple.split('.')[0].split(';')
+                    for base in bases:
+                        base = base[-1]
+                        print(base)
+                        if base == 'H':
+                            pass
+                        elif self.bases[int(base) - 1] != None:
+                            self.bases[int(base)] = self.bases[int(base) - 1]
+                            self.bases[int(base) - 1] = None
+                        
                     pass
                 elif simple.startswith('WP'):
                     # TODO: make sure wild pitches are being measured correctly
                     pass
+                elif 'E' in simple:
+                    self.bases[1] = batter
+                    print(f'{batter.name} reaches on an error')
                 else:
                     print(f'Not sure: {runner}')
-        print('\n')
         # TODO: Make sure to record when players are forced out
 
         """
@@ -426,49 +528,3 @@ If b in run log, go through each run log
 
 If b not in run log,
 Treat ru"""
-
-    # Handles base movement and increments runs if someone scores
-    # TODO: does it matter? Do we need to track score like this?
-    def adv_bases1(self, simple, runners, batter):
-        # TODO: get rid of batter=None, change to batter required
-        # Handles simple plays when no runners on base
-        if runners == None and not simple[0].isnumeric() and not simple.startswith('K') and not simple.startswith('CS') and not simple.startswith('PO') and not simple.startswith('FLE'):
-            if simple.startswith('W') or simple.startswith('S') or simple.startswith('HP') or simple.startswith('IW'):
-                self.bases[1] = batter
-                #print(f'{batter.name} advanced to first')
-            elif simple.startswith('D'):
-                self.bases[2] = batter
-            elif simple.startswith('T'):
-                self.bases[3] = batter
-            elif simple.startswith('HR'):
-                pass
-            else:
-                #print(f'Play {simple}, runners {runners}'
-                pass
-        elif runners != None and not simple.startswith('HR'):
-            runners = runners.split(';')
-            for runner in runners:
-                start = runner[0]
-                end = runner.split('(')[0][-1]
-                if simple.startswith('E'):
-
-                    if start == 'B':
-                        self.bases[int(end)] = batter
-                        #print(f'{batter.name} moved to first')
-                    elif end == 'H':
-                        start = int(start)
-                        #rint(f'{self.bases[int(start)].name} went home')
-                        self.bases[start] = None
-                    else:
-                        start, end = int(start), int(end)
-                        #print(f'{self.bases[start].name} moved to {end}')
-                        self.bases[end] = self.bases[start]
-                    print()
-                elif '(' in simple:
-                    fo = simple.split(')')[0][-1]
-                    if fo.isnumeric():
-                        self.bases[int(fo)] = None
-                    if start == 'B' and end != 'H':
-                        self.bases[int(end)] = batter
-                else:
-                    print(f'Runner {runner}, play {simple}')
