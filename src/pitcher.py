@@ -15,8 +15,13 @@ class Pitcher:
             self.game_stats[stat] = 0
 
     # Gets the player statistics between two dates
-    def get_totals(self, start_date, end_date):
-        pass
+    def get_totals(self, start_date='20230101', end_date='20231231'):
+        self.reset_stats()
+        for game in GAMES:
+            if self.id in game.players_in_game and game.date <= end_date and game.date >= start_date:
+                game.simulate_game()
+        self.stats['IP'] = self.op_to_ip(self.stats['OP'])
+        return self.stats
 
     # Alters a given stat
     # TODO: Do we need quants? Will it ever be inc. by more than 1?
@@ -40,6 +45,11 @@ class Pitcher:
     def reset_game_stats(self):
         for stat in self.game_stats:
             self.game_stats[stat] = 0
+
+    def op_to_ip(self, op):
+        partial = op % 3
+        inn = (op - (op % 3)) / 3
+        return inn + round(partial / 10, 1)
 
     def __repr__(self):
         return f'Pitcher object {self.name}, a {self.pos} for {self.team} - ID: {self.id}'

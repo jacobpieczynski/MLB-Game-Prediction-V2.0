@@ -36,16 +36,22 @@ class Game:
         for line in self.infos:
             line = line.split(',')
             if line[0] == 'id':
+                if line[1][-1] != '0':
+                    self.factor = line[1][-1]
+                else:
+                    self.factor = ''
                 self.date = line[1][3:-1]
             elif line[0] != 'version':
                 info[line[1]] = line[2]
         self.id = self.date + info['hometeam'] + info['visteam']
         self.info = info
         self.GameLog = GAMELOG[self.date[:4]][self.id]
+        self.id += self.factor
+        
 
     # Takes the 'start' information and sets the lineups based off it
     def set_lineup(self):
-        self.home_lineup, self.visitor_lineup, self.players_in_game = [None] * 11, [None] * 11, [] # lineup[0] is none, after that the idx represents their field pos
+        self.home_lineup, self.visitor_lineup, self.players_in_game = [None] * 11, [None] * 11, dict() # lineup[0] is none, after that the idx represents their field pos
         for line in self.start:
             line = line.split(',')
             playerid = line[1]
@@ -62,14 +68,14 @@ class Game:
                     self.visitor_lineup[field_pos] = PITCHERS[playerid]
                 PITCHERS[playerid].reset_game_stats()
                 PITCHERS[playerid].inc_game_stat(['G', 'S'], [1, 1])
-                self.players_in_game.append(PITCHERS[playerid])
+                self.players_in_game[playerid] = PITCHERS[playerid]
             else:
                 if is_home:
                     self.home_lineup[field_pos] = PLAYERS[playerid]
                 else:
                     self.visitor_lineup[field_pos] = PLAYERS[playerid]
                 PLAYERS[playerid].reset_game_stats()
-                self.players_in_game.append(PLAYERS[playerid])   
+                self.players_in_game[playerid] = PLAYERS[playerid] 
 
     # Loops through the plays and parses them/collects statistics accordingly
     def simulate_game(self):
@@ -139,6 +145,8 @@ class Game:
                         self.home_lineup[1] = PITCHERS[playerid]
                     else:
                         self.visitor_lineup[1] = PITCHERS[playerid]
+                
+                    self.players_in_game[playerid] = PITCHERS[playerid]
                 else:
                     # Checks for pitchers being subbed as players
                     if playerid not in PLAYERS:
@@ -147,6 +155,7 @@ class Game:
                         self.home_lineup[field_pos] = PLAYERS[playerid]
                     else:
                         self.visitor_lineup[field_pos] = PLAYERS[playerid]
+                    self.players_in_game[playerid] = PLAYERS[playerid]
             # Tracks a the ER of each pitcher
             elif line[0] == 'com':
                 if self.com:
@@ -164,6 +173,10 @@ class Game:
             else:
                 # TODO: Account for badj
                 pass
+        print(self.id)
+        for player in self.players_in_game:
+            self.players_in_game[player].add_game_stats()
+            self.players_in_game[player].reset_game_stats()
         
             
     def parse_play(self, play, batter, pitcher):
@@ -205,6 +218,11 @@ class Game:
                 pitcher.inc_game_stat(['OP', 'BF'], [1, 1])
                 self.op += 1
             batter.inc_game_stat(['PA', 'AB'], [1, 1])
+        # Defensive indifference, runner allowed to steal
+        elif simple.startswith("DI"):
+            # TODO: treat defensive indifference, advance runner
+            print(f'Someone stole a base')
+            pass
         # Interference by a player resulting in batter going to 1 and all others advancing
         elif 'C/E' in play:
             batter.inc_game_stat(['PA'], [1])
@@ -257,19 +275,22 @@ class Game:
         elif simple.startswith('K+') or (simple.startswith('K') and '+' in simple):
             # TODO: Treat strikeout edge cases
             print(f'{batter.name} hit a odd strikout')
-            pass
+            batter.inc_game_stat(['K', 'PA', 'AB'], [1, 1, 1])
+            pitcher.inc_game_stat(['K', 'OP', 'BF'], [1, 1, 1])
         elif simple.startswith('K'):
             batter.inc_game_stat(['K', 'PA', 'AB'], [1, 1, 1])
             pitcher.inc_game_stat(['K', 'OP', 'BF'], [1, 1, 1])
             self.op += 1
             print(f'{batter.name} struck out')
-        elif simple.startswith('WP'):
-            # TODO: treat wild pitches, use run movement
-            print(f'Wild pitch! adv_bases should track mvmt')
-            pass
+        elif simple.startswith('PB') or simple.startswith('WP'):
+            #TODO: passed ball/wild pitch, not a batter stat but runners may have advanced.
+            print(f'Wild pitch or passed ball')
+            print(play)
         elif simple.startswith('W+') or (simple.startswith('W') and '+' in simple):
             # TODO: treat walk edge cases
             print(f'{batter.name} hit an odd walk')
+            batter.inc_game_stat(['BB', 'PA'], [1, 1])
+            pitcher.inc_game_stat(['BB', 'BF'], [1, 1])
             pass
         elif simple.startswith('I') or simple.startswith('IW') or simple.startswith('W'):
             batter.inc_game_stat(['BB', 'PA'], [1, 1])
@@ -299,15 +320,6 @@ class Game:
             pitcher.inc_game_stat(['OP'], [1])
             self.op += 1
             print(f'Caught stealing - make sure to track in adv_bases, delete tracking here')
-        # Defensive indifference, runner allowed to steal
-        elif simple.startswith("DI"):
-            # TODO: treat defensive indifference, advance runner
-            print(f'Someone stole a base')
-            pass
-        elif simple.startswith('PB') or simple.startswith('WP'):
-            #TODO: passed ball/wild pitch, not a batter stat but runners may have advanced.
-            print(f'Wild pitch or passed ball')
-            pass
         elif simple.startswith('PO'):
             # Error, runner advances
             if '(E' in simple:
@@ -339,17 +351,19 @@ class Game:
             print(f'Picked off!')
             print(self.bases)
         # Stolen Base
+        # TODO: Fix this (get rid of 1 ==2 ) when adv_bases works
         elif simple.startswith('SB'):
-            steals = simple.split('.')[0].split(';')
-            for steal in steals:
-                base = steal[2]
-                if base == 'H':
-                    print(simple)
-                    print()
-                    self.bases[3].inc_game_stat(['SB'], [1])
-                    # TODO: Account for run scored ??
-                else:
-                    self.bases[int(base) - 1].inc_game_stat(['SB'], [1])
+            if 1 == 2:
+                steals = simple.split('.')[0].split(';')
+                for steal in steals:
+                    base = steal[2]
+                    if base == 'H':
+                        print(simple)
+                        print()
+                        self.bases[3].inc_game_stat(['SB'], [1])
+                        # TODO: Account for run scored ??
+                    else:
+                        self.bases[int(base) - 1].inc_game_stat(['SB'], [1])
             print(f'Stolen base')
         # Fielding error on fly ball
         elif simple.startswith('FLE'):
@@ -362,7 +376,7 @@ class Game:
             self.com = True
         else:
             print(f'MISSED CASE: {play}')
-        self.adv_bases(batter, simple, runners[0], play)
+        #self.adv_bases(batter, simple, runners[0], play)
         #print(f'Simple: {simple}, mod {mod}, run mvmt {runners}, full {play}')
 
     def adv_bases(self, batter, simple, runners=None, play=None):

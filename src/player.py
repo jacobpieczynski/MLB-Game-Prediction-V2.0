@@ -15,8 +15,13 @@ class Player:
             self.game_stats[stat] = 0
 
     # Gets the player statistics between two dates
-    def get_totals(self, start_date, end_date):
-        pass
+    def get_totals(self, start_date='20230101', end_date='20231231'):
+        self.reset_stats()
+        for gameid in GAMES:
+            game = GAMES[gameid]
+            if self.id in game.players_in_game and game.date <= end_date and game.date >= start_date:
+                game.simulate_game()
+        return self.stats
 
     # Alters a given stat
     def inc_game_stat(self, stats: list, quantities: list):
@@ -38,6 +43,8 @@ class Player:
             self.stats[stat] = 0
 
     def reset_game_stats(self):
+        if self.id == 'carrc005':
+            print(f'{self.id} GAME: {self.game_stats["D"]}') # TODO: REmove this line
         for stat in self.game_stats:
             self.game_stats[stat] = 0
 
