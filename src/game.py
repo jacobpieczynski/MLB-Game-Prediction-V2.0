@@ -188,7 +188,7 @@ class Game:
         for player in self.players_in_game:
             print(player)
             self.players_in_game[player].add_game_stats()
-            if player == 'desca001':
+            if player == 'gallz001':
                 print(f'OP {self.players_in_game[player].game_stats["OP"]}, IP {self.players_in_game[player].op_to_ip(self.players_in_game[player].game_stats["OP"])} -- {self.id}')
             self.players_in_game[player].reset_game_stats()
         
@@ -302,8 +302,13 @@ class Game:
         elif simple.startswith('K+') or (simple.startswith('K') and '+' in simple):
             # TODO: Treat strikeout edge cases
             print(f'{batter.name} hit a odd strikout')
+            op = 1
+            for mod in mods:
+                if 'DP' in mod:
+                    op = 2
             batter.inc_game_stat(['K', 'PA', 'AB'], [1, 1, 1])
-            pitcher.inc_game_stat(['K', 'OP', 'BF'], [1, 1, 1])
+            pitcher.inc_game_stat(['K', 'OP', 'BF'], [1, op, 1])
+            self.op += op
         elif simple.startswith('K'):
             batter.inc_game_stat(['K', 'PA', 'AB'], [1, 1, 1])
             pitcher.inc_game_stat(['K', 'OP', 'BF'], [1, 1, 1])
