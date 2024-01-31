@@ -39,20 +39,20 @@ def parse_log(filename="gl/gl2023.txt", year='2023'):
 # Parse PBP Files
 def parse_pbp(filename='pbp/2023/2023ARI.EVN'):
     data = []
-    try:
-        with open(filename) as file:
-            for line in file:
-                # All games begin with the 'id,' line
-                if line[0:3] == 'id,' and data != []:
-                    game = Game(data)
-                    GAMES[game.id] = game
-                    data = []
-                    data.append(line.strip('\n'))
-                else:
-                    data.append(line.strip('\n'))
-            # To append final game
-            game = Game(data)
-            GAMES[game.id] = game
-    except:
-        return False
+    #try:
+    with open(filename) as file:
+        for line in file:
+            # All games begin with the 'id,' line
+            if line[0:3] == 'id,' and data != []:
+                game = Game(data)
+                GAMES[game.id] = game
+                data = []
+                data.append(line.strip('\n'))
+            else:
+                data.append(line.strip('\n'))
+        # To append final game
+        game = Game(data)
+        GAMES[game.id] = game
+    #except:
+     #   return False
     return True

@@ -14,10 +14,10 @@ ROS_FILES = {'2023': ['ros/2023/ANA2023.ROS', 'ros/2023/ARI2023.ROS', 'ros/2023/
 START_2022, END_2022 = '20220101', '20221231'
 
 # Global Dicts
-PLAYERS = dict()
-PITCHERS = dict()
-GAMELOG = dict()
-GAMES = dict()
+PLAYERS = dict() # Useage: PLAYERS[playerid] --> returns player object
+PITCHERS = dict() # Useage: PITCHERS[playerid] --> returns pitcher object
+GAMELOG = dict() # Useage: GAMELOG[year][gameid] --> returns gamelog object # Todo: do we change this to be just gamelog[gameid]?
+GAMES = dict() # Useage: GAMES[gameid] --> returns game object
 
 # Misc helper functions
 def get_prior_date(date):

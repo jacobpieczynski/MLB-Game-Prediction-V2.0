@@ -45,7 +45,7 @@ def main():
     print('-' * 50, end='\n\n')
 
     # Testing
-    #print(GAMES['20230718TORSDN'].simulate_game())
+    print(GAMES['20231001SFNLAN'].get_win_pct())
     print(PLAYERS['judga001'].get_totals(END_2022, START_2022))
 
 main()
