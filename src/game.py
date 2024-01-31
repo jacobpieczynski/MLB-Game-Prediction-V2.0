@@ -213,6 +213,10 @@ class Game:
                     print(f'Double play, {runner} out as well as batter - {play}')
                     pitcher.inc_game_stat(['OP', 'BF'], [2, 1])
                     self.op += 2
+                elif simple.count('(') > 1:
+                    print(f'Lined into play, {runner} out as well as batter - {play}')
+                    pitcher.inc_game_stat(['OP', 'BF'], [int(simple.count('(')), 1])
+                    self.op += int(simple.count('('))
                 else:
                     # Runner in parenthesis represents a force out - B in parenthesis is the batter, so empty base is implied
                     if runner.isnumeric():
