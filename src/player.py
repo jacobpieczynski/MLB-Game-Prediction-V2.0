@@ -43,8 +43,6 @@ class Player:
             self.stats[stat] = 0
 
     def reset_game_stats(self):
-        if self.id == 'carrc005':
-            print(f'{self.id} GAME: {self.game_stats["D"]}') # TODO: REmove this line
         for stat in self.game_stats:
             self.game_stats[stat] = 0
 

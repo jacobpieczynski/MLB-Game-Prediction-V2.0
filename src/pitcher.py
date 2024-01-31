@@ -17,17 +17,20 @@ class Pitcher:
     # Gets the player statistics between two dates
     def get_totals(self, start_date='20230101', end_date='20231231'):
         self.reset_stats()
-        for game in GAMES:
+        for gameid in GAMES:
+            game = GAMES[gameid]
             if self.id in game.players_in_game and game.date <= end_date and game.date >= start_date:
+               ##print('simming')
                 game.simulate_game()
-        self.stats['IP'] = self.op_to_ip(self.stats['OP'])
+               ##print(f'## {self.game_stats}')
         return self.stats
+        #self.stats['IP'] = self.op_to_ip(self.stats['OP'])
 
     # Alters a given stat
-    # TODO: Do we need quants? Will it ever be inc. by more than 1?
     def inc_game_stat(self, stats: list, quantities: list):
         if len(stats) != len(quantities):
-            print('Invalid number of stats compared to quantities, player inc_game_stat')
+           ##print('Invalid number of stats compared to quantities, player inc_game_stat')
+           ##print(stats)
             return False
         for stat, quantity in zip(stats, quantities):
             self.game_stats[stat] += quantity
