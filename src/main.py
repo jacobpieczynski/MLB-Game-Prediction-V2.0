@@ -12,7 +12,7 @@ def main():
                 print('-' * 50, end='\n\n')
                 return False
             print(ros)
-        # SHOHEI RULE
+    # SHOHEI RULE
     tmp = Pitcher('ohtas001,Ohtani,Shohei,L,R,ANA,DH')
     PITCHERS[tmp.id] = tmp
     print('\nLOADED')
