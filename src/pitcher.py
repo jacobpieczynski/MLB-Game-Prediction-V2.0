@@ -22,9 +22,8 @@ class Pitcher:
             if self.id in game.players_in_game and game.date <= end_date and game.date >= start_date:
                ##print('simming')
                 game.simulate_game()
-               ##print(f'## {self.game_stats}')
+        self.stats['IP'] = self.op_to_ip(self.stats['OP'])
         return self.stats
-        #self.stats['IP'] = self.op_to_ip(self.stats['OP'])
 
     # Alters a given stat
     def inc_game_stat(self, stats: list, quantities: list):
