@@ -396,6 +396,13 @@ class Game:
         else:
             print(f'MISSED CASE: {play}')
             pass
+        if runners != [None]:
+            for runner in runners:
+                print(runners)
+                if 'X' in runner:
+                    print('Batter out on base!')
+                    pitcher.inc_game_stat(['OP'], [1])
+                    self.op += 1
         
         #self.adv_bases(batter, simple, runners[0], play)
         #print(f'Simple: {simple}, mod {mod}, run mvmt {runners}, full {play}')
