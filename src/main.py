@@ -43,8 +43,8 @@ def main():
     print('\nLOADED')
     print('-' * 50, end='\n\n')
 
-    print(GAMES['20230701NYNSFN'].simulate_game())
+    #print(GAMES['20230620SFNSDN'].simulate_game())
     #print('passl')
-    #print(PITCHERS['desca001'].get_totals())
+    print(PITCHERS['desca001'].get_totals())
 
 main()

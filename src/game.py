@@ -116,6 +116,11 @@ class Game:
                 print(f'{pitcher.name} is pitching')
                 pitcher.inc_game_stat(['P'], [total_pitches])
                 self.parse_play(play, batter, pitcher)
+                # Hacky way to fix a FC error 
+                # TODO: Look at game 20230620SFNSDN, Anthony Descalfani is given 4 outs in the 3rd inning
+                if self.op >= 4:
+                    pitcher.inc_game_stat(['OP'], [-1])
+                    self.op = 3
                 print(self.bases)
                 print(f'{self.inning} inning, {self.op} outs', end='\n\n')
                 radj = False
