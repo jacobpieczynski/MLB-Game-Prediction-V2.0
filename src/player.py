@@ -15,7 +15,7 @@ class Player:
             self.game_stats[stat] = 0
 
     # Gets the player statistics between two dates
-    def get_totals(self, start_date='20230101', end_date='20231231'):
+    def get_totals(self, end_date='20231231', start_date='20230101'):
         self.reset_stats()
         for gameid in GAMES:
             game = GAMES[gameid]

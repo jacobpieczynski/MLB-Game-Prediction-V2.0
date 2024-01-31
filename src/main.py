@@ -46,6 +46,6 @@ def main():
 
     # Testing
     #print(GAMES['20230718TORSDN'].simulate_game())
-    print(PLAYERS['judga001'].get_totals(START_2022, END_2022))
+    print(PLAYERS['judga001'].get_totals(END_2022, START_2022))
 
 main()
