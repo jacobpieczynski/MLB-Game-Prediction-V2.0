@@ -18,3 +18,8 @@ PLAYERS = dict()
 PITCHERS = dict()
 GAMELOG = dict()
 GAMES = dict()
+
+# Misc helper functions
+def get_prior_date(date):
+    date = int(date) - 1
+    return str(date)
