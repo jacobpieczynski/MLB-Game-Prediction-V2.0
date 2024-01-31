@@ -33,18 +33,19 @@ def main():
     # Loads the PBP files
     print('-' * 50)
     print('LOADING PBPs')
-    for pbp in PBP_FILES:
-        if not parse_pbp(pbp):
-            print(f'FAILED TO OPEN FILE {pbp}')
-            print('-' * 50, end='\n\n')
-            return False
-        print(pbp)
+    for year in PBP_FILES:
+        for pbp in PBP_FILES[year]:
+            if not parse_pbp(pbp):
+                print(f'FAILED TO OPEN FILE {pbp}')
+                print('-' * 50, end='\n\n')
+                return False
+            print(pbp)
 
     print('\nLOADED')
     print('-' * 50, end='\n\n')
 
     # Testing
     #print(GAMES['20230718TORSDN'].simulate_game())
-    print(PLAYERS['troum001'].get_totals())
+    print(PLAYERS['judga001'].get_totals(START_2022, END_2022))
 
 main()
