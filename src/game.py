@@ -24,6 +24,9 @@ class Game:
             else:
                 print('Line type not found:')
         self.simulate_game()
+        self.get_team_records()
+        self.head_to_head()
+        self.team_batting_stats
 
     # Takes the info metadata and parses it. Creates a game id and metadata
     def parse_info(self):
@@ -501,7 +504,7 @@ class Game:
         """
 
     # Statistics Functions
-    def get_team_stats(self):
+    def get_team_records(self):
         end_date = get_prior_date(self.date)
         start_date = end_date[:4] + '0101' # Jan 1 of the year of the game
         home_wins, visitor_wins = 0, 0
@@ -540,9 +543,11 @@ class Game:
             hwpct = round(home_wins / (home_wins + home_losses), 3)
         if visitor_wins > 0:
             vwpct = round(visitor_wins / (visitor_wins + visitor_losses), 3)
-        return {'HWins': home_wins, 'HLosses': home_losses, 'HGames': home_wins + home_losses, 'HWPct': hwpct, 'HRuns': home_runs, 
+        self.team_stats = {'HWins': home_wins, 'HLosses': home_losses, 'HGames': home_wins + home_losses, 'HWPct': hwpct, 'HRuns': home_runs, 
                 'VWins': visitor_wins, 'VLosses': visitor_losses, 'VGames': visitor_wins + visitor_losses, 'VWPct': vwpct, 'VRuns': visitor_runs}
+        return self.team_stats
     
+    # Compares the head to head record of the two teams
     def head_to_head(self):
         end_date = get_prior_date(self.date)
         start_date = end_date[:4] + '0101'
@@ -559,8 +564,8 @@ class Game:
                     visitor_wins += 1
                 elif self.visitor == game.visitor and not game.home_win:
                     visitor_wins += 1
-
-        return {'HWins': home_wins, 'VWins': visitor_wins}
+        self.h2h_totals = {'HWins': home_wins, 'VWins': visitor_wins}
+        return self.h2h_totals
     
     def team_batting_stats(self):
         home_stats, visitor_stats, results = dict(), dict(), dict()
@@ -584,5 +589,5 @@ class Game:
             if i not in results:
                 results[i] = 0
             results[i] = home_stats[i] - visitor_stats[i]
-
+        self.team_batting_comp = results
         return results
