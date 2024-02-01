@@ -23,8 +23,6 @@ class Game:
                 self.plays.append(line)
             else:
                 print('Line type not found:')
-        self.parse_info()
-        self.set_lineup()
         self.simulate_game()
 
     # Takes the info metadata and parses it. Creates a game id and metadata
@@ -78,6 +76,8 @@ class Game:
                     self.visitor_lineup[field_pos] = PLAYERS[playerid]
                 PLAYERS[playerid].reset_game_stats()
                 self.players_in_game[playerid] = PLAYERS[playerid] 
+        self.home_starting_lineup = self.home_lineup.copy()
+        self.visitor_starting_lineup = self.visitor_lineup.copy()
 
     # Loops through the plays and parses them/collects statistics accordingly
     def simulate_game(self):
@@ -561,3 +561,28 @@ class Game:
                     visitor_wins += 1
 
         return {'HWins': home_wins, 'VWins': visitor_wins}
+    
+    def team_batting_stats(self):
+        home_stats, visitor_stats, results = dict(), dict(), dict()
+        end_date = get_prior_date(self.date)
+        # Goes through each player in the STARTING lineup
+        for i in range(len(self.home_starting_lineup)):
+            # 0 is None, 1 is the pitcher
+            if i > 1:
+                # Collects batting totals
+                htotals, vtotals = self.home_starting_lineup[i].get_totals(end_date), self.visitor_starting_lineup[i].get_totals(end_date)
+                # Sums each statistic
+                for hstat, vstat in zip(htotals, vtotals):
+                    if hstat not in home_stats:
+                        home_stats[hstat] = 0
+                        visitor_stats[vstat] = 0
+                    home_stats[hstat] += htotals[hstat] 
+                    visitor_stats[vstat] += vtotals[vstat]
+
+        # Find difference between home and away stats
+        for i in home_stats:
+            if i not in results:
+                results[i] = 0
+            results[i] = home_stats[i] - visitor_stats[i]
+
+        return results
