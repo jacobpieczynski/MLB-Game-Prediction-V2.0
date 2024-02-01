@@ -26,7 +26,6 @@ class Game:
         self.parse_info()
         self.set_lineup()
         self.simulate_game()
-        self.get_win_pct()
 
     # Takes the info metadata and parses it. Creates a game id and metadata
     def parse_info(self):
@@ -46,7 +45,9 @@ class Game:
         self.visitor = info['visteam']
         self.info = info
         self.GameLog = GAMELOG[self.date[:4]][self.id]
-        self.home_win = self.GameLog.home_score > self.GameLog.visitor_score
+        self.hscore = int(self.GameLog.home_score)
+        self.vscore = int(self.GameLog.visitor_score)
+        self.home_win = self.hscore > self.vscore
         self.id += self.factor
         
 
@@ -500,14 +501,17 @@ class Game:
         """
 
     # Statistics Functions
-    def get_win_pct(self):
+    def get_team_stats(self):
         end_date = get_prior_date(self.date)
         start_date = end_date[:4] + '0101' # Jan 1 of the year of the game
-        print(f'Original date {self.date} new date {end_date}')
         home_wins, visitor_wins = 0, 0
         home_losses, visitor_losses = 0, 0
+        home_runs, visitor_runs = 0, 0
+        hwpct, vwpct = 0, 0
         for gameid in GAMES:
             game = GAMES[gameid]
+            #if game.date == '20231001':
+                #print(f'{self.id}, gdate = {game.date}, end_date = {end_date}, comp = {game.date <= end_date}, comp 2 = {game.date >= start_date}')
             if game.date <= end_date and game.date >= start_date and (self.home in (game.home, game.visitor) or self.visitor in (game.home, game.visitor)):
                 # Checks that the team is in the game and won
                 if self.home == game.home and game.home_win:
@@ -523,5 +527,37 @@ class Game:
                     visitor_wins += 1
                 elif self.visitor in (game.home, game.visitor):
                     visitor_losses += 1
-        
-        print(f'{self.home} has {home_wins} before {self.date}')
+
+                # To add to total runs
+                if self.home == game.home:
+                    home_runs += game.hscore
+                elif self.home == game.visitor:
+                    home_runs += game.vscore
+                if self.visitor == game.visitor:
+                    visitor_runs += game.vscore
+                #print(f'Add Win {game.id}, {visitor_wins}')
+        if home_wins > 0:
+            hwpct = round(home_wins / (home_wins + home_losses), 3)
+        if visitor_wins > 0:
+            vwpct = round(visitor_wins / (visitor_wins + visitor_losses), 3)
+        return {'HWins': home_wins, 'HLosses': home_losses, 'HGames': home_wins + home_losses, 'HWPct': hwpct, 'HRuns': home_runs, 
+                'VWins': visitor_wins, 'VLosses': visitor_losses, 'VGames': visitor_wins + visitor_losses, 'VWPct': vwpct, 'VRuns': visitor_runs}
+    
+    def head_to_head(self):
+        end_date = get_prior_date(self.date)
+        start_date = end_date[:4] + '0101'
+        home_wins, visitor_wins = 0, 0
+        for gameid in GAMES:
+            game = GAMES[gameid]
+            if game.date <= end_date and game.date >= start_date and (self.home in (game.home, game.visitor) and self.visitor in (game.home, game.visitor)):
+                if self.home == game.home and game.home_win:
+                    home_wins += 1
+                elif self.home == game.visitor and not game.home_win:
+                    home_wins += 1
+
+                if self.visitor == game.home and game.home_win:
+                    visitor_wins += 1
+                elif self.visitor == game.visitor and not game.home_win:
+                    visitor_wins += 1
+
+        return {'HWins': home_wins, 'VWins': visitor_wins}
