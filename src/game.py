@@ -227,8 +227,10 @@ class Game:
                 pitcher.inc_game_stat(['OP', 'BF'], [1, 1])
                 self.op += 1
             # Records sacrifice hits - sacs don't count as an at bat, just a plate appearance
-            if '/SF' in play or '/SH' in play:
-                batter.inc_game_stat(['PA', 'Sac'], [1, 1])
+            if '/SF' in play:
+                batter.inc_game_stat(['PA', 'SF'], [1, 1])
+            elif  '/SH' in play:
+                batter.inc_game_stat(['PA', 'SH'], [1, 1])
             else:
                 batter.inc_game_stat(['PA', 'AB'], [1, 1])
         # Defensive indifference, runner allowed to steal
@@ -585,6 +587,7 @@ class Game:
                     visitor_stats[vstat] += vtotals[vstat]
         home_stats['AVG'], visitor_stats['AVG'] = calc_avg(home_stats['H'], home_stats['AB']), calc_avg(visitor_stats['H'], visitor_stats['AB'])
         home_stats['SLG'], visitor_stats['SLG'] = calc_slg(home_stats['S'], home_stats['D'], home_stats['T'], home_stats['HR'], home_stats['AB']), calc_slg(visitor_stats['S'], visitor_stats['D'], visitor_stats['T'], visitor_stats['HR'], visitor_stats['AB'])
+        home_stats['OBP'], visitor_stats['OBP'] = calc_obp(home_stats['H'], home_stats['BB'], home_stats['HBP'], home_stats['AB'], home_stats['SF']), calc_obp(visitor_stats['H'], visitor_stats['BB'], visitor_stats['HBP'], visitor_stats['AB'], visitor_stats['SF'])
 
         # Find difference between home and away stats
         """
@@ -607,3 +610,6 @@ def calc_avg(hits, abs):
 
 def calc_slg(s, d, t, hr, abs):
     return round((s + (d * 2) + (t * 3) + (hr * 4)) / abs, 3)
+
+def calc_obp(h, bb, hbp, abs, sf):
+    return round((h + bb + hbp) / (abs + bb + hbp + sf), 3)
