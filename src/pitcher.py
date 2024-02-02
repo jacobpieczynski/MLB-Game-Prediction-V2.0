@@ -15,7 +15,10 @@ class Pitcher:
             self.game_stats[stat] = 0
 
     # Gets the player statistics between two dates
-    def get_totals(self, end_date='20231231', start_date='20230101'):
+    def get_totals(self, end_date='20231231', start_date=None):
+        if start_date == None:
+            start_date = end_date[0:4] + '0101'
+            
         self.reset_stats()
         for gameid in GAMES:
             game = GAMES[gameid]

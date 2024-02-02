@@ -45,7 +45,7 @@ def main():
     print('-' * 50, end='\n\n')
 
     # Testing
-    print(GAMES['20230830LANARI'].get_team_records())
+    print(GAMES['20230830LANARI'].comp_sps())
     print(GAMES['20230830LANARI'].team_batting_stats())
     print(PLAYERS['judga001'].get_totals(END_2022, START_2022))
 

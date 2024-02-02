@@ -26,7 +26,8 @@ class Game:
         self.simulate_game()
         self.get_team_records()
         self.head_to_head()
-        self.team_batting_stats
+        #self.team_batting_stats()
+        #self.comp_sps()
 
     # Takes the info metadata and parses it. Creates a game id and metadata
     def parse_info(self):
@@ -575,7 +576,7 @@ class Game:
         # Goes through each player in the STARTING lineup
         for i in range(len(self.home_starting_lineup)):
             # 0 is None, 1 is the pitcher
-            if i > 1:
+            if i > 1 and self.home_starting_lineup[i] != None and self.visitor_starting_lineup[i] != None:
                 # Collects batting totals
                 htotals, vtotals = self.home_starting_lineup[i].get_totals(end_date), self.visitor_starting_lineup[i].get_totals(end_date)
                 # Sums each statistic
@@ -604,16 +605,35 @@ class Game:
         self.team_batting_comp = results
         return results
     
+    def comp_sps(self):
+        end_date = get_prior_date(self.date)
+        results = dict()
+        home_stats, visitor_stats = self.home_starting_lineup[1].get_totals(end_date), self.visitor_starting_lineup[1].get_totals(end_date)
+        results['ERA'] = calc_era(home_stats['ER'], home_stats['OP']) - calc_era(visitor_stats['ER'], visitor_stats['OP'])
+
+        return results
+    
 
 # Helper functions to calculate specific stats
 def calc_avg(hits, abs):
+    if abs == 0:
+        return 0
     return round(hits / abs, 3)
 
 def calc_slg(s, d, t, hr, abs):
+    if abs == 0:
+        return 0
     return round((s + (d * 2) + (t * 3) + (hr * 4)) / abs, 3)
 
 def calc_obp(h, bb, hbp, abs, sf):
+    if abs == 0:
+        return 0
     return round((h + bb + hbp) / (abs + bb + hbp + sf), 3)
 
 def calc_iso(slg, ba):
     return slg - ba
+
+def calc_era(er, op):
+    if op == 0:
+        return 0
+    return round((9 * er) / (op / 3), 2)

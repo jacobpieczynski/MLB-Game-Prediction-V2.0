@@ -36,7 +36,6 @@ WAR
 """
 Stats to measure:
 OPS (redundant?)
-ERA
 FIP
 WHIP
 K/9
