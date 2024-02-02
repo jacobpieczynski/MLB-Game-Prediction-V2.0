@@ -563,7 +563,7 @@ class Game:
 
         home_stats = {'Wins': home_wins, 'Losses': home_losses, 'Games': home_wins + home_losses, 'HomeWins': home_hwins, 'AwayWins': home_vwins, 'WPct': hwpct, 'Runs': home_runs, 'RPG': hrpg}
         visitor_stats = {'Wins': visitor_wins, 'Losses': visitor_losses, 'Games': visitor_wins + visitor_losses, 'HomeWins': visitor_hwins, 'AwayWins': visitor_vwins, 'WPct': vwpct, 'Runs': visitor_runs, 'RPG': vrpg}
-        self.team_stats = {'WinDiff': home_stats['Wins'] - visitor_stats['Wins'], 'HomeAdv': home_stats['HomeWins'] - visitor_stats['AwayWins'], 'WPctDiff': round(home_stats['WPct'] - visitor_stats['WPct'], 3), 'RunDiff': home_stats['Runs'] - visitor_stats['Runs'], 'RPGDiff': round(home_stats['RPG'] - visitor_stats['RPG'], 2)}
+        self.team_stats = {'WinDiff': home_stats['Wins'] - visitor_stats['Wins'], 'HomeAdv': home_stats['HomeWins'] - visitor_stats['AwayWins'], 'WPctDiff': round(home_stats['WPct'] - visitor_stats['WPct'], 3), 'RunDiff': home_stats['Runs'] - visitor_stats['Runs'], 'RPGDiff': round(home_stats['RPG'] - visitor_stats['RPG'], 2), 'Total Games': min(home_stats['Games'], visitor_stats['Games'])}
         return self.team_stats
     
     # Compares the head to head record of the two teams

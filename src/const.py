@@ -23,3 +23,8 @@ GAMES = dict() # Useage: GAMES[gameid] --> returns game object
 def get_prior_date(date):
     date = int(date) - 1
     return str(date)
+
+def above_threshold(game, threshold=7):
+    if game.team_stats['Total Games'] > threshold:
+        return True
+    return False
