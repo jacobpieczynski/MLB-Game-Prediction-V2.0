@@ -542,13 +542,23 @@ class Game:
                     home_runs += game.vscore
                 if self.visitor == game.visitor:
                     visitor_runs += game.vscore
+                elif self.visitor == game.home:
+                    visitor_runs += game.hscore
                 #print(f'Add Win {game.id}, {visitor_wins}')
         if home_wins > 0:
             hwpct = round(home_wins / (home_wins + home_losses), 3)
         if visitor_wins > 0:
             vwpct = round(visitor_wins / (visitor_wins + visitor_losses), 3)
-        self.team_stats = {'HWins': home_wins, 'HLosses': home_losses, 'HGames': home_wins + home_losses, 'HWPct': hwpct, 'HRuns': home_runs, 
-                'VWins': visitor_wins, 'VLosses': visitor_losses, 'VGames': visitor_wins + visitor_losses, 'VWPct': vwpct, 'VRuns': visitor_runs}
+
+        # RPG - Runs per game
+        hrpg, vrpg = 0, 0
+        if (home_wins + home_losses) > 0:
+            hrpg = round(home_runs / (home_wins + home_losses), 2)
+        if (visitor_wins + visitor_losses) > 0:
+            vrpg = round(visitor_runs / (visitor_wins + visitor_losses), 2)
+
+        self.team_stats = {'HWins': home_wins, 'HLosses': home_losses, 'HGames': home_wins + home_losses, 'HWPct': hwpct, 'HRuns': home_runs, 'HRPG': hrpg,
+                'VWins': visitor_wins, 'VLosses': visitor_losses, 'VGames': visitor_wins + visitor_losses, 'VWPct': vwpct, 'VRuns': visitor_runs, 'VRPG': vrpg}
         return self.team_stats
     
     # Compares the head to head record of the two teams
