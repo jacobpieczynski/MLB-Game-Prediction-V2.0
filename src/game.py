@@ -511,7 +511,7 @@ class Game:
     def get_team_records(self):
         end_date = get_prior_date(self.date)
         start_date = end_date[:4] + '0101' # Jan 1 of the year of the game
-        home_wins, visitor_wins = 0, 0
+        home_wins, home_hwins, home_vwins, visitor_wins, visitor_hwins, visitor_vwins = 0, 0, 0, 0, 0, 0
         home_losses, visitor_losses = 0, 0
         home_runs, visitor_runs = 0, 0
         hwpct, vwpct = 0, 0
@@ -523,15 +523,19 @@ class Game:
                 # Checks that the team is in the game and won
                 if self.home == game.home and game.home_win:
                     home_wins += 1
+                    home_hwins += 1
                 elif self.home == game.visitor and not game.home_win:
                     home_wins += 1
+                    home_vwins += 1
                 elif self.home in (game.home, game.visitor):
                     home_losses += 1
 
                 if self.visitor == game.home and game.home_win:
                     visitor_wins += 1
+                    visitor_hwins += 1
                 elif self.visitor == game.visitor and not game.home_win:
                     visitor_wins += 1
+                    visitor_vwins += 1
                 elif self.visitor in (game.home, game.visitor):
                     visitor_losses += 1
 
@@ -557,8 +561,8 @@ class Game:
         if (visitor_wins + visitor_losses) > 0:
             vrpg = round(visitor_runs / (visitor_wins + visitor_losses), 2)
 
-        self.team_stats = {'HWins': home_wins, 'HLosses': home_losses, 'HGames': home_wins + home_losses, 'HWPct': hwpct, 'HRuns': home_runs, 'HRPG': hrpg,
-                'VWins': visitor_wins, 'VLosses': visitor_losses, 'VGames': visitor_wins + visitor_losses, 'VWPct': vwpct, 'VRuns': visitor_runs, 'VRPG': vrpg}
+        self.team_stats = {'HWins': home_wins, 'HLosses': home_losses, 'HGames': home_wins + home_losses, 'HHomeWins': home_hwins, 'HAwayWins': home_vwins, 'HWPct': hwpct, 'HRuns': home_runs, 'HRPG': hrpg,
+                'VWins': visitor_wins, 'VLosses': visitor_losses, 'VGames': visitor_wins + visitor_losses, 'VHomeWins': visitor_hwins, 'VAwayWins': visitor_vwins, 'VWPct': vwpct, 'VRuns': visitor_runs, 'VRPG': vrpg}
         return self.team_stats
     
     # Compares the head to head record of the two teams

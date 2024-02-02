@@ -31,12 +31,15 @@ Double Plays Turned
 Recent Success
 Fielding Percentage
 WAR
+Defensive Efficiency Ratio (DER)
+Home vs Away wins (subtract home team's home wins from visiting teams away wins)
 """
 
 """
 Stats to measure:
-K/9 # TODO: Fix floating point error
 TB
 XBH
 Recent Success 
 """
+
+# TODO: Once all stats calculated, search through all calculateable stats and remove calculations for unused ones
