@@ -35,12 +35,8 @@ WAR
 
 """
 Stats to measure:
-OPS (redundant?)
 FIP
-WHIP
-K/9
-BB/9
-HR/9
+K/9 # TODO: Fix floating point error
 TB
 XBH
 Recent Success 

@@ -1,6 +1,7 @@
 from const import *
 from pitcher import Pitcher
 from player import Player
+from stat_calc import *
 
 class Game:
     def __init__(self, data):
@@ -590,6 +591,7 @@ class Game:
         home_stats['SLG'], visitor_stats['SLG'] = calc_slg(home_stats['S'], home_stats['D'], home_stats['T'], home_stats['HR'], home_stats['AB']), calc_slg(visitor_stats['S'], visitor_stats['D'], visitor_stats['T'], visitor_stats['HR'], visitor_stats['AB'])
         home_stats['OBP'], visitor_stats['OBP'] = calc_obp(home_stats['H'], home_stats['BB'], home_stats['HBP'], home_stats['AB'], home_stats['SF']), calc_obp(visitor_stats['H'], visitor_stats['BB'], visitor_stats['HBP'], visitor_stats['AB'], visitor_stats['SF'])
         home_stats['ISO'], visitor_stats['ISO'] = calc_iso(home_stats['SLG'], home_stats['AVG']), calc_iso(visitor_stats['SLG'], visitor_stats['AVG'])
+        home_stats['OPS'], visitor_stats['OPS'] = calc_ops(home_stats['SLG'], home_stats['AVG']), calc_ops(visitor_stats['SLG'], visitor_stats['AVG'])
 
         # Find difference between home and away stats
         """
@@ -609,31 +611,11 @@ class Game:
         end_date = get_prior_date(self.date)
         results = dict()
         home_stats, visitor_stats = self.home_starting_lineup[1].get_totals(end_date), self.visitor_starting_lineup[1].get_totals(end_date)
-        results['ERA'] = calc_era(home_stats['ER'], home_stats['OP']) - calc_era(visitor_stats['ER'], visitor_stats['OP'])
+        results['ERA'] = calc_era(home_stats['ER'], home_stats['IP']) - calc_era(visitor_stats['ER'], visitor_stats['IP'])
+        results['WHIP'] = calc_whip(home_stats['H'], home_stats['BB'], home_stats['OP']) - calc_whip(visitor_stats['H'], visitor_stats['BB'], visitor_stats['IP'])
+        results['BB9'] = calc_bb9(home_stats['BB'], home_stats['IP']) - calc_bb9(visitor_stats['BB'], visitor_stats['IP']) 
+        results['K9'] = calc_k9(home_stats['K'], home_stats['IP']) - calc_k9(visitor_stats['K'], visitor_stats['IP']) 
+        results['HR9'] = calc_hr9(home_stats['HR'], home_stats['IP']) - calc_hr9(visitor_stats['HR'], visitor_stats['IP']) 
+        results['FIP'] = calc_fip(home_stats['HR'], home_stats['BB'], home_stats['HBP'], home_stats['K'], home_stats['IP']) - calc_fip(visitor_stats['HR'], visitor_stats['BB'], visitor_stats['HBP'], visitor_stats['K'], visitor_stats['IP'])
 
         return results
-    
-
-# Helper functions to calculate specific stats
-def calc_avg(hits, abs):
-    if abs == 0:
-        return 0
-    return round(hits / abs, 3)
-
-def calc_slg(s, d, t, hr, abs):
-    if abs == 0:
-        return 0
-    return round((s + (d * 2) + (t * 3) + (hr * 4)) / abs, 3)
-
-def calc_obp(h, bb, hbp, abs, sf):
-    if abs == 0:
-        return 0
-    return round((h + bb + hbp) / (abs + bb + hbp + sf), 3)
-
-def calc_iso(slg, ba):
-    return slg - ba
-
-def calc_era(er, op):
-    if op == 0:
-        return 0
-    return round((9 * er) / (op / 3), 2)

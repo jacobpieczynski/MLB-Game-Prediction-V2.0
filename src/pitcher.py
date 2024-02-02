@@ -18,7 +18,7 @@ class Pitcher:
     def get_totals(self, end_date='20231231', start_date=None):
         if start_date == None:
             start_date = end_date[0:4] + '0101'
-            
+
         self.reset_stats()
         for gameid in GAMES:
             game = GAMES[gameid]
@@ -52,9 +52,7 @@ class Pitcher:
             self.game_stats[stat] = 0
 
     def op_to_ip(self, op):
-        partial = op % 3
-        inn = (op - (op % 3)) / 3
-        return inn + round(partial / 10, 1)
+        return round(op / 3, 2)
 
     def __repr__(self):
         return f'Pitcher object {self.name}, a {self.pos} for {self.team} - ID: {self.id}'
