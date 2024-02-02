@@ -2,37 +2,37 @@
 STAT GATHERING FUNCTIONS
 
 All stats to collect:
-Team batting average
+Team batting averageXX
 HBP
-ISO (isolated power)
-On Base Percentage
+ISO (isolated power)XX
+On Base PercentageXX
 Times on bases
-OPS
-ERA
-FIP - Fielding Independent Pitching (may not be capable yet)
-K/9
-HR/9
-BB/9
+OPSXX
+ERAXX
+FIPXX
+K/9XX
+HR/9XX
+BB/9XX
 GBF (ground ball fly ball ratio)
 A_HR - at bats per home run
 HRH - home runs per hits
 TB - Total bases
-SLG
+SLGXX
 XBH - extra base hits
-IP
-WHIP
+IPXX
+WHIPXX
 Defence-Independent Component ERA
 KBB - strikeouts to walk ratio
-Total Runs Scored
+Total Runs ScoredXX
 Stolen Bases
-Team Wins/Losses
+Team Wins/LossesXX
 Save Pct
 Double Plays Turned
 Recent Success
 Fielding Percentage
 WAR
 Defensive Efficiency Ratio (DER)
-Home vs Away wins (subtract home team's home wins from visiting teams away wins)
+Home vs Away wins (subtract home team's home wins from visiting teams away wins)XX
 """
 
 """
