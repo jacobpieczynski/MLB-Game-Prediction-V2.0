@@ -588,6 +588,7 @@ class Game:
         home_stats['AVG'], visitor_stats['AVG'] = calc_avg(home_stats['H'], home_stats['AB']), calc_avg(visitor_stats['H'], visitor_stats['AB'])
         home_stats['SLG'], visitor_stats['SLG'] = calc_slg(home_stats['S'], home_stats['D'], home_stats['T'], home_stats['HR'], home_stats['AB']), calc_slg(visitor_stats['S'], visitor_stats['D'], visitor_stats['T'], visitor_stats['HR'], visitor_stats['AB'])
         home_stats['OBP'], visitor_stats['OBP'] = calc_obp(home_stats['H'], home_stats['BB'], home_stats['HBP'], home_stats['AB'], home_stats['SF']), calc_obp(visitor_stats['H'], visitor_stats['BB'], visitor_stats['HBP'], visitor_stats['AB'], visitor_stats['SF'])
+        home_stats['ISO'], visitor_stats['ISO'] = calc_iso(home_stats['SLG'], home_stats['AVG']), calc_iso(visitor_stats['SLG'], visitor_stats['AVG'])
 
         # Find difference between home and away stats
         """
@@ -613,3 +614,6 @@ def calc_slg(s, d, t, hr, abs):
 
 def calc_obp(h, bb, hbp, abs, sf):
     return round((h + bb + hbp) / (abs + bb + hbp + sf), 3)
+
+def calc_iso(slg, ba):
+    return slg - ba

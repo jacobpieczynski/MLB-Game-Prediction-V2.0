@@ -35,7 +35,6 @@ WAR
 
 """
 Stats to measure:
-OBP
 OPS (redundant?)
 ERA
 FIP
