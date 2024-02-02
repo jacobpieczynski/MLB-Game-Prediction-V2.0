@@ -35,7 +35,6 @@ WAR
 
 """
 Stats to measure:
-FIP
 K/9 # TODO: Fix floating point error
 TB
 XBH
