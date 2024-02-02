@@ -49,4 +49,6 @@ def calc_hr9(hr, ip):
 # Fielding Independent Pitching
 def calc_fip(hr, bb, hbp, k, ip, c=3.1):
     #((13*HR)+(3*(BB+HBP))-(2*K))/IP + constant
+    if ip == 0:
+        return 0
     return round(((13 * hr) + (3 * (bb + hbp)) - (2 * k)) / ip + c, 2)

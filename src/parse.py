@@ -44,14 +44,18 @@ def parse_pbp(filename='pbp/2023/2023ARI.EVN'):
         for line in file:
             # All games begin with the 'id,' line
             if line[0:3] == 'id,' and data != []:
+                print('for new game')
                 game = Game(data)
+                print(f'for game created {game.id}')
                 GAMES[game.id] = game
                 data = []
                 data.append(line.strip('\n'))
             else:
                 data.append(line.strip('\n'))
         # To append final game
+        print('new game {game.id}')
         game = Game(data)
+        print('game created')
         GAMES[game.id] = game
     #except:
      #   return False

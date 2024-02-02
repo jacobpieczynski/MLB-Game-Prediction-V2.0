@@ -6,6 +6,7 @@ from stat_calc import *
 class Game:
     def __init__(self, data):
         self.com = False # TEMP
+        print(1)
         self.sort_data(data)
 
     def __repr__(self):
@@ -24,11 +25,21 @@ class Game:
                 self.plays.append(line)
             else:
                 print('Line type not found:')
+        print(1)
+        self.parse_info()
+        print(2)
+        self.set_lineup()
+        print(2.5)
         self.simulate_game()
-        self.get_team_records()
-        self.head_to_head()
-        #self.team_batting_stats()
-        #self.comp_sps()
+        print(6)
+        self.team_stats = self.get_team_records()
+        print(8)
+        self.h2h_totals = self.head_to_head()
+        print(10)
+        self.batting_stats = self.team_batting_stats()
+        print(12)
+        self.comp_results = self.comp_sps()
+        print(14)
 
     # Takes the info metadata and parses it. Creates a game id and metadata
     def parse_info(self):
@@ -57,6 +68,7 @@ class Game:
     # Takes the 'start' information and sets the lineups based off it
     def set_lineup(self):
         self.home_lineup, self.visitor_lineup, self.players_in_game = [None] * 11, [None] * 11, dict() # lineup[0] is none, after that the idx represents their field pos
+        #self.player_stats = dict()
         for line in self.start:
             line = line.split(',')
             playerid = line[1]
@@ -81,13 +93,13 @@ class Game:
                     self.visitor_lineup[field_pos] = PLAYERS[playerid]
                 PLAYERS[playerid].reset_game_stats()
                 self.players_in_game[playerid] = PLAYERS[playerid] 
+                #self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0}
         self.home_starting_lineup = self.home_lineup.copy()
         self.visitor_starting_lineup = self.visitor_lineup.copy()
 
     # Loops through the plays and parses them/collects statistics accordingly
     def simulate_game(self):
-        self.parse_info()
-        self.set_lineup()
+        print(3)
         self.bases = [None] * 4
         self.op, self.inning, self.side = 0, 0, 0
         radj = False
@@ -188,6 +200,7 @@ class Game:
         for player in self.players_in_game:
             self.players_in_game[player].add_game_stats()
             self.players_in_game[player].reset_game_stats()
+        print(5)
         
             
     def parse_play(self, play, batter, pitcher):
@@ -563,8 +576,9 @@ class Game:
 
         home_stats = {'Wins': home_wins, 'Losses': home_losses, 'Games': home_wins + home_losses, 'HomeWins': home_hwins, 'AwayWins': home_vwins, 'WPct': hwpct, 'Runs': home_runs, 'RPG': hrpg}
         visitor_stats = {'Wins': visitor_wins, 'Losses': visitor_losses, 'Games': visitor_wins + visitor_losses, 'HomeWins': visitor_hwins, 'AwayWins': visitor_vwins, 'WPct': vwpct, 'Runs': visitor_runs, 'RPG': vrpg}
-        self.team_stats = {'WinDiff': home_stats['Wins'] - visitor_stats['Wins'], 'HomeAdv': home_stats['HomeWins'] - visitor_stats['AwayWins'], 'WPctDiff': round(home_stats['WPct'] - visitor_stats['WPct'], 3), 'RunDiff': home_stats['Runs'] - visitor_stats['Runs'], 'RPGDiff': round(home_stats['RPG'] - visitor_stats['RPG'], 2), 'Total Games': min(home_stats['Games'], visitor_stats['Games'])}
-        return self.team_stats
+        team_stats = {'WinDiff': home_stats['Wins'] - visitor_stats['Wins'], 'HomeAdv': home_stats['HomeWins'] - visitor_stats['AwayWins'], 'WPctDiff': round(home_stats['WPct'] - visitor_stats['WPct'], 3), 'RunDiff': home_stats['Runs'] - visitor_stats['Runs'], 'RPGDiff': round(home_stats['RPG'] - visitor_stats['RPG'], 2), 'Total Games': min(home_stats['Games'], visitor_stats['Games'])}
+        print(7)
+        return team_stats
     
     # Compares the head to head record of the two teams
     def head_to_head(self):
@@ -573,18 +587,20 @@ class Game:
         home_wins, visitor_wins = 0, 0
         for gameid in GAMES:
             game = GAMES[gameid]
-            if game.date <= end_date and game.date >= start_date and (self.home in (game.home, game.visitor) and self.visitor in (game.home, game.visitor)):
-                if self.home == game.home and game.home_win:
-                    home_wins += 1
-                elif self.home == game.visitor and not game.home_win:
-                    home_wins += 1
+            if game.date <= end_date and game.date >= start_date:
+                if self.home in (game.home, game.visitor) and self.visitor in (game.home, game.visitor):
+                    if self.home == game.home and game.home_win:
+                        home_wins += 1
+                    elif self.home == game.visitor and not game.home_win:
+                        home_wins += 1
 
-                if self.visitor == game.home and game.home_win:
-                    visitor_wins += 1
-                elif self.visitor == game.visitor and not game.home_win:
-                    visitor_wins += 1
-        self.h2h_totals = {'HWins': home_wins, 'VWins': visitor_wins}
-        return self.h2h_totals
+                    if self.visitor == game.home and game.home_win:
+                        visitor_wins += 1
+                    elif self.visitor == game.visitor and not game.home_win:
+                        visitor_wins += 1
+        h2h_totals = {'HWins': home_wins, 'VWins': visitor_wins}
+        print(9)
+        return h2h_totals
     
     def team_batting_stats(self):
         home_stats, visitor_stats, results = dict(), dict(), dict()
@@ -624,6 +640,7 @@ class Game:
         #self.home_batting_stats = home_stats
         #self.visitor_batting_stats = visitor_stats
         #self.team_batting_comp = results
+        print(11)
         return results
     
     def comp_sps(self):
@@ -636,5 +653,5 @@ class Game:
         results['K9'] = round(calc_k9(home_stats['K'], home_stats['IP']) - calc_k9(visitor_stats['K'], visitor_stats['IP']), 2)
         results['HR9'] = round(calc_hr9(home_stats['HR'], home_stats['IP']) - calc_hr9(visitor_stats['HR'], visitor_stats['IP']), 2)
         results['FIP'] = round(calc_fip(home_stats['HR'], home_stats['BB'], home_stats['HBP'], home_stats['K'], home_stats['IP']) - calc_fip(visitor_stats['HR'], visitor_stats['BB'], visitor_stats['HBP'], visitor_stats['K'], visitor_stats['IP']), 2)
-
+        print(13)
         return results

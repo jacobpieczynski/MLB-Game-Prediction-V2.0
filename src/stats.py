@@ -45,19 +45,33 @@ Recent Success
 """
 
 # TODO: Once all stats calculated, search through all calculateable stats and remove calculations for unused ones
+fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'H2H', 'AVG', 'SLG', 'OBP', 'ISO', 'OPS', 'ERA', 'WHIP', 'BB9', 'K9', 'HR9', 'FIP']
+results = []
 
 def log_games():
-    for game in GAMES:
+    for gameid in GAMES:
+        game = GAMES[gameid]
+        # Checks that both teams have played at least 7 games
         if above_threshold(game):
-            data = {'Date': game.date, 'Home': game.home, 'Visitor': game.visitor, 'ID': game.id}
+            data = {'Date': game.date, 'Home': game.home, 'Visitor': game.visitor, 'GameID': game.id}
             team_stats = game.team_stats
             for stat in team_stats:
                 if stat != 'Total Games':
                     data[stat] = team_stats[stat]
-            data['H2h'] = game.h2h_totals['HWins'] - game.h2h_totals['VWins']
-            batting_stats = game.team_batting_stats()
+            data['H2H'] = game.h2h_totals['HWins'] - game.h2h_totals['VWins']
+            batting_stats = game.batting_stats
             for stat in batting_stats:
                 data[stat] = batting_stats[stat]
-            pitcher_stats = game.comp_sps()
+            pitcher_stats = game.comp_results
             for stat in pitcher_stats:
-                data[stat] = batting_stats[stat]
+                data[stat] = pitcher_stats[stat]
+            results.append[data]
+            print(f'{game.id} Added')
+        
+    with open('stats2.csv', 'w', newline='') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for result in results:
+            writer.writerow(results[result])
+    return True
