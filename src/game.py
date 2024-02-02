@@ -583,11 +583,27 @@ class Game:
                         visitor_stats[vstat] = 0
                     home_stats[hstat] += htotals[hstat] 
                     visitor_stats[vstat] += vtotals[vstat]
+        home_stats['AVG'], visitor_stats['AVG'] = calc_avg(home_stats['H'], home_stats['AB']), calc_avg(visitor_stats['H'], visitor_stats['AB'])
+        home_stats['SLG'], visitor_stats['SLG'] = calc_slg(home_stats['S'], home_stats['D'], home_stats['T'], home_stats['HR'], home_stats['AB']), calc_slg(visitor_stats['S'], visitor_stats['D'], visitor_stats['T'], visitor_stats['HR'], visitor_stats['AB'])
 
         # Find difference between home and away stats
+        """
         for i in home_stats:
             if i not in results:
                 results[i] = 0
             results[i] = home_stats[i] - visitor_stats[i]
+        """
+        results['Home'] = home_stats
+        results['Visitor'] = visitor_stats
+        self.home_batting_stats = home_stats
+        self.visitor_batting_stats = visitor_stats
         self.team_batting_comp = results
         return results
+    
+
+# Helper functions to calculate specific stats
+def calc_avg(hits, abs):
+    return round(hits / abs, 3)
+
+def calc_slg(s, d, t, hr, abs):
+    return round((s + (d * 2) + (t * 3) + (hr * 4)) / abs, 3)
