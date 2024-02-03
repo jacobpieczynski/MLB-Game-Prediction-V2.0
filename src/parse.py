@@ -15,6 +15,7 @@ def parse_roster(filename='ros/2023/ANA2023.ROS'):
                     pitcher = Pitcher(line)
                     if pitcher.id not in PITCHERS:
                         PITCHERS[pitcher.id] = pitcher
+                        PLAYERS[pitcher.id] = pitcher
                 else:
                     player = Player(line)
                     if player.id not in PLAYERS:

@@ -23,6 +23,7 @@ class Game:
             elif line.startswith('play') or line.startswith('sub') or line.startswith('com') or line.startswith('badj,') or line.startswith('radj,') or line.startswith('data,'):
                 self.plays.append(line)
             else:
+                print(line)
                 print('Line type not found:')
         self.parse_info()
         self.set_lineup()
@@ -105,6 +106,10 @@ class Game:
                 total_pitches = int(pitch_count[0]) + int(pitch_count[1])
                 pitches_thrown = line[5]
                 play = line[6]
+                if playerid not in PLAYERS:
+                    for player in PLAYERS:
+                        print(player)
+                    print(f'FUCK {line}')
                 batter = PLAYERS[playerid]
                 # TODO: How to treat new innings
                 inning, side = int(line[1]), int(line[2])
