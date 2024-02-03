@@ -6,7 +6,6 @@ from stat_calc import *
 class Game:
     def __init__(self, data):
         self.com = False # TEMP
-        print(1)
         self.sort_data(data)
 
     def __repr__(self):
@@ -25,21 +24,13 @@ class Game:
                 self.plays.append(line)
             else:
                 print('Line type not found:')
-        print(1)
         self.parse_info()
-        print(2)
         self.set_lineup()
-        print(2.5)
         self.simulate_game()
-        print(6)
         self.team_stats = self.get_team_records()
-        print(8)
         self.h2h_totals = self.head_to_head()
-        print(10)
         self.batting_stats = self.team_batting_stats()
-        print(12)
         self.comp_results = self.comp_sps()
-        print(14)
 
     # Takes the info metadata and parses it. Creates a game id and metadata
     def parse_info(self):
@@ -100,7 +91,6 @@ class Game:
 
     # Loops through the plays and parses them/collects statistics accordingly
     def simulate_game(self):
-        print(3)
         self.bases = [None] * 4
         self.op, self.inning, self.side = 0, 0, 0
         radj = False
@@ -202,9 +192,7 @@ class Game:
                 pass
         for player in self.players_in_game:
             self.players_in_game[player].add_game_stats(self)
-            self.players_in_game[player].reset_game_stats()
-        print(5)
-        
+            self.players_in_game[player].reset_game_stats()        
             
     def parse_play(self, play, batter, pitcher):
         self.com = False # TODO: TEMP
@@ -580,7 +568,6 @@ class Game:
         home_stats = {'Wins': home_wins, 'Losses': home_losses, 'Games': home_wins + home_losses, 'HomeWins': home_hwins, 'AwayWins': home_vwins, 'WPct': hwpct, 'Runs': home_runs, 'RPG': hrpg}
         visitor_stats = {'Wins': visitor_wins, 'Losses': visitor_losses, 'Games': visitor_wins + visitor_losses, 'HomeWins': visitor_hwins, 'AwayWins': visitor_vwins, 'WPct': vwpct, 'Runs': visitor_runs, 'RPG': vrpg}
         team_stats = {'WinDiff': home_stats['Wins'] - visitor_stats['Wins'], 'HomeAdv': home_stats['HomeWins'] - visitor_stats['AwayWins'], 'WPctDiff': round(home_stats['WPct'] - visitor_stats['WPct'], 3), 'RunDiff': home_stats['Runs'] - visitor_stats['Runs'], 'RPGDiff': round(home_stats['RPG'] - visitor_stats['RPG'], 2), 'Total Games': min(home_stats['Games'], visitor_stats['Games'])}
-        print(7)
         return team_stats
     
     # Compares the head to head record of the two teams
@@ -602,7 +589,6 @@ class Game:
                     elif self.visitor == game.visitor and not game.home_win:
                         visitor_wins += 1
         h2h_totals = {'HWins': home_wins, 'VWins': visitor_wins}
-        print(9)
         return h2h_totals
     
     def team_batting_stats(self):
@@ -643,13 +629,11 @@ class Game:
         #self.home_batting_stats = home_stats
         #self.visitor_batting_stats = visitor_stats
         #self.team_batting_comp = results
-        print(11)
         return results
     
     def comp_sps(self):
         end_date = get_prior_date(self.date)
         results = dict()
-        print(self.home_starting_lineup)
         home_stats, visitor_stats = self.home_starting_lineup[1].get_totals(end_date), self.visitor_starting_lineup[1].get_totals(end_date)
         results['ERA'] = round(calc_era(home_stats['ER'], home_stats['IP']) - calc_era(visitor_stats['ER'], visitor_stats['IP']), 2)
         results['WHIP'] = round(calc_whip(home_stats['H'], home_stats['BB'], home_stats['OP']) - calc_whip(visitor_stats['H'], visitor_stats['BB'], visitor_stats['IP']), 2)
@@ -657,5 +641,4 @@ class Game:
         results['K9'] = round(calc_k9(home_stats['K'], home_stats['IP']) - calc_k9(visitor_stats['K'], visitor_stats['IP']), 2)
         results['HR9'] = round(calc_hr9(home_stats['HR'], home_stats['IP']) - calc_hr9(visitor_stats['HR'], visitor_stats['IP']), 2)
         results['FIP'] = round(calc_fip(home_stats['HR'], home_stats['BB'], home_stats['HBP'], home_stats['K'], home_stats['IP']) - calc_fip(visitor_stats['HR'], visitor_stats['BB'], visitor_stats['HBP'], visitor_stats['K'], visitor_stats['IP']), 2)
-        print(13)
         return results

@@ -45,7 +45,7 @@ Recent Success
 """
 
 # TODO: Once all stats calculated, search through all calculateable stats and remove calculations for unused ones
-fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'H2H', 'AVG', 'SLG', 'OBP', 'ISO', 'OPS', 'ERA', 'WHIP', 'BB9', 'K9', 'HR9', 'FIP']
+fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'H2H', 'AVG', 'SLG', 'OBP', 'ISO', 'OPS', 'ERA', 'WHIP', 'BB9', 'K9', 'HR9', 'FIP', 'HWin']
 results = []
 
 def log_games():
@@ -65,10 +65,11 @@ def log_games():
             pitcher_stats = game.comp_results
             for stat in pitcher_stats:
                 data[stat] = pitcher_stats[stat]
+            data['HWin'] = game.home_win
             results.append(data)
             print(f'{game.id} Added')
         
-    with open('stats2.csv', 'w', newline='') as csvfile:
+    with open('stats.csv', 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
 
