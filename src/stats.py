@@ -65,7 +65,7 @@ def log_games():
             pitcher_stats = game.comp_results
             for stat in pitcher_stats:
                 data[stat] = pitcher_stats[stat]
-            results.append[data]
+            results.append(data)
             print(f'{game.id} Added')
         
     with open('stats2.csv', 'w', newline='') as csvfile:
@@ -73,5 +73,5 @@ def log_games():
         writer.writeheader()
 
         for result in results:
-            writer.writerow(results[result])
+            writer.writerow(result)
     return True

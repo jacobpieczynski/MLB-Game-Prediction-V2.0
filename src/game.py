@@ -68,7 +68,7 @@ class Game:
     # Takes the 'start' information and sets the lineups based off it
     def set_lineup(self):
         self.home_lineup, self.visitor_lineup, self.players_in_game = [None] * 11, [None] * 11, dict() # lineup[0] is none, after that the idx represents their field pos
-        #self.player_stats = dict()
+        self.player_stats = dict()
         for line in self.start:
             line = line.split(',')
             playerid = line[1]
@@ -84,7 +84,8 @@ class Game:
                 else:
                     self.visitor_lineup[field_pos] = PITCHERS[playerid]
                 PITCHERS[playerid].reset_game_stats()
-                PITCHERS[playerid].inc_game_stat(['G', 'S'], [1, 1])
+                self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
+                PITCHERS[playerid].inc_game_stat(self, ['G', 'S'], [1, 1])
                 self.players_in_game[playerid] = PITCHERS[playerid]
             else:
                 if is_home:
@@ -92,8 +93,8 @@ class Game:
                 else:
                     self.visitor_lineup[field_pos] = PLAYERS[playerid]
                 PLAYERS[playerid].reset_game_stats()
+                self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
                 self.players_in_game[playerid] = PLAYERS[playerid] 
-                #self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0}
         self.home_starting_lineup = self.home_lineup.copy()
         self.visitor_starting_lineup = self.visitor_lineup.copy()
 
@@ -131,12 +132,12 @@ class Game:
                 if pitcher.id not in self.players_in_game:
                     self.players_in_game[pitcher.id] = pitcher
 
-                pitcher.inc_game_stat(['P'], [total_pitches])
+                pitcher.inc_game_stat(self, ['P'], [total_pitches])
                 self.parse_play(play, batter, pitcher)
                 # Hacky way to fix a FC error 
                 # TODO: Look at game 20230620SFNSDN, Anthony Descalfani is given 4 outs in the 3rd inning
                 if self.op >= 4:
-                    pitcher.inc_game_stat(['OP'], [-1])
+                    pitcher.inc_game_stat(self, ['OP'], [-1])
                     self.op = 3
                 radj = False
 
@@ -173,7 +174,8 @@ class Game:
                     else:
                         self.visitor_lineup[1] = PITCHERS[playerid]
                     self.players_in_game[playerid] = PITCHERS[playerid]
-                    PITCHERS[playerid].inc_game_stat(['G'], [1])
+                    self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
+                    PITCHERS[playerid].inc_game_stat(self, ['G'], [1])
                 else:
                     # Checks for pitchers being subbed as players
                     if playerid not in PLAYERS:
@@ -182,14 +184,15 @@ class Game:
                         self.home_lineup[field_pos] = PLAYERS[playerid]
                     else:
                         self.visitor_lineup[field_pos] = PLAYERS[playerid]
-                    self.players_in_game[playerid] = PLAYERS[playerid]
+                    self.players_in_game[playerid] = PLAYERS[playerid] 
+                    self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
             elif line[0] == 'com':
                 if self.com:
                     #print(line)
                     pass
             # Tracks a the ER of each pitcher
             elif line[0] == 'data':
-                PITCHERS[line[2]].inc_game_stat(['ER'], [int(line[3])])
+                PITCHERS[line[2]].inc_game_stat(self, ['ER'], [int(line[3])])
             # Runner Adjustment, for when an inning starts with someone on base (extra innings rule)
             elif line[0] == 'radj':
                 radj = True
@@ -198,7 +201,7 @@ class Game:
                 # TODO: Account for badj
                 pass
         for player in self.players_in_game:
-            self.players_in_game[player].add_game_stats()
+            self.players_in_game[player].add_game_stats(self)
             self.players_in_game[player].reset_game_stats()
         print(5)
         
@@ -222,12 +225,12 @@ class Game:
                 # If the last digit is a number, it represents a double play
                 if simple[-1].isnumeric():
                     self.bases[int(runner)] = None
-                    pitcher.inc_game_stat(['OP', 'BF'], [2, 1])
+                    pitcher.inc_game_stat(self, ['OP', 'BF'], [2, 1])
                     self.op += 2
                 # If there are two () it is also a double (or triple!) play
                 elif simple.count('(') > 1:
                   ##print((f'Lined into play, {runner} out as well as batter - {play}')
-                    pitcher.inc_game_stat(['OP', 'BF'], [int(simple.count('(')), 1])
+                    pitcher.inc_game_stat(self, ['OP', 'BF'], [int(simple.count('(')), 1])
                     self.op += int(simple.count('('))
                 else:
                     # Runner in parenthesis represents a force out - B in parenthesis is the batter, so empty base is implied
@@ -235,60 +238,60 @@ class Game:
                         self.bases[int(runner)] = None
                     #else:
                       ##print((f'Unusual fo, batter out - {play}')
-                    pitcher.inc_game_stat(['OP', 'BF'], [1, 1])
+                    pitcher.inc_game_stat(self, ['OP', 'BF'], [1, 1])
                     self.op += 1
             # Other numeric entries represent a simple pop/lineout
             else:
-                pitcher.inc_game_stat(['OP', 'BF'], [1, 1])
+                pitcher.inc_game_stat(self, ['OP', 'BF'], [1, 1])
                 self.op += 1
             # Records sacrifice hits - sacs don't count as an at bat, just a plate appearance
             if '/SF' in play:
-                batter.inc_game_stat(['PA', 'SF'], [1, 1])
+                batter.inc_game_stat(self, ['PA', 'SF'], [1, 1])
             elif  '/SH' in play:
-                batter.inc_game_stat(['PA', 'SH'], [1, 1])
+                batter.inc_game_stat(self, ['PA', 'SH'], [1, 1])
             else:
-                batter.inc_game_stat(['PA', 'AB'], [1, 1])
+                batter.inc_game_stat(self, ['PA', 'AB'], [1, 1])
         # Defensive indifference, runner allowed to steal
         elif simple.startswith("DI"):
             # TODO: treat defensive indifference, advance runner
             pass
         # Interference by a player resulting in batter going to 1 and all others advancing
         elif 'C/E' in play:
-            batter.inc_game_stat(['PA'], [1])
-            pitcher.inc_game_stat(['BF'], [1])
+            batter.inc_game_stat(self, ['PA'], [1])
+            pitcher.inc_game_stat(self, ['BF'], [1])
         # Single
         elif simple.startswith('S') and not simple.startswith('SB'):
-            batter.inc_game_stat(['S', 'PA', 'AB', 'H'], [1, 1, 1, 1])
-            pitcher.inc_game_stat(['H', 'BF'], [1, 1])
+            batter.inc_game_stat(self, ['S', 'PA', 'AB', 'H'], [1, 1, 1, 1])
+            pitcher.inc_game_stat(self, ['H', 'BF'], [1, 1])
         # Double
         elif simple.startswith('D') or simple.startswith('DGR'):
-            batter.inc_game_stat(['D', 'PA', 'AB', 'H'], [1, 1, 1, 1])
-            pitcher.inc_game_stat(['H', 'BF'], [1, 1])
+            batter.inc_game_stat(self, ['D', 'PA', 'AB', 'H'], [1, 1, 1, 1])
+            pitcher.inc_game_stat(self, ['H', 'BF'], [1, 1])
         # Triple
         elif simple.startswith('T'):
-            batter.inc_game_stat(['T', 'PA', 'AB', 'H'], [1, 1, 1, 1])
-            pitcher.inc_game_stat(['H', 'BF'], [1, 1])
+            batter.inc_game_stat(self, ['T', 'PA', 'AB', 'H'], [1, 1, 1, 1])
+            pitcher.inc_game_stat(self, ['H', 'BF'], [1, 1])
         # Fielding Error
         elif simple.startswith('E') and simple[1].isnumeric():
-            batter.inc_game_stat(['PA', 'AB'], [1, 1])
-            pitcher.inc_game_stat(['BF'], [1])
+            batter.inc_game_stat(self, ['PA', 'AB'], [1, 1])
+            pitcher.inc_game_stat(self, ['BF'], [1])
         # Fielders choice - batter goes to first, another runner is attempted to get out
         elif simple.startswith('FC'):
-            batter.inc_game_stat(['AB', 'PA'], [1, 1])
+            batter.inc_game_stat(self, ['AB', 'PA'], [1, 1])
             # Any of these cases means that a FC was attempted but no runner put out
             if ('B-1' in runners[0] and 'E' in runners[0]) or ('X' not in runners):
-                pitcher.inc_game_stat(['BF'], [1])
+                pitcher.inc_game_stat(self, ['BF'], [1])
             else:
-                pitcher.inc_game_stat(['BF', 'OP'], [1, 1])
+                pitcher.inc_game_stat(self, ['BF', 'OP'], [1, 1])
                 self.op += 1
         # Home Run
         elif 'H/' in play or simple.startswith('HR'):
-            batter.inc_game_stat(['HR', 'AB', 'PA', 'H'], [1, 1, 1, 1])
-            pitcher.inc_game_stat(['HR', 'H', 'BF'], [1, 1, 1])
+            batter.inc_game_stat(self, ['HR', 'AB', 'PA', 'H'], [1, 1, 1, 1])
+            pitcher.inc_game_stat(self, ['HR', 'H', 'BF'], [1, 1, 1])
         # Hit by Pitch
         elif simple.startswith('HP'):
-            batter.inc_game_stat(['HBP', 'PA'], [1, 1])
-            pitcher.inc_game_stat(['HBP', 'BF'], [1, 1])
+            batter.inc_game_stat(self, ['HBP', 'PA'], [1, 1])
+            pitcher.inc_game_stat(self, ['HBP', 'BF'], [1, 1])
         # K + something represents a strikout plus another event
         elif simple.startswith('K+') or (simple.startswith('K') and '+' in simple):
             # TODO: Treat strikeout edge cases
@@ -297,25 +300,25 @@ class Game:
                 # One of the edge cases, 'DP' in mod represents a double play in this case
                 if 'DP' in mod:
                     op = 2
-            batter.inc_game_stat(['K', 'PA', 'AB'], [1, 1, 1])
-            pitcher.inc_game_stat(['K', 'OP', 'BF'], [1, op, 1])
+            batter.inc_game_stat(self, ['K', 'PA', 'AB'], [1, 1, 1])
+            pitcher.inc_game_stat(self, ['K', 'OP', 'BF'], [1, op, 1])
             self.op += op
         # Strikeout
         elif simple.startswith('K'):
-            batter.inc_game_stat(['K', 'PA', 'AB'], [1, 1, 1])
-            pitcher.inc_game_stat(['K', 'OP', 'BF'], [1, 1, 1])
+            batter.inc_game_stat(self, ['K', 'PA', 'AB'], [1, 1, 1])
+            pitcher.inc_game_stat(self, ['K', 'OP', 'BF'], [1, 1, 1])
             self.op += 1
         elif simple.startswith('PB') or simple.startswith('WP'):
             #TODO: passed ball/wild pitch, not a batter stat but runners may have advanced.
             pass
         elif simple.startswith('W+') or (simple.startswith('W') and '+' in simple):
             # TODO: treat walk edge cases (for baserunning (?))
-            batter.inc_game_stat(['BB', 'PA'], [1, 1])
-            pitcher.inc_game_stat(['BB', 'BF'], [1, 1])
+            batter.inc_game_stat(self, ['BB', 'PA'], [1, 1])
+            pitcher.inc_game_stat(self, ['BB', 'BF'], [1, 1])
         # Intentional Walk
         elif simple.startswith('I') or simple.startswith('IW') or simple.startswith('W'):
-            batter.inc_game_stat(['BB', 'PA'], [1, 1])
-            pitcher.inc_game_stat(['BB', 'BF'], [1, 1])
+            batter.inc_game_stat(self, ['BB', 'PA'], [1, 1])
+            pitcher.inc_game_stat(self, ['BB', 'BF'], [1, 1])
         # Balk
         elif simple.startswith('BK'):
             # TODO: treat balks, advance all runners
@@ -329,10 +332,10 @@ class Game:
                 base = int(base) - 1
             # TODO: treat caught stealing, general base running
             if 'E' not in simple and self.bases[base] != None:
-                self.bases[base].inc_game_stat(['CS'], [1])
+                self.bases[base].inc_game_stat(self, ['CS'], [1])
             else:
                 pass
-            pitcher.inc_game_stat(['OP'], [1])
+            pitcher.inc_game_stat(self, ['OP'], [1])
             self.op += 1
         # Pickoff cases
         elif simple.startswith('PO'):
@@ -346,13 +349,13 @@ class Game:
                 # TODO: Picked off, caught stealing
                 """
                 if base == 'H':
-                    self.bases[3].inc_game_stat(['CS'], [1])
+                    self.bases[3].inc_game_stat(self, ['CS'], [1])
                     self.bases[3] = None
                 else:
-                    self.bases[int(base) - 1].inc_game_stat(['CS'], [1])
+                    self.bases[int(base) - 1].inc_game_stat(self, ['CS'], [1])
                     self.bases[int(base) - 1] = None
                 """
-                pitcher.inc_game_stat(['OP'], [1])
+                pitcher.inc_game_stat(self, ['OP'], [1])
                 self.op += 1
             # Runner picked off, base represets the base they were at
             else:
@@ -361,7 +364,7 @@ class Game:
                     self.bases[3] = None
                 else:
                     self.bases[int(base) - 1] = None
-                pitcher.inc_game_stat(['OP'], [1])
+                pitcher.inc_game_stat(self, ['OP'], [1])
                 self.op += 1
         # Stolen Base
         # TODO: Fix this (get rid of 1 ==2 ) when adv_bases works
@@ -371,10 +374,10 @@ class Game:
                 for steal in steals:
                     base = steal[2]
                     if base == 'H':
-                        self.bases[3].inc_game_stat(['SB'], [1])
+                        self.bases[3].inc_game_stat(self, ['SB'], [1])
                         # TODO: Account for run scored ??
                     else:
-                        self.bases[int(base) - 1].inc_game_stat(['SB'], [1])
+                        self.bases[int(base) - 1].inc_game_stat(self, ['SB'], [1])
         # Fielding error on fly ball
         elif simple.startswith('FLE'):
             # TODO: if we track fielding stats, update with this. Otherwise, ignore/pass
@@ -388,7 +391,7 @@ class Game:
         if runners != [None]:
             for runner in runners:
                 if 'X' in runner:
-                    pitcher.inc_game_stat(['OP'], [1])
+                    pitcher.inc_game_stat(self, ['OP'], [1])
                     self.op += 1
         
         #self.adv_bases(batter, simple, runners[0], play)
@@ -646,6 +649,7 @@ class Game:
     def comp_sps(self):
         end_date = get_prior_date(self.date)
         results = dict()
+        print(self.home_starting_lineup)
         home_stats, visitor_stats = self.home_starting_lineup[1].get_totals(end_date), self.visitor_starting_lineup[1].get_totals(end_date)
         results['ERA'] = round(calc_era(home_stats['ER'], home_stats['IP']) - calc_era(visitor_stats['ER'], visitor_stats['IP']), 2)
         results['WHIP'] = round(calc_whip(home_stats['H'], home_stats['BB'], home_stats['OP']) - calc_whip(visitor_stats['H'], visitor_stats['BB'], visitor_stats['IP']), 2)

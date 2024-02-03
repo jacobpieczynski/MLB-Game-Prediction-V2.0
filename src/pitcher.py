@@ -9,7 +9,7 @@ class Pitcher:
         self.throws = info[4]
         self.team = info[5]
         self.pos = info[6]
-        self.stats = {'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
+        self.stats = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
         self.game_stats = dict()
         for stat in self.stats:
             self.game_stats[stat] = 0
@@ -22,25 +22,32 @@ class Pitcher:
         self.reset_stats()
         for gameid in GAMES:
             game = GAMES[gameid]
-            if self.id in game.players_in_game and game.date <= end_date and game.date >= start_date:
-               ##print('simming')
-                game.simulate_game()
+            if self.id in game.player_stats and game.date <= end_date and game.date >= start_date:
+                for stat in self.stats:
+                    if stat not in self.stats:
+                        self.stats[stat] = 0
+                    #print(game.player_stats[self.id])
+                    self.stats[stat] += game.player_stats[self.id][stat]
         self.stats['IP'] = self.op_to_ip(self.stats['OP'])
         return self.stats
 
     # Alters a given stat
-    def inc_game_stat(self, stats: list, quantities: list):
+    def inc_game_stat(self, game, stats: list, quantities: list):
         if len(stats) != len(quantities):
-           ##print('Invalid number of stats compared to quantities, player inc_game_stat')
-           ##print(stats)
+            print('Invalid number of stats compared to quantities, player inc_game_stat')
+            print(stats)
             return False
         for stat, quantity in zip(stats, quantities):
-            self.game_stats[stat] += quantity
+            #self.game_stats[stat] += quantity
+            if stat not in game.player_stats[self.id]:
+                game.player_stats[self.id][stat] = 0
+            game.player_stats[self.id][stat] += quantity
 
     # Adds all game stats to 'perm' stats
-    def add_game_stats(self):
+    def add_game_stats(self, game):
         for stat in self.game_stats:
-            self.stats[stat] += self.game_stats[stat]
+            #self.stats[stat] += self.game_stats[stat]
+            pass
 
     # Reset Functions:
     def reset_stats(self):
