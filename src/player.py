@@ -26,7 +26,9 @@ class Player:
                 for stat in self.stats:
                     if stat not in self.stats:
                         self.stats[stat] = 0
+                    #print(game.player_stats[self.id])
                     self.stats[stat] += game.player_stats[self.id][stat]
+        self.stats['IP'] = self.op_to_ip(self.stats['OP'])
         return self.stats
 
     # Alters a given stat
@@ -56,5 +58,10 @@ class Player:
         for stat in self.game_stats:
             self.game_stats[stat] = 0
 
+    def op_to_ip(self, op):
+        if op == 0:
+            return 0
+        return round(op / 3, 2)
+
     def __repr__(self):
-        return f'Player object {self.name}, a {self.pos} for {self.team} - ID: {self.id}'
+        return f'Pitcher object {self.name}, a {self.pos} for {self.team} - ID: {self.id}'

@@ -70,23 +70,15 @@ class Game:
             # TODO: Improve this? Seems a bit of a redundant way to do it
             # TODO: How do we treat years? Will players be able to fit into a general PLAYERS roster or do we need to sort by year?
             # Adds players into the lineup based on their position - remember, pitchers and players are different objects
-            if is_pitcher:
-                if is_home:
-                    self.home_lineup[field_pos] = PITCHERS[playerid]
-                else:
-                    self.visitor_lineup[field_pos] = PITCHERS[playerid]
-                PITCHERS[playerid].reset_game_stats()
-                self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
-                PITCHERS[playerid].inc_game_stat(self, ['G', 'S'], [1, 1])
-                self.players_in_game[playerid] = PITCHERS[playerid]
+            if is_home:
+                self.home_lineup[field_pos] = PLAYERS[playerid]
             else:
-                if is_home:
-                    self.home_lineup[field_pos] = PLAYERS[playerid]
-                else:
-                    self.visitor_lineup[field_pos] = PLAYERS[playerid]
-                PLAYERS[playerid].reset_game_stats()
-                self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
-                self.players_in_game[playerid] = PLAYERS[playerid] 
+                self.visitor_lineup[field_pos] = PLAYERS[playerid]
+            PLAYERS[playerid].reset_game_stats()
+            self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
+            if is_pitcher:
+                PLAYERS[playerid].inc_game_stat(self, ['G', 'S'], [1, 1])
+            self.players_in_game[playerid] = PLAYERS[playerid]
         self.home_starting_lineup = self.home_lineup.copy()
         self.visitor_starting_lineup = self.visitor_lineup.copy()
 
@@ -121,9 +113,9 @@ class Game:
                     self.op = 0
 
                 if is_home:
-                    pitcher = PITCHERS[self.visitor_lineup[1].id]
+                    pitcher = PLAYERS[self.visitor_lineup[1].id]
                 else:
-                    pitcher = PITCHERS[self.home_lineup[1].id]
+                    pitcher = PLAYERS[self.home_lineup[1].id]
                 if pitcher.id not in self.players_in_game:
                     self.players_in_game[pitcher.id] = pitcher
 
@@ -150,44 +142,25 @@ class Game:
                 if field_pos >= 10:
                     field_pos = 10
 
-                # Field pos 1 is a pitcher
+        
+                # Checks for pitchers being subbed as players
+                if playerid not in PLAYERS:
+                    PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
+                self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
                 if field_pos == 1:
-                    # Checks for players being subbed as pitchers
-                    if playerid not in PITCHERS:
-                        PITCHERS[playerid] = Pitcher(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
-                    # If being subbed in as a pitcher, the bat pos will be 0, otherwise they are subbed in as both a pitcher and batter (usually extra innings)
-                    if bat_pos != 0:
-                        if playerid not in PLAYERS:
-                            PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
-                        if is_home:
-                            self.home_lineup[bat_pos] = PLAYERS[playerid]
-                        else:
-                            self.visitor_lineup[bat_pos] = PLAYERS[playerid]
-                    # Regardless, they will be subbed in as a pitcher
-                    if is_home:
-                        self.home_lineup[1] = PITCHERS[playerid]
-                    else:
-                        self.visitor_lineup[1] = PITCHERS[playerid]
-                    self.players_in_game[playerid] = PITCHERS[playerid]
-                    self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
-                    PITCHERS[playerid].inc_game_stat(self, ['G'], [1])
+                        PLAYERS[playerid].inc_game_stat(self, ['G'], [1])
+                if is_home:
+                    self.home_lineup[field_pos] = PLAYERS[playerid]
                 else:
-                    # Checks for pitchers being subbed as players
-                    if playerid not in PLAYERS:
-                        PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
-                    if is_home:
-                        self.home_lineup[field_pos] = PLAYERS[playerid]
-                    else:
-                        self.visitor_lineup[field_pos] = PLAYERS[playerid]
-                    self.players_in_game[playerid] = PLAYERS[playerid] 
-                    self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
+                    self.visitor_lineup[field_pos] = PLAYERS[playerid]
+                self.players_in_game[playerid] = PLAYERS[playerid] 
             elif line[0] == 'com':
                 if self.com:
                     #print(line)
                     pass
             # Tracks a the ER of each pitcher
             elif line[0] == 'data':
-                PITCHERS[line[2]].inc_game_stat(self, ['ER'], [int(line[3])])
+                PLAYERS[line[2]].inc_game_stat(self, ['ER'], [int(line[3])])
             # Runner Adjustment, for when an inning starts with someone on base (extra innings rule)
             elif line[0] == 'radj':
                 radj = True

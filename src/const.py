@@ -19,7 +19,7 @@ START_2022, END_2022 = '20220101', '20221231'
 
 # Global Dicts
 PLAYERS = dict() # Useage: PLAYERS[playerid] --> returns player object
-PITCHERS = dict() # Useage: PITCHERS[playerid] --> returns pitcher object
+#PITCHERS = dict() # Useage: PITCHERS[playerid] --> returns pitcher object
 GAMELOG = dict() # Useage: GAMELOG[year][gameid] --> returns gamelog object # Todo: do we change this to be just gamelog[gameid]?
 GAMES = dict() # Useage: GAMES[gameid] --> returns game object
 
