@@ -245,7 +245,7 @@ class Game:
         elif simple.startswith('FC'):
             batter.inc_game_stat(self, ['AB', 'PA'], [1, 1])
             # Any of these cases means that a FC was attempted but no runner put out
-            if ('B-1' in runners[0] and 'E' in runners[0]) or ('X' not in runners):
+            if runners != [None] and (('B-1' in runners[0] and 'E' in runners[0]) or ('X' not in runners)):
                 pitcher.inc_game_stat(self, ['BF'], [1])
             else:
                 pitcher.inc_game_stat(self, ['BF', 'OP'], [1, 1])

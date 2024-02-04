@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 
 # Load the CSV file into a DataFrame
@@ -20,7 +21,8 @@ for i in range(rng):
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    model = LogisticRegression()
+    #model = LogisticRegression()
+    model = RandomForestClassifier()
     model.fit(X_train_scaled,y_train)
     y_pred = model.predict(X_test_scaled)
 
