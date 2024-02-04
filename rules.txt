@@ -1,0 +1,2 @@
+any function involving dates must be inclusive of the date inputted
+	use a function to get the date prior to the current game
