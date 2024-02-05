@@ -47,6 +47,7 @@ class Game:
             elif line[0] != 'version':
                 info[line[1]] = line[2]
         self.id = self.date + info['hometeam'] + info['visteam']
+        self.year = self.date[0:4]
         self.home = info['hometeam']
         self.visitor = info['visteam']
         self.field = info['site']
@@ -499,8 +500,8 @@ class Game:
         home_losses, visitor_losses = 0, 0
         home_runs, visitor_runs = 0, 0
         hwpct, vwpct = 0, 0
-        for gameid in GAMES:
-            game = GAMES[gameid]
+        for gameid in GAMES[self.year]:
+            game = GAMES[self.year][gameid]
             #if game.date == '20231001':
                 #print(f'{self.id}, gdate = {game.date}, end_date = {end_date}, comp = {game.date <= end_date}, comp 2 = {game.date >= start_date}')
             if game.date <= end_date and game.date >= start_date and (self.home in (game.home, game.visitor) or self.visitor in (game.home, game.visitor)):
@@ -555,8 +556,8 @@ class Game:
         end_date = get_prior_date(self.date)
         start_date = end_date[:4] + '0101'
         home_wins, visitor_wins = 0, 0
-        for gameid in GAMES:
-            game = GAMES[gameid]
+        for gameid in GAMES[self.year]:
+            game = GAMES[self.year][gameid]
             if game.date <= end_date and game.date >= start_date:
                 if self.home in (game.home, game.visitor) and self.visitor in (game.home, game.visitor):
                     if self.home == game.home and game.home_win:

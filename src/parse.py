@@ -46,9 +46,12 @@ def parse_pbp(filename='pbp/2023/2023ARI.EVN'):
         for line in file:
             # All games begin with the 'id,' line
             if line[0:3] == 'id,' and data != []:
+                year = filename[4:8]
+                if year not in GAMES:
+                    GAMES[year] = dict()
                 game = Game(data)
                 print(f'for game created {game.id}')
-                GAMES[game.id] = game
+                GAMES[year][game.id] = game
                 data = []
                 data.append(line.strip('\n'))
             else:
@@ -57,7 +60,7 @@ def parse_pbp(filename='pbp/2023/2023ARI.EVN'):
         print(f'new game {game.id}')
         game = Game(data)
         print('game created')
-        GAMES[game.id] = game
+        GAMES[year][game.id] = game
     #except:
      #   return False
     return True

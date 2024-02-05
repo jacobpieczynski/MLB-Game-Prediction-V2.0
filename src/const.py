@@ -41,7 +41,7 @@ START_2022, END_2022 = '20220101', '20221231'
 PLAYERS = dict() # Useage: PLAYERS[playerid] --> returns player object
 #PITCHERS = dict() # Useage: PITCHERS[playerid] --> returns pitcher object
 GAMELOG = dict() # Useage: GAMELOG[year][gameid] --> returns gamelog object # Todo: do we change this to be just gamelog[gameid]?
-GAMES = dict() # Useage: GAMES[gameid] --> returns game object
+GAMES = dict() # Useage: GAMES[year][gameid] --> returns game object
 TEAM_ROS = dict() # Useage: TEAM_ROS[year][team] --> returns player object
 
 # Misc helper functions
