@@ -28,8 +28,8 @@ class Game:
         self.parse_info()
         self.set_lineup()
         self.simulate_game()
-        self.team_stats = self.get_team_records()
-        self.h2h_totals = self.head_to_head()
+        #self.team_stats = self.get_team_records()
+        #self.h2h_totals = self.head_to_head()
         self.batting_stats = self.team_batting_stats()
         self.comp_results = self.comp_sps()
 
@@ -532,7 +532,7 @@ class Game:
                     visitor_runs += game.vscore
                 elif self.visitor == game.home:
                     visitor_runs += game.hscore
-                #print(f'Add Win {game.id}, {visitor_wins}')
+                #print(f'Add Win {game.id}, {visitor_wins}, home wins {home_wins} Win Diff = {home_wins - visitor_wins}')
         if home_wins > 0:
             hwpct = round(home_wins / (home_wins + home_losses), 3)
         if visitor_wins > 0:

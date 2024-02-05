@@ -35,12 +35,13 @@ def main():
     print('-' * 50)
     print('LOADING PBPs')
     for year in PBP_FILES:
-        for pbp in PBP_FILES[year]:
-            if not parse_pbp(pbp):
-                print(f'FAILED TO OPEN FILE {pbp}')
-                print('-' * 50, end='\n\n')
-                return False
-            print(pbp)
+        if year > '2000':
+            for pbp in PBP_FILES[year]:
+                if not parse_pbp(pbp):
+                    print(f'FAILED TO OPEN FILE {pbp}')
+                    print('-' * 50, end='\n\n')
+                    return False
+                print(pbp)
 
     print('\nLOADED')
     print('-' * 50, end='\n\n')
@@ -49,16 +50,16 @@ def main():
     print('-' * 50)
     print('LOADING DATA')
     if not log_games():
-        print(f'FAILED TO LOG GAMES')
-        print('-' * 50, end='\n\n')
-        return False
+       print(f'FAILED TO LOG GAMES')
+       print('-' * 50, end='\n\n')
+       return False
 
     print('\nLOADED')
     print('-' * 50, end='\n\n')
 
     # Testing
     #print(GAMES['20230830LANARI'].comp_sps())
-    #print(GAMES['20230830LANARI'].get_team_records())
+    print(GAMES['20230920ARISFN'].get_team_records())
     #print(GAMES['20230830LANARI'].team_batting_stats())
     #print(PLAYERS['judga001'].get_totals(END_2022, START_2022))
 

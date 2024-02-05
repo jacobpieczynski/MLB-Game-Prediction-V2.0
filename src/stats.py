@@ -53,15 +53,22 @@ def log_games():
         # Checks that both teams have played at least 7 games
         if above_threshold(game):
             data = {'Date': game.date, 'Home': game.home, 'Visitor': game.visitor, 'GameID': game.id}
-            team_stats = game.team_stats
+            print(1)
+            team_stats = game.get_team_records()
+            print(2)
+            #print(f'{game.id} {team_stats}')
             for stat in team_stats:
                 if stat != 'Total Games':
                     data[stat] = team_stats[stat]
-            data['H2H'] = game.h2h_totals['HWins'] - game.h2h_totals['VWins']
+            h2h = game.head_to_head()
+            print(3)
+            data['H2H'] = h2h['HWins'] - h2h['VWins']
             batting_stats = game.batting_stats
+            print(4)
             for stat in batting_stats:
                 data[stat] = batting_stats[stat]
             pitcher_stats = game.comp_results
+            print(5)
             for stat in pitcher_stats:
                 data[stat] = pitcher_stats[stat]
             data['HWin'] = game.home_win
