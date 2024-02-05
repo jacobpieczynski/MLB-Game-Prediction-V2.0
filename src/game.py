@@ -496,7 +496,7 @@ class Game:
     def get_team_records(self):
         end_date = get_prior_date(self.date)
         start_date = end_date[:4] + '0101' # Jan 1 of the year of the game
-        home_wins, home_hwins, home_vwins, visitor_wins, visitor_hwins, visitor_vwins = 0, 0, 0, 0, 0, 0
+        home_wins, home_hwins, home_vwins, visitor_wins, visitor_hwins, visitor_vwins, home_ra, visitor_ra, h_pyth, v_pyth = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
         home_losses, visitor_losses = 0, 0
         home_runs, visitor_runs = 0, 0
         hwpct, vwpct = 0, 0
@@ -527,12 +527,16 @@ class Game:
                 # To add to total runs
                 if self.home == game.home:
                     home_runs += game.hscore
+                    home_ra += game.vscore
                 elif self.home == game.visitor:
                     home_runs += game.vscore
+                    home_ra += game.hscore
                 if self.visitor == game.visitor:
                     visitor_runs += game.vscore
+                    visitor_ra += game.hscore
                 elif self.visitor == game.home:
                     visitor_runs += game.hscore
+                    visitor_ra += game.vscore
                 #print(f'Add Win {game.id}, {visitor_wins}, home wins {home_wins} Win Diff = {home_wins - visitor_wins}')
         if home_wins > 0:
             hwpct = round(home_wins / (home_wins + home_losses), 3)
@@ -546,9 +550,13 @@ class Game:
         if (visitor_wins + visitor_losses) > 0:
             vrpg = round(visitor_runs / (visitor_wins + visitor_losses), 2)
 
-        home_stats = {'Wins': home_wins, 'Losses': home_losses, 'Games': home_wins + home_losses, 'HomeWins': home_hwins, 'AwayWins': home_vwins, 'WPct': hwpct, 'Runs': home_runs, 'RPG': hrpg}
-        visitor_stats = {'Wins': visitor_wins, 'Losses': visitor_losses, 'Games': visitor_wins + visitor_losses, 'HomeWins': visitor_hwins, 'AwayWins': visitor_vwins, 'WPct': vwpct, 'Runs': visitor_runs, 'RPG': vrpg}
-        team_stats = {'WinDiff': home_stats['Wins'] - visitor_stats['Wins'], 'HomeAdv': home_stats['HomeWins'] - visitor_stats['AwayWins'], 'WPctDiff': round(home_stats['WPct'] - visitor_stats['WPct'], 3), 'RunDiff': home_stats['Runs'] - visitor_stats['Runs'], 'RPGDiff': round(home_stats['RPG'] - visitor_stats['RPG'], 2), 'Total Games': min(home_stats['Games'], visitor_stats['Games'])}
+        if home_ra > 0:
+            h_pyth = calc_pythag(home_runs, home_ra)
+        if visitor_ra > 0:
+            v_pyth = calc_pythag(visitor_runs, visitor_ra)
+        home_stats = {'Wins': home_wins, 'Losses': home_losses, 'Games': home_wins + home_losses, 'HomeWins': home_hwins, 'AwayWins': home_vwins, 'WPct': hwpct, 'Runs': home_runs, 'RPG': hrpg, 'Pythag': h_pyth, 'RA': home_ra}
+        visitor_stats = {'Wins': visitor_wins, 'Losses': visitor_losses, 'Games': visitor_wins + visitor_losses, 'HomeWins': visitor_hwins, 'AwayWins': visitor_vwins, 'WPct': vwpct, 'Runs': visitor_runs, 'RPG': vrpg, 'Pythag': v_pyth, 'RA': visitor_ra}
+        team_stats = {'WinDiff': home_stats['Wins'] - visitor_stats['Wins'], 'HomeAdv': home_stats['HomeWins'] - visitor_stats['AwayWins'], 'WPctDiff': round(home_stats['WPct'] - visitor_stats['WPct'], 3), 'RunDiff': home_stats['Runs'] - visitor_stats['Runs'], 'RPGDiff': round(home_stats['RPG'] - visitor_stats['RPG'], 2), 'Total Games': min(home_stats['Games'], visitor_stats['Games']), 'PythagDiff': home_stats['Pythag'] - visitor_stats['Pythag'], 'RADiff': home_stats['RA'] - visitor_stats['RA']}
         return team_stats
     
     # Compares the head to head record of the two teams

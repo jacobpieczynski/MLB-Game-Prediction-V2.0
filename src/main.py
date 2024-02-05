@@ -35,7 +35,7 @@ def main():
     print('-' * 50)
     print('LOADING PBPs')
     for year in PBP_FILES:
-        if year > '2000':
+        if year > '2018':
             for pbp in PBP_FILES[year]:
                 if not parse_pbp(pbp):
                     print(f'FAILED TO OPEN FILE {pbp}')

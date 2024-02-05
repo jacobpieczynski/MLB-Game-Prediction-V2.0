@@ -44,7 +44,7 @@ Recent Success
 """
 
 # TODO: Once all stats calculated, search through all calculateable stats and remove calculations for unused ones
-fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'H2H', 'AVG', 'SLG', 'OBP', 'ISO', 'OPS', 'DER', 'ERA', 'WHIP', 'BB9', 'K9', 'HR9', 'FIP', 'HWin']
+fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RADiff', 'RPGDiff', 'H2H', 'AVG', 'SLG', 'OBP', 'ISO', 'OPS', 'DER', 'PythagDiff', 'ERA', 'WHIP', 'BB9', 'K9', 'HR9', 'FIP', 'HWin']
 results = []
 
 def log_games():
