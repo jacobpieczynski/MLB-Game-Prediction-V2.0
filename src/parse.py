@@ -8,12 +8,19 @@ from player import Player
 # Parse the roster information
 def parse_roster(filename='ros/2023/ANA2023.ROS'):
     try:
+        year = filename[4:8]
+        team = filename[9:12]
         with open(filename) as file:
             for line in file:
                 line = line.strip('\n')
                 player = Player(line)
                 if player.id not in PLAYERS:
                     PLAYERS[player.id] = player
+                if year not in TEAM_ROS:
+                    TEAM_ROS[year] = dict()
+                if team not in TEAM_ROS[year]:
+                    TEAM_ROS[year][team] = []
+                TEAM_ROS[year][team].append(player)
     except:
         return False
     return True
@@ -47,7 +54,7 @@ def parse_pbp(filename='pbp/2023/2023ARI.EVN'):
             else:
                 data.append(line.strip('\n'))
         # To append final game
-        print('new game {game.id}')
+        print(f'new game {game.id}')
         game = Game(data)
         print('game created')
         GAMES[game.id] = game

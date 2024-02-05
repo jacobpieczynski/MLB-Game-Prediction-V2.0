@@ -615,7 +615,23 @@ class Game:
     def comp_sps(self):
         end_date = get_prior_date(self.date)
         results = dict()
-        home_stats, visitor_stats = self.home_starting_lineup[1].get_totals(end_date), self.visitor_starting_lineup[1].get_totals(end_date)
+        year = self.date[:4]
+        home_stats, visitor_stats = dict(), dict()
+        for h in TEAM_ROS[year][self.home]:
+            if h.pos == 'P':
+                stats = h.get_totals(end_date)
+                for stat in stats:
+                    if stat not in home_stats:
+                        home_stats[stat] = 0
+                    home_stats[stat] += stats[stat]
+        for v in TEAM_ROS[year][self.visitor]:
+            if v.pos == 'P':
+                stats = v.get_totals(end_date)
+                for stat in stats:
+                    if stat not in visitor_stats:
+                        visitor_stats[stat] = 0
+                    visitor_stats[stat] += stats[stat]
+        #home_stats, visitor_stats = self.home_starting_lineup[1].get_totals(end_date), self.visitor_starting_lineup[1].get_totals(end_date)
         results['ERA'] = round(calc_era(home_stats['ER'], home_stats['IP']) - calc_era(visitor_stats['ER'], visitor_stats['IP']), 2)
         results['WHIP'] = round(calc_whip(home_stats['H'], home_stats['BB'], home_stats['OP']) - calc_whip(visitor_stats['H'], visitor_stats['BB'], visitor_stats['IP']), 2)
         results['BB9'] = round(calc_bb9(home_stats['BB'], home_stats['IP']) - calc_bb9(visitor_stats['BB'], visitor_stats['IP']), 2)
@@ -623,3 +639,4 @@ class Game:
         results['HR9'] = round(calc_hr9(home_stats['HR'], home_stats['IP']) - calc_hr9(visitor_stats['HR'], visitor_stats['IP']), 2)
         results['FIP'] = round(calc_fip(home_stats['HR'], home_stats['BB'], home_stats['HBP'], home_stats['K'], home_stats['IP']) - calc_fip(visitor_stats['HR'], visitor_stats['BB'], visitor_stats['HBP'], visitor_stats['K'], visitor_stats['IP']), 2)
         return results
+    

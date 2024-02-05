@@ -1,14 +1,18 @@
 # To Train the model
 import numpy as np
 import pandas as pd
-from scipy.stats import zscore
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 
 # Load the CSV file into a DataFrame
-data = pd.read_csv('stats.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Field'], axis=1)
+data = pd.read_csv('stats.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'DER'], axis=1)
+correlation_matrix = data.corr()
+target_correlation = correlation_matrix['HWin'].abs().sort_values(ascending=False)
+
+print("Correlation with the target variable:")
+print(target_correlation)
 X = data.drop('HWin', axis=1)
 y = data['HWin']
 
