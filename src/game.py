@@ -191,7 +191,8 @@ class Game:
                 # 'B' - If the putout is made at a base not normally covered by the fielder the base runner, batter in this example, is given explicitly.
                 # If the last digit is a number, it represents a double play
                 if simple[-1].isnumeric():
-                    self.bases[int(runner)] = None
+                    if runner.isnumeric():
+                        self.bases[int(runner)] = None
                     pitcher.inc_game_stat(self, ['OP', 'BF'], [2, 1])
                     self.op += 2
                 # If there are two () it is also a double (or triple!) play
