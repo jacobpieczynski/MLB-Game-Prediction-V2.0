@@ -49,6 +49,7 @@ class Game:
         self.id = self.date + info['hometeam'] + info['visteam']
         self.home = info['hometeam']
         self.visitor = info['visteam']
+        self.field = info['site']
         self.info = info
         self.GameLog = GAMELOG[self.date[:4]][self.id]
         self.hscore = int(self.GameLog.home_score)
@@ -75,7 +76,7 @@ class Game:
             else:
                 self.visitor_lineup[field_pos] = PLAYERS[playerid]
             PLAYERS[playerid].reset_game_stats()
-            self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
+            self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0, 'ROE': 0}
             if is_pitcher:
                 PLAYERS[playerid].inc_game_stat(self, ['G', 'S'], [1, 1])
             self.players_in_game[playerid] = PLAYERS[playerid]
@@ -146,7 +147,7 @@ class Game:
                 # Checks for pitchers being subbed as players
                 if playerid not in PLAYERS:
                     PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
-                self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0}
+                self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0, 'ROE': 0}
                 if field_pos == 1:
                         PLAYERS[playerid].inc_game_stat(self, ['G'], [1])
                 if is_home:
@@ -239,7 +240,7 @@ class Game:
             pitcher.inc_game_stat(self, ['H', 'BF'], [1, 1])
         # Fielding Error
         elif simple.startswith('E') and simple[1].isnumeric():
-            batter.inc_game_stat(self, ['PA', 'AB'], [1, 1])
+            batter.inc_game_stat(self, ['PA', 'AB', 'ROE'], [1, 1, 1])
             pitcher.inc_game_stat(self, ['BF'], [1])
         # Fielders choice - batter goes to first, another runner is attempted to get out
         elif simple.startswith('FC'):
@@ -590,11 +591,13 @@ class Game:
         home_stats['OBP'], visitor_stats['OBP'] = calc_obp(home_stats['H'], home_stats['BB'], home_stats['HBP'], home_stats['AB'], home_stats['SF']), calc_obp(visitor_stats['H'], visitor_stats['BB'], visitor_stats['HBP'], visitor_stats['AB'], visitor_stats['SF'])
         home_stats['ISO'], visitor_stats['ISO'] = calc_iso(home_stats['SLG'], home_stats['AVG']), calc_iso(visitor_stats['SLG'], visitor_stats['AVG'])
         home_stats['OPS'], visitor_stats['OPS'] = calc_ops(home_stats['SLG'], home_stats['AVG']), calc_ops(visitor_stats['SLG'], visitor_stats['AVG'])
+        home_stats['DER'], visitor_stats['DER'] = calc_der(home_stats['H'], home_stats['ROE'], home_stats['HR'], home_stats['PA'], home_stats['BB'], home_stats['K'], home_stats['HBP']), calc_der(visitor_stats['H'], visitor_stats['ROE'], visitor_stats['HR'], visitor_stats['PA'], visitor_stats['BB'], visitor_stats['K'], visitor_stats['HBP'])
         results['AVG'] = round(home_stats['AVG'] - visitor_stats['AVG'], 3)
         results['SLG'] = round(home_stats['SLG'] - visitor_stats['SLG'], 3)
         results['OBP'] = round(home_stats['OBP'] - visitor_stats['OBP'], 3)
         results['ISO'] = round(home_stats['ISO'] - visitor_stats['ISO'], 3)
         results['OPS'] = round(home_stats['OPS'] - visitor_stats['OPS'], 3)
+        results['DER'] = round(home_stats['DER'] - visitor_stats['DER'], 3)
         # Find difference between home and away stats
         """
         for i in home_stats:

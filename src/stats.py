@@ -5,7 +5,6 @@ STAT GATHERING FUNCTIONS
 
 All stats to collect:
 Team batting averageXX
-HBP
 ISO (isolated power)XX
 On Base PercentageXX
 Times on bases
@@ -23,7 +22,6 @@ SLGXX
 XBH - extra base hits
 IPXX
 WHIPXX
-Defence-Independent Component ERA
 KBB - strikeouts to walk ratio
 Total Runs ScoredXX
 Stolen Bases
@@ -35,6 +33,7 @@ Fielding Percentage
 WAR
 Defensive Efficiency Ratio (DER)
 Home vs Away wins (subtract home team's home wins from visiting teams away wins)XX
+Fielding Independent PitchingXX
 """
 
 """
@@ -45,7 +44,7 @@ Recent Success
 """
 
 # TODO: Once all stats calculated, search through all calculateable stats and remove calculations for unused ones
-fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'H2H', 'AVG', 'SLG', 'OBP', 'ISO', 'OPS', 'ERA', 'WHIP', 'BB9', 'K9', 'HR9', 'FIP', 'HWin']
+fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'H2H', 'AVG', 'SLG', 'OBP', 'ISO', 'OPS', 'DER', 'ERA', 'WHIP', 'BB9', 'K9', 'HR9', 'FIP', 'HWin']
 results = []
 
 def log_games():

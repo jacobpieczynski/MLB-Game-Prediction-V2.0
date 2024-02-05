@@ -20,6 +20,12 @@ def calc_ops(slg, avg):
 def calc_iso(slg, ba):
     return slg - ba
 
+def calc_der(h, roe, hr, pa, bb, so, hbp):
+    #The formula for Defensive Efficiency Ratio is: 1 - ((H + ROE - HR) / (PA - BB - SO - HBP - HR))
+    if (pa - bb - so - hbp - hr) == 0:
+        return 0
+    return round(1 - ((h + roe - hr) / (pa - bb - so - hbp - hr)), 3)
+
 def calc_era(er, ip):
     if ip == 0:
         return 0
