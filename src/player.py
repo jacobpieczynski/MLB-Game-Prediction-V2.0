@@ -28,6 +28,7 @@ class Player:
                     if stat not in self.stats:
                         self.stats[stat] = 0
                     #print(game.player_stats[self.id])
+                    #print(f'{game.id} on {game.date}, stats: {game.player_stats[self.id][stat]}')
                     self.stats[stat] += game.player_stats[self.id][stat]
         self.stats['IP'] = self.op_to_ip(self.stats['OP'])
         return self.stats

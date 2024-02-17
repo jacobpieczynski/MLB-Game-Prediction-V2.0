@@ -35,7 +35,7 @@ def main():
     print('-' * 50)
     print('LOADING PBPs')
     for year in PBP_FILES:
-        if year > '2017':
+        if year > '2000':
             for pbp in PBP_FILES[year]:
                 if not parse_pbp(pbp):
                     print(f'FAILED TO OPEN FILE {pbp}')
@@ -58,9 +58,9 @@ def main():
     print('-' * 50, end='\n\n')
 
     # Testing
-    #print(GAMES['20230830LANARI'].comp_sps())
-    #print(GAMES['20230920ARISFN'].get_team_records())
-    #print(GAMES['20230830LANARI'].team_batting_stats())
     #print(PLAYERS['judga001'].get_totals(END_2022, START_2022))
-
+    #for i in range(2010,2024):
+    #    print(f'{PLAYERS["mccua001"].name} {i} batting totals: ', end="")
+    #    print(PLAYERS['mccua001'].get_totals(str(i) + '1231', str(i) + '0101'))
+    #print(PLAYERS['mccua001'].get_totals('20191231', '20190101'))
 main()

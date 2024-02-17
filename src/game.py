@@ -143,8 +143,6 @@ class Game:
                 # TODO: TEMP - adjust to account for pinch runners and hitters
                 if field_pos >= 10:
                     field_pos = 10
-
-        
                 # Checks for pitchers being subbed as players
                 if playerid not in PLAYERS:
                     PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
@@ -158,7 +156,7 @@ class Game:
                 self.players_in_game[playerid] = PLAYERS[playerid] 
             elif line[0] == 'com':
                 if self.com:
-                    #print(line)
+                    print(f'com? {line}')
                     pass
             # Tracks a the ER of each pitcher
             elif line[0] == 'data':
@@ -169,6 +167,7 @@ class Game:
                 self.bases[int(line[2])] = PLAYERS[line[1]]
             else:
                 # TODO: Account for badj
+                if line[-1] != 'NP' : print(f'badj? {line}')
                 pass
         for player in self.players_in_game:
             self.players_in_game[player].add_game_stats(self)
