@@ -35,7 +35,7 @@ def main():
     print('-' * 50)
     print('LOADING PBPs')
     for year in PBP_FILES:
-        if year > '2000':
+        if year > '2016':
             for pbp in PBP_FILES[year]:
                 if not parse_pbp(pbp):
                     print(f'FAILED TO OPEN FILE {pbp}')
@@ -53,14 +53,17 @@ def main():
        print(f'FAILED TO LOG GAMES')
        print('-' * 50, end='\n\n')
        return False
-
+    
     print('\nLOADED')
     print('-' * 50, end='\n\n')
-
     # Testing
-    #print(PLAYERS['judga001'].get_totals(END_2022, START_2022))
-    #for i in range(2010,2024):
-    #    print(f'{PLAYERS["mccua001"].name} {i} batting totals: ', end="")
-    #    print(PLAYERS['mccua001'].get_totals(str(i) + '1231', str(i) + '0101'))
-    #print(PLAYERS['mccua001'].get_totals('20191231', '20190101'))
+    for i in range(2012,2024):
+        print(f'{PLAYERS["harpb003"].name} {i} batting totals: ', end="")
+        print(PLAYERS['harpb003'].get_totals(str(i) + '1231', str(i) + '0101'))
+    for i in range(2011,2024):
+        print(f'{PLAYERS["goldp001"].name} {i} batting totals: ', end="")
+        print(PLAYERS['goldp001'].get_totals(str(i) + '1231', str(i) + '0101'))
+    for i in range(2011,2024):
+        print(f'{PLAYERS["altuj001"].name} {i} batting totals: ', end="")
+        print(PLAYERS['altuj001'].get_totals(str(i) + '1231', str(i) + '0101'))
 main()

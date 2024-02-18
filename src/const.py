@@ -49,7 +49,7 @@ def get_prior_date(date):
     date = int(date) - 1
     return str(date)
 
-def above_threshold(game, threshold=7):
+def above_threshold(game, threshold=20):
     if game.get_team_records()['Total Games'] > threshold:
         return True
     return False

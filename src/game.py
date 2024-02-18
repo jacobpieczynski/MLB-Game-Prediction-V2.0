@@ -146,7 +146,8 @@ class Game:
                 # Checks for pitchers being subbed as players
                 if playerid not in PLAYERS:
                     PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
-                self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0, 'ROE': 0}
+                if playerid not in self.player_stats:
+                    self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0, 'ROE': 0}
                 if field_pos == 1:
                         PLAYERS[playerid].inc_game_stat(self, ['G'], [1])
                 if is_home:
@@ -156,7 +157,7 @@ class Game:
                 self.players_in_game[playerid] = PLAYERS[playerid] 
             elif line[0] == 'com':
                 if self.com:
-                    print(f'com? {line}')
+                    #print(f'com? {line}')
                     pass
             # Tracks a the ER of each pitcher
             elif line[0] == 'data':

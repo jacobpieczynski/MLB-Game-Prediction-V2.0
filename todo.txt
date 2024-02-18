@@ -1,0 +1,3 @@
+Verify pitcher data accuracy
+
+Validate across years? How does accuracy change over time
