@@ -30,6 +30,12 @@ def calc_pythag(rs, ra):
     #The initial formula for pythagorean winning percentage was as follows: (runs scored ^ 2) / [(runs scored ^ 2) + (runs allowed ^ 2)] 
     return round((pow(rs, 1.83)) / ((pow(rs, 1.83)) + (pow(ra,1.83))), 3)
 
+# Bill James' Log5 Stat
+def calc_log5(homepct, vispct):
+    if (homepct + vispct - (2 * homepct * vispct)) == 0:
+        return 0
+    return round((homepct - (homepct * vispct)) / (homepct + vispct - (2 * homepct * vispct)), 3)
+
 def calc_era(er, ip):
     if ip == 0:
         return 0
