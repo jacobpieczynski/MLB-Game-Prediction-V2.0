@@ -1,5 +1,4 @@
 from const import *
-from pitcher import Pitcher
 from player import Player
 from stat_calc import *
 
@@ -77,7 +76,7 @@ class Game:
             else:
                 self.visitor_lineup[field_pos] = PLAYERS[playerid]
             PLAYERS[playerid].reset_game_stats()
-            self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0, 'ROE': 0}
+            self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'ROE': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0, 'HBPp': 0, 'HRp': 0, 'Kp': 0, 'BBp': 0, 'Hp': 0}
             if is_pitcher:
                 PLAYERS[playerid].inc_game_stat(self, ['G', 'S'], [1, 1])
             self.players_in_game[playerid] = PLAYERS[playerid]
@@ -147,7 +146,7 @@ class Game:
                 if playerid not in PLAYERS:
                     PLAYERS[playerid] = Player(f'{playerid},{playername.split(" ")[1]},{playername.split(" ")[0]},,,,{field_pos}')
                 if playerid not in self.player_stats:
-                    self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0, 'ROE': 0}
+                    self.player_stats[playerid] = {'PA': 0, 'AB': 0, 'H': 0, 'S': 0, 'D': 0, 'T': 0, 'HR': 0, 'BB': 0, 'K': 0, 'RBI': 0, 'SB': 0, 'CS': 0, 'SF': 0, 'SH': 0, 'HBP': 0, 'ROE': 0, 'G': 0, 'S': 0, 'IP': 0, 'OP': 0, 'ER': 0, 'HR': 0, 'BB': 0, 'H': 0, 'R': 0, 'HBP': 0, 'K': 0, 'BF': 0, 'P': 0, 'HBPp': 0, 'HRp': 0, 'Kp': 0, 'BBp': 0, 'Hp': 0}
                 if field_pos == 1:
                         PLAYERS[playerid].inc_game_stat(self, ['G'], [1])
                 if is_home:
@@ -231,15 +230,15 @@ class Game:
         # Single
         elif simple.startswith('S') and not simple.startswith('SB'):
             batter.inc_game_stat(self, ['S', 'PA', 'AB', 'H'], [1, 1, 1, 1])
-            pitcher.inc_game_stat(self, ['H', 'BF'], [1, 1])
+            pitcher.inc_game_stat(self, ['Hp', 'BF'], [1, 1])
         # Double
         elif simple.startswith('D') or simple.startswith('DGR'):
             batter.inc_game_stat(self, ['D', 'PA', 'AB', 'H'], [1, 1, 1, 1])
-            pitcher.inc_game_stat(self, ['H', 'BF'], [1, 1])
+            pitcher.inc_game_stat(self, ['Hp', 'BF'], [1, 1])
         # Triple
         elif simple.startswith('T'):
             batter.inc_game_stat(self, ['T', 'PA', 'AB', 'H'], [1, 1, 1, 1])
-            pitcher.inc_game_stat(self, ['H', 'BF'], [1, 1])
+            pitcher.inc_game_stat(self, ['Hp', 'BF'], [1, 1])
         # Fielding Error
         elif simple.startswith('E') and simple[1].isnumeric():
             batter.inc_game_stat(self, ['PA', 'AB', 'ROE'], [1, 1, 1])
@@ -256,11 +255,11 @@ class Game:
         # Home Run
         elif 'H/' in play or simple.startswith('HR'):
             batter.inc_game_stat(self, ['HR', 'AB', 'PA', 'H'], [1, 1, 1, 1])
-            pitcher.inc_game_stat(self, ['HR', 'H', 'BF'], [1, 1, 1])
+            pitcher.inc_game_stat(self, ['HRp', 'Hp', 'BF'], [1, 1, 1])
         # Hit by Pitch
         elif simple.startswith('HP'):
             batter.inc_game_stat(self, ['HBP', 'PA'], [1, 1])
-            pitcher.inc_game_stat(self, ['HBP', 'BF'], [1, 1])
+            pitcher.inc_game_stat(self, ['HBPp', 'BF'], [1, 1])
         # K + something represents a strikout plus another event
         elif simple.startswith('K+') or (simple.startswith('K') and '+' in simple):
             # TODO: Treat strikeout edge cases
@@ -270,12 +269,12 @@ class Game:
                 if 'DP' in mod:
                     op = 2
             batter.inc_game_stat(self, ['K', 'PA', 'AB'], [1, 1, 1])
-            pitcher.inc_game_stat(self, ['K', 'OP', 'BF'], [1, op, 1])
+            pitcher.inc_game_stat(self, ['Kp', 'OP', 'BF'], [1, op, 1])
             self.op += op
         # Strikeout
         elif simple.startswith('K'):
             batter.inc_game_stat(self, ['K', 'PA', 'AB'], [1, 1, 1])
-            pitcher.inc_game_stat(self, ['K', 'OP', 'BF'], [1, 1, 1])
+            pitcher.inc_game_stat(self, ['Kp', 'OP', 'BF'], [1, 1, 1])
             self.op += 1
         elif simple.startswith('PB') or simple.startswith('WP'):
             #TODO: passed ball/wild pitch, not a batter stat but runners may have advanced.
@@ -283,11 +282,11 @@ class Game:
         elif simple.startswith('W+') or (simple.startswith('W') and '+' in simple):
             # TODO: treat walk edge cases (for baserunning (?))
             batter.inc_game_stat(self, ['BB', 'PA'], [1, 1])
-            pitcher.inc_game_stat(self, ['BB', 'BF'], [1, 1])
+            pitcher.inc_game_stat(self, ['BBp', 'BF'], [1, 1])
         # Intentional Walk
         elif simple.startswith('I') or simple.startswith('IW') or simple.startswith('W'):
             batter.inc_game_stat(self, ['BB', 'PA'], [1, 1])
-            pitcher.inc_game_stat(self, ['BB', 'BF'], [1, 1])
+            pitcher.inc_game_stat(self, ['BBp', 'BF'], [1, 1])
         # Balk
         elif simple.startswith('BK'):
             # TODO: treat balks, advance all runners
@@ -364,133 +363,6 @@ class Game:
                     self.op += 1
         
         #self.adv_bases(batter, simple, runners[0], play)
-
-    # TODO: This function doesn't work whatsoever at the moment
-    def adv_bases(self, batter, simple, runners=None, play=None):
-        if 'OA' in simple and 'X' in runners:
-            return False
-
-        if runners == None:
-            if (simple.startswith('S') or simple.startswith('HP') or simple.startswith('W') or simple.startswith('IW')) and not simple.startswith('SB') and not simple.startswith('W+'):
-                self.bases[1] = batter
-            elif simple.startswith('D'):
-                self.bases[2] = batter
-            elif simple.startswith('T'):
-                self.bases[3] = batter
-            elif (simple[0].isnumeric() or simple.startswith('K') or simple.startswith('HR')) and not simple.startswith('K+') and 'E' not in simple:
-                pass
-            elif simple.startswith('SB'):
-                bases = simple.split(';')
-                for base in bases:
-                    if base[-1] == 'H':
-                        self.bases[3] = None
-                    else:
-                        self.bases[int(base[-1])] = self.bases[int(base[-1]) - 1]
-            elif 'SB' in simple:
-                if simple.startswith('W+'):
-                    self.bases[1] = batter
-                bases = simple[2:].split(';')
-                for base in bases:
-                    if base[-1] == 'H':
-                            self.bases[3] = None
-                    else:
-                        self.bases[int(base[-1])] = self.bases[int(base[-1]) - 1]
-            elif simple.startswith('POCS'):
-                self.bases[int(simple[4]) - 1] = None
-            elif simple.startswith('PO'):
-                self.bases[int(simple[2])] = None
-            elif 'E' in simple:
-                self.bases[1] = batter
-            else:
-                pass
-        else:
-            if 'B' in runners:
-                runners = runners.split(';')
-                for runner in runners:
-                    # TODO: Fix this
-                    if runners != None and 'X' in runner:
-                        if 'E' in runner:
-                            start = runner[0]
-                            end = runner[2]
-                            if start == 'B':
-                                self.bases[int(end)] = batter
-                            elif end == 'H':
-                                self.bases[int(start)] = None
-                            else:
-                                self.bases[int(end)] = self.bases[int(start)]
-                    else:
-                        start = runner[0]
-                        end = runner.split('-')[1][0]
-                        if start != end:
-                            if end == 'H' and start !='B':
-                                self.bases[int(start)] = None
-                            elif end == 'H' and start == 'B':
-                                # Do nothing, batter doesn't end up on a base
-                                # TODO: Wherever ends in "H" and doesn't include 'UR', batter gets an rbi
-                                # TODO: Deal with outs
-                                pass
-                            elif start == 'B':
-                                self.bases[int(end)] = batter
-                            else:
-                                self.bases[int(end)] = self.bases[int(start)]
-                                self.bases[int(start)] = None
-            else:
-                runners = runners.split(';')
-                for runner in runners:
-                    # TODO: Fix this
-                    if 'X' in runner:
-                        pass
-                    else:
-                        start = runner[0]
-                        end = runner.split('-')[1][0]
-                        if start != end:
-                            if end == 'H':
-                                self.bases[int(start)] = None
-                            else:
-                                self.bases[int(end)] = self.bases[int(start)]
-                                self.bases[int(start)] = None
-                if (simple.startswith('S') or simple.startswith('HP') or simple.startswith('W') or simple.startswith('IW')) and not simple.startswith('SB') and not simple.startswith('WP'):
-                    self.bases[1] = batter
-                elif simple.startswith('D'):
-                    self.bases[2] = batter
-                elif simple.startswith('T'):
-                    self.bases[3] = batter
-                elif (simple[0].isnumeric() or simple.startswith('K') or simple.startswith('HR')) and not simple.startswith('K+') and 'E' not in simple:
-                    pass
-                elif simple.startswith('SB') or (simple.startswith('K+') and 'SB' in simple):
-                    # TODO: Check that stolen bases are being measured correctly
-                    if simple.startswith('K+'):
-                        simple = simple[2:]
-                    bases = simple.split('.')[0].split(';')
-                    for base in bases:
-                        base = base[-1]
-                        if base == 'H':
-                            pass
-                        elif self.bases[int(base) - 1] != None:
-                            self.bases[int(base)] = self.bases[int(base) - 1]
-                            self.bases[int(base) - 1] = None
-                        
-                    pass
-                elif simple.startswith('WP'):
-                    # TODO: make sure wild pitches are being measured correctly
-                    pass
-                elif 'E' in simple:
-                    self.bases[1] = batter
-                else:
-                    pass
-        # TODO: Make sure to record when players are forced out
-
-        """
-        If no run log,
-        Treat accordingly 
-
-
-        If run log
-        If b in run log, go through each run log
-
-        If b not in run log,
-        Treat run
-        """
 
     # Statistics Functions
     def get_team_records(self):
@@ -645,10 +517,10 @@ class Game:
         """
         home_stats, visitor_stats = self.home_starting_lineup[1].get_totals(end_date), self.visitor_starting_lineup[1].get_totals(end_date)
         results['ERA'] = round(calc_era(home_stats['ER'], home_stats['IP']) - calc_era(visitor_stats['ER'], visitor_stats['IP']), 2)
-        results['WHIP'] = round(calc_whip(home_stats['H'], home_stats['BB'], home_stats['OP']) - calc_whip(visitor_stats['H'], visitor_stats['BB'], visitor_stats['IP']), 2)
-        results['BB9'] = round(calc_bb9(home_stats['BB'], home_stats['IP']) - calc_bb9(visitor_stats['BB'], visitor_stats['IP']), 2)
-        results['K9'] = round(calc_k9(home_stats['K'], home_stats['IP']) - calc_k9(visitor_stats['K'], visitor_stats['IP']), 2)
-        results['HR9'] = round(calc_hr9(home_stats['HR'], home_stats['IP']) - calc_hr9(visitor_stats['HR'], visitor_stats['IP']), 2)
-        results['FIP'] = round(calc_fip(home_stats['HR'], home_stats['BB'], home_stats['HBP'], home_stats['K'], home_stats['IP']) - calc_fip(visitor_stats['HR'], visitor_stats['BB'], visitor_stats['HBP'], visitor_stats['K'], visitor_stats['IP']), 2)
+        results['WHIP'] = round(calc_whip(home_stats['Hp'], home_stats['BBp'], home_stats['OP']) - calc_whip(visitor_stats['Hp'], visitor_stats['BBp'], visitor_stats['IP']), 2)
+        results['BB9'] = round(calc_bb9(home_stats['BBp'], home_stats['IP']) - calc_bb9(visitor_stats['BBp'], visitor_stats['IP']), 2)
+        results['K9'] = round(calc_k9(home_stats['Kp'], home_stats['IP']) - calc_k9(visitor_stats['Kp'], visitor_stats['IP']), 2)
+        results['HR9'] = round(calc_hr9(home_stats['HRp'], home_stats['IP']) - calc_hr9(visitor_stats['HRp'], visitor_stats['IP']), 2)
+        results['FIP'] = round(calc_fip(home_stats['HRp'], home_stats['BBp'], home_stats['HBPp'], home_stats['Kp'], home_stats['IP']) - calc_fip(visitor_stats['HRp'], visitor_stats['BBp'], visitor_stats['HBPp'], visitor_stats['Kp'], visitor_stats['IP']), 2)
         return results
     

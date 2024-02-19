@@ -2,7 +2,6 @@ from const import *
 # Classes
 from game import Game
 from gamelog import GameLog
-from pitcher import Pitcher
 from player import Player
 
 # Parse the roster information
