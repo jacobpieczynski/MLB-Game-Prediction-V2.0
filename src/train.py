@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 
 # Load the CSV file into a DataFrame
-data = pd.read_csv('stats.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'WinDiff', 'RADiff', 'RPGDiff', 'OPS'], axis=1)
+data = pd.read_csv('stats.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID'], axis=1)
 correlation_matrix = data.corr()
 target_correlation = correlation_matrix['HWin'].abs().sort_values(ascending=False)
 

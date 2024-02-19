@@ -44,7 +44,7 @@ Recent Success
 """
 
 # TODO: Once all stats calculated, search through all calculateable stats and remove calculations for unused ones
-fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'WinDiff', 'HomeAdv', 'WPctDiff', 'Log5', 'RunDiff', 'RADiff', 'RPGDiff', 'H2H', 'AVG', 'SLG', 'OBP', 'ISO', 'OPS', 'DER', 'PythagDiff', 'ERA', 'WHIP', 'BB9', 'K9', 'HR9', 'FIP', 'HWin']
+fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'Year', 'WinDiff', 'HomeAdv', 'WPctDiff', 'Log5', 'RunDiff', 'RADiff', 'RPGDiff', 'H2H', 'AVG', 'SLG', 'OBP', 'ISO', 'OPS', 'DER', 'PythagDiff', 'ERA', 'WHIP', 'BB9', 'K9', 'HR9', 'FIP', 'HWin']
 results = []
 
 def log_games():
@@ -53,7 +53,7 @@ def log_games():
             game = GAMES[year][gameid]
             # Checks that both teams have played at least 7 games
             if above_threshold(game):
-                data = {'Date': game.date, 'Home': game.home, 'Visitor': game.visitor, 'GameID': game.id}
+                data = {'Date': game.date, 'Home': game.home, 'Visitor': game.visitor, 'GameID': game.id, 'Year': int(game.year)}
                 team_stats = game.get_team_records()
                 #print(f'{game.id} {team_stats}')
                 for stat in team_stats:

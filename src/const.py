@@ -39,8 +39,7 @@ START_2022, END_2022 = '20220101', '20221231'
 
 # Global Dicts
 PLAYERS = dict() # Useage: PLAYERS[playerid] --> returns player object
-#PITCHERS = dict() # Useage: PITCHERS[playerid] --> returns pitcher object
-GAMELOG = dict() # Useage: GAMELOG[year][gameid] --> returns gamelog object # Todo: do we change this to be just gamelog[gameid]?
+GAMELOG = dict() # Useage: GAMELOG[year][gameid] --> returns gamelog object
 GAMES = dict() # Useage: GAMES[year][gameid] --> returns game object
 TEAM_ROS = dict() # Useage: TEAM_ROS[year][team] --> returns player object
 
@@ -53,3 +52,13 @@ def above_threshold(game, threshold=20):
     if game.get_team_records()['Total Games'] > threshold:
         return True
     return False
+
+def get_prior_gameids(team, end_date, game_ct=10):
+    gameids = []
+    year = end_date[:4]
+    gamelog = GAMELOG[year]
+    for gameid in gamelog:
+        if team in gameid and GAMELOG[year][gameid].date < end_date:
+            gameids.append(gameid)
+    print(len(gameids[-game_ct:]))
+    return gameids[-game_ct:]
