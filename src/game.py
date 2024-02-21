@@ -29,8 +29,8 @@ class Game:
         self.simulate_game()
         #self.team_stats = self.get_team_records()
         #self.h2h_totals = self.head_to_head()
-        self.batting_stats = self.team_batting_stats()
-        self.comp_results = self.comp_sps()
+        #self.batting_stats = self.team_batting_stats()
+        #self.comp_results = self.comp_sps()
 
     # Takes the info metadata and parses it. Creates a game id and metadata
     def parse_info(self):
@@ -365,9 +365,10 @@ class Game:
         #self.adv_bases(batter, simple, runners[0], play)
 
     # Statistics Functions
-    def get_team_records(self):
+    def get_team_records(self, home_start=None, visitor_start=None):
         end_date = get_prior_date(self.date)
-        start_date = end_date[:4] + '0101' # Jan 1 of the year of the game
+        if home_start == None or visitor_start == None:
+            home_start, visitor_start = end_date[:4] + '0101', end_date[:4] + '0101' # Jan 1 of the year of the game
         home_wins, home_hwins, home_vwins, visitor_wins, visitor_hwins, visitor_vwins, home_ra, visitor_ra, h_pyth, v_pyth = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
         home_losses, visitor_losses = 0, 0
         home_runs, visitor_runs = 0, 0
@@ -376,7 +377,8 @@ class Game:
             game = GAMES[self.year][gameid]
             #if game.date == '20231001':
                 #print(f'{self.id}, gdate = {game.date}, end_date = {end_date}, comp = {game.date <= end_date}, comp 2 = {game.date >= start_date}')
-            if game.date <= end_date and game.date >= start_date and (self.home in (game.home, game.visitor) or self.visitor in (game.home, game.visitor)):
+            if game.date <= end_date and (((self.home in (game.home, game.visitor)) and game.date >= home_start) or ((self.visitor in (game.home, game.visitor)) and game.date >= visitor_start)):
+            #if game.date <= end_date and game.date >= start_date and (self.home in (game.home, game.visitor) or self.visitor in (game.home, game.visitor)):
                 # Checks that the team is in the game and won
                 if self.home == game.home and game.home_win:
                     home_wins += 1
@@ -428,7 +430,7 @@ class Game:
             v_pyth = calc_pythag(visitor_runs, visitor_ra)
         home_stats = {'Wins': home_wins, 'Losses': home_losses, 'Games': home_wins + home_losses, 'HomeWins': home_hwins, 'AwayWins': home_vwins, 'WPct': hwpct, 'Runs': home_runs, 'RPG': hrpg, 'Pythag': h_pyth, 'RA': home_ra}
         visitor_stats = {'Wins': visitor_wins, 'Losses': visitor_losses, 'Games': visitor_wins + visitor_losses, 'HomeWins': visitor_hwins, 'AwayWins': visitor_vwins, 'WPct': vwpct, 'Runs': visitor_runs, 'RPG': vrpg, 'Pythag': v_pyth, 'RA': visitor_ra}
-        team_stats = {'WinDiff': home_stats['Wins'] - visitor_stats['Wins'], 'HomeAdv': home_stats['HomeWins'] - visitor_stats['AwayWins'], 'WPctDiff': round(home_stats['WPct'] - visitor_stats['WPct'], 3), 'Log5': calc_log5(home_stats['WPct'], visitor_stats['WPct']), 'RunDiff': home_stats['Runs'] - visitor_stats['Runs'], 'RPGDiff': round(home_stats['RPG'] - visitor_stats['RPG'], 2), 'Total Games': min(home_stats['Games'], visitor_stats['Games']), 'PythagDiff': home_stats['Pythag'] - visitor_stats['Pythag'], 'RADiff': home_stats['RA'] - visitor_stats['RA']}
+        team_stats = {'WinDiff': home_stats['Wins'] - visitor_stats['Wins'], 'HomeAdv': home_stats['HomeWins'] - visitor_stats['AwayWins'], 'WPctDiff': round(home_stats['WPct'] - visitor_stats['WPct'], 3), 'Log5': calc_log5(home_stats['WPct'], visitor_stats['WPct']), 'RunDiff': home_stats['Runs'] - visitor_stats['Runs'], 'RPGDiff': round(home_stats['RPG'] - visitor_stats['RPG'], 2), 'Total Games': min(home_stats['Games'], visitor_stats['Games']), 'PythagDiff': home_stats['Pythag'] - visitor_stats['Pythag'], 'RADiff': home_stats['RA'] - visitor_stats['RA'], 'HRPG': hrpg, 'VRPG': vrpg}
         return team_stats
     
     # Compares the head to head record of the two teams
@@ -452,15 +454,17 @@ class Game:
         h2h_totals = {'HWins': home_wins, 'VWins': visitor_wins}
         return h2h_totals
     
-    def team_batting_stats(self):
+    def team_batting_stats(self, home_start=None, visitor_start=None):
         home_stats, visitor_stats, results = dict(), dict(), dict()
         end_date = get_prior_date(self.date)
+        if home_start == None or visitor_start == None:
+            home_start, visitor_start = self.year + '0101', self.year + '0101'
         # Goes through each player in the STARTING lineup
         for i in range(len(self.home_starting_lineup)):
             # 0 is None, 1 is the pitcher
             if i > 1 and self.home_starting_lineup[i] != None and self.visitor_starting_lineup[i] != None:
                 # Collects batting totals
-                htotals, vtotals = self.home_starting_lineup[i].get_totals(end_date), self.visitor_starting_lineup[i].get_totals(end_date)
+                htotals, vtotals = self.home_starting_lineup[i].get_totals(end_date, home_start), self.visitor_starting_lineup[i].get_totals(end_date, visitor_start)
                 # Sums each statistic
                 for hstat, vstat in zip(htotals, vtotals):
                     if hstat not in home_stats:
@@ -473,13 +477,16 @@ class Game:
         home_stats['OBP'], visitor_stats['OBP'] = calc_obp(home_stats['H'], home_stats['BB'], home_stats['HBP'], home_stats['AB'], home_stats['SF']), calc_obp(visitor_stats['H'], visitor_stats['BB'], visitor_stats['HBP'], visitor_stats['AB'], visitor_stats['SF'])
         home_stats['ISO'], visitor_stats['ISO'] = calc_iso(home_stats['SLG'], home_stats['AVG']), calc_iso(visitor_stats['SLG'], visitor_stats['AVG'])
         home_stats['OPS'], visitor_stats['OPS'] = calc_ops(home_stats['SLG'], home_stats['AVG']), calc_ops(visitor_stats['SLG'], visitor_stats['AVG'])
-        home_stats['DER'], visitor_stats['DER'] = calc_der(home_stats['H'], home_stats['ROE'], home_stats['HR'], home_stats['PA'], home_stats['BB'], home_stats['K'], home_stats['HBP']), calc_der(visitor_stats['H'], visitor_stats['ROE'], visitor_stats['HR'], visitor_stats['PA'], visitor_stats['BB'], visitor_stats['K'], visitor_stats['HBP'])
+        # TODO: THIS is a defense stat, not a batting stat 
+        #home_stats['DER'], visitor_stats['DER'] = calc_der(home_stats['H'], home_stats['ROE'], home_stats['HR'], home_stats['PA'], home_stats['BB'], home_stats['K'], home_stats['HBP']), calc_der(visitor_stats['H'], visitor_stats['ROE'], visitor_stats['HR'], visitor_stats['PA'], visitor_stats['BB'], visitor_stats['K'], visitor_stats['HBP'])
         results['AVG'] = round(home_stats['AVG'] - visitor_stats['AVG'], 3)
         results['SLG'] = round(home_stats['SLG'] - visitor_stats['SLG'], 3)
         results['OBP'] = round(home_stats['OBP'] - visitor_stats['OBP'], 3)
         results['ISO'] = round(home_stats['ISO'] - visitor_stats['ISO'], 3)
         results['OPS'] = round(home_stats['OPS'] - visitor_stats['OPS'], 3)
-        results['DER'] = round(home_stats['DER'] - visitor_stats['DER'], 3)
+        results['HSLG'] = home_stats['SLG']
+        results['VSLG'] = visitor_stats['SLG']
+        #results['DER'] = round(home_stats['DER'] - visitor_stats['DER'], 3)
         # Find difference between home and away stats
         """
         for i in home_stats:
@@ -523,4 +530,35 @@ class Game:
         results['HR9'] = round(calc_hr9(home_stats['HRp'], home_stats['IP']) - calc_hr9(visitor_stats['HRp'], visitor_stats['IP']), 2)
         results['FIP'] = round(calc_fip(home_stats['HRp'], home_stats['BBp'], home_stats['HBPp'], home_stats['Kp'], home_stats['IP']) - calc_fip(visitor_stats['HRp'], visitor_stats['BBp'], visitor_stats['HBPp'], visitor_stats['Kp'], visitor_stats['IP']), 2)
         return results
+    
+    def comp_pitchers(self, home_start=None, visitor_start=None):
+        end_date = get_prior_date(self.date)
+        results = dict()
+        year = self.date[:4]
+        home_stats, visitor_stats = dict(), dict()
+        if home_start == None or visitor_start == None:
+            home_start, visitor_start = year + '0101', year + '0101'
+        for h in TEAM_ROS[year][self.home]:
+            if h.pos == 'P':
+                stats = h.get_totals(end_date, home_start)
+                for stat in stats:
+                    if stat not in home_stats:
+                        home_stats[stat] = 0
+                    home_stats[stat] += stats[stat]
+        for v in TEAM_ROS[year][self.visitor]:
+            if v.pos == 'P':
+                stats = v.get_totals(end_date, visitor_start)
+                for stat in stats:
+                    if stat not in visitor_stats:
+                        visitor_stats[stat] = 0
+                    visitor_stats[stat] += stats[stat]
+        #home_stats, visitor_stats = self.home_starting_lineup[1].get_totals(end_date), self.visitor_starting_lineup[1].get_totals(end_date)
+        results['ERA'] = round(calc_era(home_stats['ER'], home_stats['IP']) - calc_era(visitor_stats['ER'], visitor_stats['IP']), 2)
+        results['WHIP'] = round(calc_whip(home_stats['Hp'], home_stats['BBp'], home_stats['OP']) - calc_whip(visitor_stats['Hp'], visitor_stats['BBp'], visitor_stats['IP']), 2)
+        results['BB9'] = round(calc_bb9(home_stats['BBp'], home_stats['IP']) - calc_bb9(visitor_stats['BBp'], visitor_stats['IP']), 2)
+        results['K9'] = round(calc_k9(home_stats['Kp'], home_stats['IP']) - calc_k9(visitor_stats['Kp'], visitor_stats['IP']), 2)
+        results['HR9'] = round(calc_hr9(home_stats['HRp'], home_stats['IP']) - calc_hr9(visitor_stats['HRp'], visitor_stats['IP']), 2)
+        results['FIP'] = round(calc_fip(home_stats['HRp'], home_stats['BBp'], home_stats['HBPp'], home_stats['Kp'], home_stats['IP']) - calc_fip(visitor_stats['HRp'], visitor_stats['BBp'], visitor_stats['HBPp'], visitor_stats['Kp'], visitor_stats['IP']), 2)
+        return results
+    
     

@@ -58,7 +58,6 @@ def get_prior_gameids(team, end_date, game_ct=10):
     year = end_date[:4]
     gamelog = GAMELOG[year]
     for gameid in gamelog:
-        if team in gameid and GAMELOG[year][gameid].date < end_date:
+        if team in gameid and GAMELOG[year][gameid].date <= end_date:
             gameids.append(gameid)
-    print(len(gameids[-game_ct:]))
     return gameids[-game_ct:]

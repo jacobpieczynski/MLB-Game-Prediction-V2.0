@@ -7,26 +7,32 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 
 # Load the CSV file into a DataFrame
-data = pd.read_csv('stats.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID'], axis=1)
-correlation_matrix = data.corr()
+#train_data = pd.read_csv('train.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'AVG', 'AVG_10d', 'SLG_10d', 'ERA_10d'], axis=1)
+#test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'AVG', 'AVG_10d', 'SLG_10d', 'ERA_10d'], axis=1)
+train_data = pd.read_csv('train.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'FIP_10d', 'ERA_10d', 'ISO', 'SP_FIP', 'H2H', 'SP_WHIP', 'ISO_10d', 'AVG', 'AVG_10d'], axis=1)
+test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'FIP_10d', 'ERA_10d', 'ISO', 'SP_FIP', 'H2H', 'SP_WHIP', 'ISO_10d', 'AVG', 'AVG_10d'], axis=1)
+correlation_matrix = train_data.corr()
 target_correlation = correlation_matrix['HWin'].abs().sort_values(ascending=False)
 
 print('Correlation with the target variable:')
 print(target_correlation)
-X = data.drop('HWin', axis=1)
-y = data['HWin']
+X_train = train_data.drop('HWin', axis=1)
+y_train = train_data['HWin']
+X_test = test_data.drop('HWin', axis=1)
+y_test = test_data['HWin']
+
 
 model_average, model_best, model_min, rf_model_average = 0, 0, 1, 0
-rng = 100
+rng = 1
 for i in range(rng):
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.15, random_state=i) #random_state=705
+    #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=i) #random_state=705
 
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    model = LogisticRegression()
-    
+    model = LogisticRegression(max_iter=2500, C=0.005)
+
     #model = RandomForestClassifier()
     model.fit(X_train_scaled,y_train)
     y_pred = model.predict(X_test_scaled)

@@ -2,6 +2,8 @@ from const import *
 from parse import *
 from stats import log_games
 
+import cProfile
+
 def main():
     # Loads the roster files
     print('-' * 50)
@@ -57,6 +59,7 @@ def main():
     print('\nLOADED')
     print('-' * 50, end='\n\n')
     # Testing
+    """
     for i in range(2019,2024):
         print(f'{PLAYERS["gallz001"].name} {i} pitching totals: ', end="")
         totals = PLAYERS['gallz001'].get_totals(str(i) + '1231', str(i) + '0101')
@@ -69,4 +72,7 @@ def main():
         print(f'{PLAYERS["hadej001"].name} {i} pitching totals: ', end="")
         totals = PLAYERS['hadej001'].get_totals(str(i) + '1231', str(i) + '0101')
         print(f'ER: {totals["ER"]}, IP: {totals["IP"]}, Hits: {totals["Hp"]}, Ks: {totals["Kp"]}')
-main()
+    """
+#main()
+
+cProfile.run('main()')

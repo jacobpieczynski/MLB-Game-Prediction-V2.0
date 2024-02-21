@@ -15,7 +15,7 @@ class Player:
             self.game_stats[stat] = 0
 
     # Gets the player statistics between two dates
-    def get_totals(self, end_date='20231231', start_date=None, tmp=False):
+    def get_totals(self, end_date='20231231', start_date=None, tmp=True):
         year = end_date[0:4]
         if start_date == None:
             start_date = year + '0101'
@@ -24,12 +24,12 @@ class Player:
         for gameid in GAMES[year]:
             game = GAMES[year][gameid]
             if self.id in game.player_stats and game.date <= end_date and game.date >= start_date:
-                for stat in self.stats:
+                for stat in game.player_stats[self.id]:
                     if stat not in self.stats:
                         self.stats[stat] = 0
                     #print(game.player_stats[self.id])
                     self.stats[stat] += game.player_stats[self.id][stat]
-                if tmp == True :print(f'{game.id} on {game.date}, stats: {game.player_stats[self.id]}')
+                #if tmp == True :print(f'{self.name} in {game.id} on {game.date}, stats: {game.player_stats[self.id]}')
         self.stats['IP'] = self.op_to_ip(self.stats['OP'])
         return self.stats
 

@@ -68,3 +68,15 @@ def calc_fip(hr, bb, hbp, k, ip, c=3.1):
     if ip == 0:
         return 0
     return round(((13 * hr) + (3 * (bb + hbp)) - (2 * k)) / ip + c, 2)
+
+# Kerry Whisnant formula to predict team win percentages based on runs scored and given up
+def calc_whisnant(rpga, rpgb, slga, slgb):
+    """
+    W1/L1 = (RPG1/RPG2)^a (SLG1/SLG2)^b
+    where
+    a = 0.723 (RPG1 + RPG2)^.373
+    and b = 0.977 (RPG1 + RPG2)^( -.947)
+    """
+    a = 0.723 * pow((rpga + rpgb), 0.373)
+    b = 0.977 * pow((rpga + rpgb), -0.947)
+    return round(pow((rpga / rpgb), a) * pow((slga / slgb), b), 3)
