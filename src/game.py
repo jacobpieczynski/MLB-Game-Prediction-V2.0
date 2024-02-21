@@ -27,10 +27,6 @@ class Game:
         self.parse_info()
         self.set_lineup()
         self.simulate_game()
-        #self.team_stats = self.get_team_records()
-        #self.h2h_totals = self.head_to_head()
-        #self.batting_stats = self.team_batting_stats()
-        #self.comp_results = self.comp_sps()
 
     # Takes the info metadata and parses it. Creates a game id and metadata
     def parse_info(self):
@@ -88,6 +84,10 @@ class Game:
         self.bases = [None] * 4
         self.op, self.inning, self.side = 0, 0, 0
         radj = False
+        # Makes sure players don't have existing stats
+        for player in self.players_in_game:
+            self.players_in_game[player].reset_game_stats()   
+
         for line in self.plays:
             line = line.split(',')
             # 3 types of play info
@@ -513,8 +513,6 @@ class Game:
                 elif self.visitor == game.visitor and not game.home_win:
                     visitor_wins += 1
 
-
-
         h2h_totals = {'HWins': home_wins, 'VWins': visitor_wins}
         return h2h_totals
     
@@ -558,11 +556,6 @@ class Game:
                 results[i] = 0
             results[i] = home_stats[i] - visitor_stats[i]
         """
-        #results['Home'] = home_stats
-        #results['Visitor'] = visitor_stats
-        #self.home_batting_stats = home_stats
-        #self.visitor_batting_stats = visitor_stats
-        #self.team_batting_comp = results
         return results
     
     def comp_sps(self):
@@ -598,10 +591,12 @@ class Game:
     def comp_pitchers(self, home_start=None, visitor_start=None):
         end_date = get_prior_date(self.date)
         results = dict()
-        year = self.date[:4]
+        year = str(self.year)
         home_stats, visitor_stats = dict(), dict()
-        if home_start == None or visitor_start == None:
-            home_start, visitor_start = year + '0101', year + '0101'
+        if home_start == None:
+            home_start = year + '0101'
+        if visitor_start == None:
+            visitor_start = year + '0101'
         for h in TEAM_ROS[year][self.home]:
             if h.pos == 'P':
                 stats = h.get_totals(self.home, end_date, home_start)
@@ -616,7 +611,6 @@ class Game:
                     if stat not in visitor_stats:
                         visitor_stats[stat] = 0
                     visitor_stats[stat] += stats[stat]
-        #home_stats, visitor_stats = self.home_starting_lineup[1].get_totals(end_date), self.visitor_starting_lineup[1].get_totals(end_date)
         results['ERA'] = round(calc_era(home_stats['ER'], home_stats['IP']) - calc_era(visitor_stats['ER'], visitor_stats['IP']), 2)
         results['WHIP'] = round(calc_whip(home_stats['Hp'], home_stats['BBp'], home_stats['OP']) - calc_whip(visitor_stats['Hp'], visitor_stats['BBp'], visitor_stats['IP']), 2)
         results['BB9'] = round(calc_bb9(home_stats['BBp'], home_stats['IP']) - calc_bb9(visitor_stats['BBp'], visitor_stats['IP']), 2)
