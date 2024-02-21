@@ -100,7 +100,7 @@ def log_games():
                     data['Whisnant'] = calc_whisnant(team_stats['HRPG'], team_stats['VRPG'], batting_stats['HSLG'], batting_stats['VSLG'])
 
                     data['HWin'] = game.home_win
-                    if data['Year'] > '2021':
+                    if data['Year'] > 2021:
                         test.append(data)
                     else:
                         train.append(data)
