@@ -48,7 +48,7 @@ Recent Success
 # TODO: Once all stats calculated, search through all calculateable stats and remove calculations for unused ones
 #fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'Year', 'WinDiff', 'HomeAdv', 'WPctDiff', 'Log5', 'RunDiff', 'RADiff', 'RPGDiff', 'H2H', 'AVG', 'SLG', 'OBP', 'ISO', 'OPS', 'DER', 'PythagDiff', 'ERA', 'WHIP', 'BB9', 'K9', 'HR9', 'FIP', 'HWin']
 fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'Year', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'HWin']
-results = []
+train, test = [], []
 checked = []
 
 def log_games():
@@ -100,15 +100,24 @@ def log_games():
                     data['Whisnant'] = calc_whisnant(team_stats['HRPG'], team_stats['VRPG'], batting_stats['HSLG'], batting_stats['VSLG'])
 
                     data['HWin'] = game.home_win
-                    results.append(data)
+                    if data['Year'] > '2021':
+                        test.append(data)
+                    else:
+                        train.append(data)
                     checked.append(gameid)
                     print(f'{game.id} Added')
         
-    with open('updateall.csv', 'w', newline='') as csvfile:
+    with open('train.csv', 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
 
-        for result in results:
+        for result in train:
+            writer.writerow(result)
+    with open('test.csv', 'w', newline='') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for result in test:
             writer.writerow(result)
     return True
 
