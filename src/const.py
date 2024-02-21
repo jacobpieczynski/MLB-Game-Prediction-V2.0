@@ -40,7 +40,7 @@ START_2022, END_2022 = '20220101', '20221231'
 # Global Dicts
 PLAYERS = dict() # Useage: PLAYERS[playerid] --> returns player object
 GAMELOG = dict() # Useage: GAMELOG[year][gameid] --> returns gamelog object
-GAMES = dict() # Useage: GAMES[year][gameid] --> returns game object
+GAMES = dict() # Useage: GAMES[year][team][gameid] --> returns game object
 TEAM_ROS = dict() # Useage: TEAM_ROS[year][team] --> returns player object
 
 # Misc helper functions

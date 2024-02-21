@@ -9,8 +9,8 @@ from sklearn.preprocessing import StandardScaler
 # Load the CSV file into a DataFrame
 #train_data = pd.read_csv('train.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'AVG', 'AVG_10d', 'SLG_10d', 'ERA_10d'], axis=1)
 #test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'AVG', 'AVG_10d', 'SLG_10d', 'ERA_10d'], axis=1)
-train_data = pd.read_csv('train.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'FIP_10d', 'ERA_10d', 'ISO', 'SP_FIP', 'H2H', 'SP_WHIP', 'ISO_10d', 'AVG', 'AVG_10d'], axis=1)
-test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'FIP_10d', 'ERA_10d', 'ISO', 'SP_FIP', 'H2H', 'SP_WHIP', 'ISO_10d', 'AVG', 'AVG_10d'], axis=1)
+train_data = pd.read_csv('train2.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'FIP_10d', 'ERA_10d', 'ISO', 'SP_FIP', 'H2H', 'SP_WHIP', 'ISO_10d', 'AVG', 'AVG_10d'], axis=1)
+test_data = pd.read_csv('test2.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'FIP_10d', 'ERA_10d', 'ISO', 'SP_FIP', 'H2H', 'SP_WHIP', 'ISO_10d', 'AVG', 'AVG_10d'], axis=1)
 correlation_matrix = train_data.corr()
 target_correlation = correlation_matrix['HWin'].abs().sort_values(ascending=False)
 

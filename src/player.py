@@ -15,14 +15,14 @@ class Player:
             self.game_stats[stat] = 0
 
     # Gets the player statistics between two dates
-    def get_totals(self, end_date='20231231', start_date=None, tmp=True):
+    def get_totals(self, team, end_date='20231231', start_date=None, tmp=True):
         year = end_date[0:4]
         if start_date == None:
             start_date = year + '0101'
 
         self.reset_stats()
-        for gameid in GAMES[year]:
-            game = GAMES[year][gameid]
+        for gameid in GAMES[year][team]:
+            game = GAMES[year][team][gameid]
             if self.id in game.player_stats and game.date <= end_date and game.date >= start_date:
                 for stat in game.player_stats[self.id]:
                     if stat not in self.stats:

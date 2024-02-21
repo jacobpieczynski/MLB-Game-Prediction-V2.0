@@ -373,6 +373,7 @@ class Game:
         home_losses, visitor_losses = 0, 0
         home_runs, visitor_runs = 0, 0
         hwpct, vwpct = 0, 0
+        """
         for gameid in GAMES[self.year]:
             game = GAMES[self.year][gameid]
             #if game.date == '20231001':
@@ -412,6 +413,43 @@ class Game:
                     visitor_runs += game.hscore
                     visitor_ra += game.vscore
                 #print(f'Add Win {game.id}, {visitor_wins}, home wins {home_wins} Win Diff = {home_wins - visitor_wins}')
+        """
+                
+        for gameid in GAMES[self.year][self.home]:
+            game = GAMES[self.year][self.home][gameid]
+            if game.date <= end_date and game.date >= home_start:
+                if self.home == game.home and game.home_win:
+                    home_wins += 1
+                    home_hwins += 1
+                elif self.home == game.visitor and not game.home_win:
+                    home_wins += 1
+                    home_vwins += 1
+                elif self.home in (game.home, game.visitor):
+                    home_losses += 1
+                if self.home == game.home:
+                    home_runs += game.hscore
+                    home_ra += game.vscore
+                elif self.home == game.visitor:
+                    home_runs += game.vscore
+                    home_ra += game.hscore
+        for gameid in GAMES[self.year][self.visitor]:
+            game = GAMES[self.year][self.visitor][gameid]
+            if game.date <= end_date and game.date >= visitor_start:
+                if self.visitor == game.home and game.home_win:
+                    visitor_wins += 1
+                    visitor_hwins += 1
+                elif self.visitor == game.visitor and not game.home_win:
+                    visitor_wins += 1
+                    visitor_vwins += 1
+                elif self.visitor in (game.home, game.visitor):
+                    visitor_losses += 1
+                if self.visitor == game.visitor:
+                    visitor_runs += game.vscore
+                    visitor_ra += game.hscore
+                elif self.visitor == game.home:
+                    visitor_runs += game.hscore
+                    visitor_ra += game.vscore
+        
         if home_wins > 0:
             hwpct = round(home_wins / (home_wins + home_losses), 3)
         if visitor_wins > 0:
@@ -438,6 +476,7 @@ class Game:
         end_date = get_prior_date(self.date)
         start_date = end_date[:4] + '0101'
         home_wins, visitor_wins = 0, 0
+        """
         for gameid in GAMES[self.year]:
             game = GAMES[self.year][gameid]
             if game.date <= end_date and game.date >= start_date:
@@ -451,6 +490,31 @@ class Game:
                         visitor_wins += 1
                     elif self.visitor == game.visitor and not game.home_win:
                         visitor_wins += 1
+        """
+
+        for gameid in GAMES[self.year][self.home]:
+            game = GAMES[self.year][self.home][gameid]
+            if game.date <= end_date and game.date >= start_date:
+                if self.home == game.home and game.home_win:
+                    home_wins += 1
+                elif self.home == game.visitor and not game.home_win:
+                    home_wins += 1
+                """
+                if self.visitor == game.home and game.home_win:
+                    visitor_wins += 1
+                elif self.visitor == game.visitor and not game.home_win:
+                    visitor_wins += 1
+                """
+        for gameid in GAMES[self.year][self.visitor]:
+            game = GAMES[self.year][self.visitor][gameid]
+            if game.date <= end_date and game.date >= start_date:
+                if self.visitor == game.home and game.home_win:
+                    visitor_wins += 1
+                elif self.visitor == game.visitor and not game.home_win:
+                    visitor_wins += 1
+
+
+
         h2h_totals = {'HWins': home_wins, 'VWins': visitor_wins}
         return h2h_totals
     
@@ -464,7 +528,7 @@ class Game:
             # 0 is None, 1 is the pitcher
             if i > 1 and self.home_starting_lineup[i] != None and self.visitor_starting_lineup[i] != None:
                 # Collects batting totals
-                htotals, vtotals = self.home_starting_lineup[i].get_totals(end_date, home_start), self.visitor_starting_lineup[i].get_totals(end_date, visitor_start)
+                htotals, vtotals = self.home_starting_lineup[i].get_totals(self.home, end_date, home_start), self.visitor_starting_lineup[i].get_totals(self.visitor, end_date, visitor_start)
                 # Sums each statistic
                 for hstat, vstat in zip(htotals, vtotals):
                     if hstat not in home_stats:
@@ -522,7 +586,7 @@ class Game:
                         visitor_stats[stat] = 0
                     visitor_stats[stat] += stats[stat]
         """
-        home_stats, visitor_stats = self.home_starting_lineup[1].get_totals(end_date), self.visitor_starting_lineup[1].get_totals(end_date)
+        home_stats, visitor_stats = self.home_starting_lineup[1].get_totals(self.home, end_date), self.visitor_starting_lineup[1].get_totals(self.visitor, end_date)
         results['ERA'] = round(calc_era(home_stats['ER'], home_stats['IP']) - calc_era(visitor_stats['ER'], visitor_stats['IP']), 2)
         results['WHIP'] = round(calc_whip(home_stats['Hp'], home_stats['BBp'], home_stats['OP']) - calc_whip(visitor_stats['Hp'], visitor_stats['BBp'], visitor_stats['IP']), 2)
         results['BB9'] = round(calc_bb9(home_stats['BBp'], home_stats['IP']) - calc_bb9(visitor_stats['BBp'], visitor_stats['IP']), 2)
@@ -540,14 +604,14 @@ class Game:
             home_start, visitor_start = year + '0101', year + '0101'
         for h in TEAM_ROS[year][self.home]:
             if h.pos == 'P':
-                stats = h.get_totals(end_date, home_start)
+                stats = h.get_totals(self.home, end_date, home_start)
                 for stat in stats:
                     if stat not in home_stats:
                         home_stats[stat] = 0
                     home_stats[stat] += stats[stat]
         for v in TEAM_ROS[year][self.visitor]:
             if v.pos == 'P':
-                stats = v.get_totals(end_date, visitor_start)
+                stats = v.get_totals(self.visitor, end_date, visitor_start)
                 for stat in stats:
                     if stat not in visitor_stats:
                         visitor_stats[stat] = 0

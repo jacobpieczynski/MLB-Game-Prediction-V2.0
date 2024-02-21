@@ -49,16 +49,22 @@ def parse_pbp(filename='pbp/2023/2023ARI.EVN'):
                 if year not in GAMES:
                     GAMES[year] = dict()
                 game = Game(data)
+                if game.home not in GAMES[year]:
+                    GAMES[year][game.home] = dict()
+                if game.visitor not in GAMES[year]:
+                    GAMES[year][game.visitor] = dict()
+                GAMES[year][game.home][game.id] = game
+                GAMES[year][game.visitor][game.id] = game
                 print(f'game created {game.id}')
-                GAMES[year][game.id] = game
                 data = []
                 data.append(line.strip('\n'))
             else:
                 data.append(line.strip('\n'))
         # To append final game
         game = Game(data)
+        GAMES[year][game.home][game.id] = game
+        GAMES[year][game.visitor][game.id] = game
         print(f'game created {game.id}')
-        GAMES[year][game.id] = game
     #except:
      #   return False
     return True
