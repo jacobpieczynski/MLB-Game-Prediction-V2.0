@@ -119,6 +119,14 @@ def log_games():
 
         for result in test:
             writer.writerow(result)
+    with open('combined.csv', 'w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for result in test:
+            writer.writerow(result)
+        for result in train:
+            writer.writerow(result)
     return True
 
 """

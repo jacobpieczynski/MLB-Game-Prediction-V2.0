@@ -1,16 +1,19 @@
 # To Train the model
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
+#from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 
 # Load the CSV file into a DataFrame
 #train_data = pd.read_csv('train.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'AVG', 'AVG_10d', 'SLG_10d', 'ERA_10d'], axis=1)
 #test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'AVG', 'AVG_10d', 'SLG_10d', 'ERA_10d'], axis=1)
-train_data = pd.read_csv('train.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'FIP_10d', 'ERA_10d', 'ISO', 'SP_FIP', 'H2H', 'SP_WHIP', 'ISO_10d', 'AVG', 'AVG_10d'], axis=1)
-test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'FIP_10d', 'ERA_10d', 'ISO', 'SP_FIP', 'H2H', 'SP_WHIP', 'ISO_10d', 'AVG', 'AVG_10d'], axis=1)
+#train_data = pd.read_csv('train.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'FIP_10d', 'ERA_10d', 'ISO', 'SP_FIP', 'H2H', 'SP_WHIP', 'ISO_10d', 'AVG', 'AVG_10d'], axis=1)
+#test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'FIP_10d', 'ERA_10d', 'ISO', 'SP_FIP', 'H2H', 'SP_WHIP', 'ISO_10d', 'AVG', 'AVG_10d'], axis=1)
+test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year'], axis=1)
+train_data = pd.read_csv('train.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year'], axis=1)
 correlation_matrix = train_data.corr()
 target_correlation = correlation_matrix['HWin'].abs().sort_values(ascending=False)
 
@@ -32,7 +35,8 @@ for i in range(rng):
     X_test_scaled = scaler.transform(X_test)
 
     model = LogisticRegression(max_iter=2500, C=0.005)
-
+    # 1: 57.0649 2: 56.970128 3: 56.80417
+    #model = SVC(kernel='linear', gamma=10, C=1000)
     #model = RandomForestClassifier()
     model.fit(X_train_scaled,y_train)
     y_pred = model.predict(X_test_scaled)
