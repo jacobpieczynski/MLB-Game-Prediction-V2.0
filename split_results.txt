@@ -1,0 +1,1411 @@
+Correlation with the target variable:
+HWin              1.000000
+PythagDiff        0.137178
+H2H               0.135633
+WinDiff           0.135633
+Log5              0.128067
+WPctDiff          0.127679
+RADiff            0.123201
+ERA               0.119117
+FIP               0.113549
+WHIP              0.111904
+HomeAdv           0.108317
+K9                0.095392
+RunDiff           0.092724
+RPGDiff           0.086703
+SP_K9             0.086148
+Whisnant          0.084235
+PythagDiff_10d    0.083766
+HR9               0.082763
+FIP_10d           0.080778
+OBP               0.077456
+ERA_10d           0.076348
+WHIP_10d          0.071785
+ISO               0.071529
+BB9               0.070827
+SLG               0.069491
+SP_FIP            0.062948
+OPS               0.062307
+K9_10d            0.062123
+BB9_10d           0.061067
+SP_ERA            0.053173
+HR9_10d           0.049606
+OBP_10d           0.046196
+ISO_10d           0.038401
+SLG_10d           0.037930
+SP_WHIP           0.037597
+OPS_10d           0.035026
+SP_HR9            0.034842
+AVG               0.032602
+SP_BB9            0.027018
+AVG_10d           0.023904
+Name: HWin, dtype: float64
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+Fitting estimator with 12 features.
+Fitting estimator with 11 features.
+Fitting estimator with 10 features.
+Fitting estimator with 9 features.
+Fitting estimator with 8 features.
+Fitting estimator with 7 features.
+Fitting estimator with 6 features.
+Fitting estimator with 5 features.
+Fitting estimator with 4 features.
+Fitting estimator with 3 features.
+Fitting estimator with 2 features.
+[False False False False False False False False False False False False
+ False False False False False False False False False False False False
+  True False False False False False False False False False False False
+ False False False]
+-----
+[ 8 29 22 15 18  3 37 39 36  6  4 38  5 16 26 35 25 23 24 30  9 14  7 12
+  1 33 28 32 17 34 20 21  2 19 10 11 13 27 31]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'SP_FIP', 'ERA', 'WHIP', 'FIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 1 - LR Accuracy: 0.5623433957761603
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+Fitting estimator with 12 features.
+Fitting estimator with 11 features.
+Fitting estimator with 10 features.
+Fitting estimator with 9 features.
+Fitting estimator with 8 features.
+Fitting estimator with 7 features.
+Fitting estimator with 6 features.
+Fitting estimator with 5 features.
+Fitting estimator with 4 features.
+Fitting estimator with 3 features.
+[False False False False False False False False False False False False
+ False False False False False False False False False False False False
+  True False False False False False False False  True False False False
+ False False False]
+-----
+[ 7 28 21 14 17  2 36 38 35  5  3 37  4 15 25 34 24 22 23 29  8 13  6 11
+  1 32 27 31 16 33 19 20  1 18  9 10 12 26 30]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'SP_FIP', 'ERA', 'WHIP', 'FIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 2 - LR Accuracy: 0.5679513184584178
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+Fitting estimator with 12 features.
+Fitting estimator with 11 features.
+Fitting estimator with 10 features.
+Fitting estimator with 9 features.
+Fitting estimator with 8 features.
+Fitting estimator with 7 features.
+Fitting estimator with 6 features.
+Fitting estimator with 5 features.
+Fitting estimator with 4 features.
+[False False False False False  True False False False False False False
+ False False False False False False False False False False False False
+  True False False False False False False False  True False False False
+ False False False]
+-----
+[ 6 27 20 13 16  1 35 37 34  4  2 36  3 14 24 33 23 21 22 28  7 12  5 10
+  1 31 26 30 15 32 18 19  1 17  8  9 11 25 29]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'SP_FIP', 'ERA', 'WHIP', 'FIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 3 - LR Accuracy: 0.5691444934971961
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+Fitting estimator with 12 features.
+Fitting estimator with 11 features.
+Fitting estimator with 10 features.
+Fitting estimator with 9 features.
+Fitting estimator with 8 features.
+Fitting estimator with 7 features.
+Fitting estimator with 6 features.
+Fitting estimator with 5 features.
+[False False False False False  True False False False False  True False
+ False False False False False False False False False False False False
+  True False False False False False False False  True False False False
+ False False False]
+-----
+[ 5 26 19 12 15  1 34 36 33  3  1 35  2 13 23 32 22 20 21 27  6 11  4  9
+  1 30 25 29 14 31 17 18  1 16  7  8 10 24 28]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'SLG', 'AVG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'SP_FIP', 'ERA', 'WHIP', 'FIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 4 - LR Accuracy: 0.5712922085669968
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+Fitting estimator with 12 features.
+Fitting estimator with 11 features.
+Fitting estimator with 10 features.
+Fitting estimator with 9 features.
+Fitting estimator with 8 features.
+Fitting estimator with 7 features.
+Fitting estimator with 6 features.
+[False False False False False  True False False False False  True False
+  True False False False False False False False False False False False
+  True False False False False False False False  True False False False
+ False False False]
+-----
+[ 4 25 18 11 14  1 33 35 32  2  1 34  1 12 22 31 21 19 20 26  5 10  3  8
+  1 29 24 28 13 30 16 17  1 15  6  7  9 23 27]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'SLG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'SP_FIP', 'ERA', 'WHIP', 'FIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 5 - LR Accuracy: 0.5703376685359742
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+Fitting estimator with 12 features.
+Fitting estimator with 11 features.
+Fitting estimator with 10 features.
+Fitting estimator with 9 features.
+Fitting estimator with 8 features.
+Fitting estimator with 7 features.
+[False False False False False  True False False False  True  True False
+  True False False False False False False False False False False False
+  True False False False False False False False  True False False False
+ False False False]
+-----
+[ 3 24 17 10 13  1 32 34 31  1  1 33  1 11 21 30 20 18 19 25  4  9  2  7
+  1 28 23 27 12 29 15 16  1 14  5  6  8 22 26]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'SP_FIP', 'ERA', 'WHIP', 'FIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 6 - LR Accuracy: 0.5697410810165852
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+Fitting estimator with 12 features.
+Fitting estimator with 11 features.
+Fitting estimator with 10 features.
+Fitting estimator with 9 features.
+Fitting estimator with 8 features.
+[False False False False False  True False False False  True  True False
+  True False False False False False False False False False  True False
+  True False False False False False False False  True False False False
+ False False False]
+-----
+[ 2 23 16  9 12  1 31 33 30  1  1 32  1 10 20 29 19 17 18 24  3  8  1  6
+  1 27 22 26 11 28 14 15  1 13  4  5  7 21 25]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'SP_FIP', 'ERA', 'FIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 7 - LR Accuracy: 0.5690251759933183
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+Fitting estimator with 12 features.
+Fitting estimator with 11 features.
+Fitting estimator with 10 features.
+Fitting estimator with 9 features.
+[ True False False False False  True False False False  True  True False
+  True False False False False False False False False False  True False
+  True False False False False False False False  True False False False
+ False False False]
+-----
+[ 1 22 15  8 11  1 30 32 29  1  1 31  1  9 19 28 18 16 17 23  2  7  1  5
+  1 26 21 25 10 27 13 14  1 12  3  4  6 20 24]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'SP_FIP', 'ERA', 'FIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 8 - LR Accuracy: 0.5683092709700514
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+Fitting estimator with 12 features.
+Fitting estimator with 11 features.
+Fitting estimator with 10 features.
+[ True False False False False  True False False False  True  True False
+  True False False False False False False False  True False  True False
+  True False False False False False False False  True False False False
+ False False False]
+-----
+[ 1 21 14  7 10  1 29 31 28  1  1 30  1  8 18 27 17 15 16 22  1  6  1  4
+  1 25 20 24  9 26 12 13  1 11  2  3  5 19 23]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'ERA', 'FIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 9 - LR Accuracy: 0.5696217635127073
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+Fitting estimator with 12 features.
+Fitting estimator with 11 features.
+[ True False False False False  True False False False  True  True False
+  True False False False False False False False  True False  True False
+  True False False False False False False False  True False  True False
+ False False False]
+-----
+[ 1 20 13  6  9  1 28 30 27  1  1 29  1  7 17 26 16 14 15 21  1  5  1  3
+  1 24 19 23  8 25 11 12  1 10  1  2  4 18 22]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'ERA', 'FIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 10 - LR Accuracy: 0.5704569860398521
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+Fitting estimator with 12 features.
+[ True False False False False  True False False False  True  True False
+  True False False False False False False False  True False  True False
+  True False False False False False False False  True False  True  True
+ False False False]
+-----
+[ 1 19 12  5  8  1 27 29 26  1  1 28  1  6 16 25 15 13 14 20  1  4  1  2
+  1 23 18 22  7 24 10 11  1  9  1  1  3 17 21]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'ERA', 'FIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 11 - LR Accuracy: 0.573081971125164
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+Fitting estimator with 13 features.
+[ True False False False False  True False False False  True  True False
+  True False False False False False False False  True False  True  True
+  True False False False False False False False  True False  True  True
+ False False False]
+-----
+[ 1 18 11  4  7  1 26 28 25  1  1 27  1  5 15 24 14 12 13 19  1  3  1  1
+  1 22 17 21  6 23  9 10  1  8  1  1  2 16 20]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'ERA', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'BB9_10d', 'K9_10d', 'HR9_10d']
+TRIAL 12 - LR Accuracy: 0.5732012886290418
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+Fitting estimator with 14 features.
+[ True False False False False  True False False False  True  True False
+  True False False False False False False False  True False  True  True
+  True False False False False False False False  True False  True  True
+  True False False]
+-----
+[ 1 17 10  3  6  1 25 27 24  1  1 26  1  4 14 23 13 11 12 18  1  2  1  1
+  1 21 16 20  5 22  8  9  1  7  1  1  1 15 19]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'ERA', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9_10d', 'HR9_10d']
+TRIAL 13 - LR Accuracy: 0.5727240186135306
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+Fitting estimator with 15 features.
+[ True False False False False  True False False False  True  True False
+  True False False False False False False False  True  True  True  True
+  True False False False False False False False  True False  True  True
+  True False False]
+-----
+[ 1 16  9  2  5  1 24 26 23  1  1 25  1  3 13 22 12 10 11 17  1  1  1  1
+  1 20 15 19  4 21  7  8  1  6  1  1  1 14 18]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9_10d', 'HR9_10d']
+TRIAL 14 - LR Accuracy: 0.5718887960863859
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+Fitting estimator with 16 features.
+[ True False False  True False  True False False False  True  True False
+  True False False False False False False False  True  True  True  True
+  True False False False False False False False  True False  True  True
+  True False False]
+-----
+[ 1 15  8  1  4  1 23 25 22  1  1 24  1  2 12 21 11  9 10 16  1  1  1  1
+  1 19 14 18  3 20  6  7  1  5  1  1  1 13 17]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9_10d', 'HR9_10d']
+TRIAL 15 - LR Accuracy: 0.5712922085669968
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+Fitting estimator with 17 features.
+[ True False False  True False  True False False False  True  True False
+  True  True False False False False False False  True  True  True  True
+  True False False False False False False False  True False  True  True
+  True False False]
+-----
+[ 1 14  7  1  3  1 22 24 21  1  1 23  1  1 11 20 10  8  9 15  1  1  1  1
+  1 18 13 17  2 19  5  6  1  4  1  1  1 12 16]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9_10d', 'HR9_10d']
+TRIAL 16 - LR Accuracy: 0.5732012886290418
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+Fitting estimator with 18 features.
+[ True False False  True False  True False False False  True  True False
+  True  True False False False False False False  True  True  True  True
+  True False False False  True False False False  True False  True  True
+  True False False]
+-----
+[ 1 13  6  1  2  1 21 23 20  1  1 22  1  1 10 19  9  7  8 14  1  1  1  1
+  1 17 12 16  1 18  4  5  1  3  1  1  1 11 15]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'RPGDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9_10d', 'HR9_10d']
+TRIAL 17 - LR Accuracy: 0.573797876148431
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+Fitting estimator with 19 features.
+[ True False False  True  True  True False False False  True  True False
+  True  True False False False False False False  True  True  True  True
+  True False False False  True False False False  True False  True  True
+  True False False]
+-----
+[ 1 12  5  1  1  1 20 22 19  1  1 21  1  1  9 18  8  6  7 13  1  1  1  1
+  1 16 11 15  1 17  3  4  1  2  1  1  1 10 14]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'BB9', 'K9_10d', 'HR9_10d']
+TRIAL 18 - LR Accuracy: 0.5739171936523088
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+Fitting estimator with 20 features.
+[ True False False  True  True  True False False False  True  True False
+  True  True False False False False False False  True  True  True  True
+  True False False False  True False False False  True  True  True  True
+  True False False]
+-----
+[ 1 11  4  1  1  1 19 21 18  1  1 20  1  1  8 17  7  5  6 12  1  1  1  1
+  1 15 10 14  1 16  2  3  1  1  1  1  1  9 13]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'K9_10d', 'HR9_10d']
+TRIAL 19 - LR Accuracy: 0.5732012886290418
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+Fitting estimator with 21 features.
+[ True False False  True  True  True False False False  True  True False
+  True  True False False False False False False  True  True  True  True
+  True False False False  True False  True False  True  True  True  True
+  True False False]
+-----
+[ 1 10  3  1  1  1 18 20 17  1  1 19  1  1  7 16  6  4  5 11  1  1  1  1
+  1 14  9 13  1 15  1  2  1  1  1  1  1  8 12]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'SP_HR9', 'K9_10d', 'HR9_10d']
+TRIAL 20 - LR Accuracy: 0.5745137811716979
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+Fitting estimator with 22 features.
+[ True False False  True  True  True False False False  True  True False
+  True  True False False False False False False  True  True  True  True
+  True False False False  True False  True  True  True  True  True  True
+  True False False]
+-----
+[ 1  9  2  1  1  1 17 19 16  1  1 18  1  1  6 15  5  3  4 10  1  1  1  1
+  1 13  8 12  1 14  1  1  1  1  1  1  1  7 11]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'WPctDiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'K9_10d', 'HR9_10d']
+TRIAL 21 - LR Accuracy: 0.5748717336833313
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+Fitting estimator with 23 features.
+[ True False  True  True  True  True False False False  True  True False
+  True  True False False False False False False  True  True  True  True
+  True False False False  True False  True  True  True  True  True  True
+  True False False]
+-----
+[ 1  8  1  1  1  1 16 18 15  1  1 17  1  1  5 14  4  2  3  9  1  1  1  1
+  1 12  7 11  1 13  1  1  1  1  1  1  1  6 10]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'K9_10d', 'HR9_10d']
+TRIAL 22 - LR Accuracy: 0.575110368691087
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+Fitting estimator with 24 features.
+[ True False  True  True  True  True False False False  True  True False
+  True  True False False False  True False False  True  True  True  True
+  True False False False  True False  True  True  True  True  True  True
+  True False False]
+-----
+[ 1  7  1  1  1  1 15 17 14  1  1 16  1  1  4 13  3  1  2  8  1  1  1  1
+  1 11  6 10  1 12  1  1  1  1  1  1  1  5  9]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'K9_10d', 'HR9_10d']
+TRIAL 23 - LR Accuracy: 0.5746330986755757
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+Fitting estimator with 25 features.
+[ True False  True  True  True  True False False False  True  True False
+  True  True False False False  True  True False  True  True  True  True
+  True False False False  True False  True  True  True  True  True  True
+  True False False]
+-----
+[ 1  6  1  1  1  1 14 16 13  1  1 15  1  1  3 12  2  1  1  7  1  1  1  1
+  1 10  5  9  1 11  1  1  1  1  1  1  1  4  8]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'K9_10d', 'HR9_10d']
+TRIAL 24 - LR Accuracy: 0.5729626536212863
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+Fitting estimator with 26 features.
+[ True False  True  True  True  True False False False  True  True False
+  True  True False False  True  True  True False  True  True  True  True
+  True False False False  True False  True  True  True  True  True  True
+  True False False]
+-----
+[ 1  5  1  1  1  1 13 15 12  1  1 14  1  1  2 11  1  1  1  6  1  1  1  1
+  1  9  4  8  1 10  1  1  1  1  1  1  1  3  7]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'K9_10d', 'HR9_10d']
+TRIAL 25 - LR Accuracy: 0.5726047011096528
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+Fitting estimator with 27 features.
+[ True False  True  True  True  True False False False  True  True False
+  True  True  True False  True  True  True False  True  True  True  True
+  True False False False  True False  True  True  True  True  True  True
+  True False False]
+-----
+[ 1  4  1  1  1  1 12 14 11  1  1 13  1  1  1 10  1  1  1  5  1  1  1  1
+  1  8  3  7  1  9  1  1  1  1  1  1  1  2  6]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'SLG_10d', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'K9_10d', 'HR9_10d']
+TRIAL 26 - LR Accuracy: 0.5727240186135306
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+Fitting estimator with 28 features.
+[ True False  True  True  True  True False False False  True  True False
+  True  True  True False  True  True  True False  True  True  True  True
+  True False False False  True False  True  True  True  True  True  True
+  True  True False]
+-----
+[ 1  3  1  1  1  1 11 13 10  1  1 12  1  1  1  9  1  1  1  4  1  1  1  1
+  1  7  2  6  1  8  1  1  1  1  1  1  1  1  5]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'SLG_10d', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'HR9_10d']
+TRIAL 27 - LR Accuracy: 0.5723660661018971
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+Fitting estimator with 29 features.
+[ True False  True  True  True  True False False False  True  True False
+  True  True  True False  True  True  True False  True  True  True  True
+  True False  True False  True False  True  True  True  True  True  True
+  True  True False]
+-----
+[ 1  2  1  1  1  1 10 12  9  1  1 11  1  1  1  8  1  1  1  3  1  1  1  1
+  1  6  1  5  1  7  1  1  1  1  1  1  1  1  4]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['HomeAdv', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'SLG_10d', 'SP_WHIP', 'WHIP_10d', 'FIP_10d', 'OPS_10d', 'HR9_10d']
+TRIAL 28 - LR Accuracy: 0.5732012886290418
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+Fitting estimator with 30 features.
+[ True  True  True  True  True  True False False False  True  True False
+  True  True  True False  True  True  True False  True  True  True  True
+  True False  True False  True False  True  True  True  True  True  True
+  True  True False]
+-----
+[ 1  1  1  1  1  1  9 11  8  1  1 10  1  1  1  7  1  1  1  2  1  1  1  1
+  1  5  1  4  1  6  1  1  1  1  1  1  1  1  3]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'SLG_10d', 'SP_WHIP', 'WHIP_10d', 'FIP_10d', 'OPS_10d', 'HR9_10d']
+TRIAL 29 - LR Accuracy: 0.5733206061329197
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+Fitting estimator with 31 features.
+[ True  True  True  True  True  True False False False  True  True False
+  True  True  True False  True  True  True  True  True  True  True  True
+  True False  True False  True False  True  True  True  True  True  True
+  True  True False]
+-----
+[ 1  1  1  1  1  1  8 10  7  1  1  9  1  1  1  6  1  1  1  1  1  1  1  1
+  1  4  1  3  1  5  1  1  1  1  1  1  1  1  2]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'SLG_10d', 'WHIP_10d', 'FIP_10d', 'OPS_10d', 'HR9_10d']
+TRIAL 30 - LR Accuracy: 0.573081971125164
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+Fitting estimator with 32 features.
+[ True  True  True  True  True  True False False False  True  True False
+  True  True  True False  True  True  True  True  True  True  True  True
+  True False  True False  True False  True  True  True  True  True  True
+  True  True  True]
+-----
+[1 1 1 1 1 1 7 9 6 1 1 8 1 1 1 5 1 1 1 1 1 1 1 1 1 3 1 2 1 4 1 1 1 1 1 1 1
+ 1 1]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'SLG_10d', 'WHIP_10d', 'FIP_10d', 'OPS_10d']
+TRIAL 31 - LR Accuracy: 0.5734399236367975
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+Fitting estimator with 33 features.
+[ True  True  True  True  True  True False False False  True  True False
+  True  True  True False  True  True  True  True  True  True  True  True
+  True False  True  True  True False  True  True  True  True  True  True
+  True  True  True]
+-----
+[1 1 1 1 1 1 6 8 5 1 1 7 1 1 1 4 1 1 1 1 1 1 1 1 1 2 1 1 1 3 1 1 1 1 1 1 1
+ 1 1]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'SLG_10d', 'WHIP_10d', 'OPS_10d']
+TRIAL 32 - LR Accuracy: 0.5733206061329197
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+Fitting estimator with 34 features.
+[ True  True  True  True  True  True False False False  True  True False
+  True  True  True False  True  True  True  True  True  True  True  True
+  True  True  True  True  True False  True  True  True  True  True  True
+  True  True  True]
+-----
+[1 1 1 1 1 1 5 7 4 1 1 6 1 1 1 3 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1
+ 1 1]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'SLG_10d', 'OPS_10d']
+TRIAL 33 - LR Accuracy: 0.5734399236367975
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+Fitting estimator with 35 features.
+[ True  True  True  True  True  True False False False  True  True False
+  True  True  True False  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True]
+-----
+[1 1 1 1 1 1 4 6 3 1 1 5 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'SLG_10d']
+TRIAL 34 - LR Accuracy: 0.5735592411406754
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+Fitting estimator with 36 features.
+[ True  True  True  True  True  True False False False  True  True False
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True]
+-----
+[1 1 1 1 1 1 3 5 2 1 1 4 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG']
+TRIAL 35 - LR Accuracy: 0.5734399236367975
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+Fitting estimator with 37 features.
+[ True  True  True  True  True  True False False  True  True  True False
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True]
+-----
+[1 1 1 1 1 1 2 4 1 1 1 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['PythagDiff', 'Log5', 'SLG']
+TRIAL 36 - LR Accuracy: 0.5729626536212863
+Fitting estimator with 39 features.
+Fitting estimator with 38 features.
+[ True  True  True  True  True  True  True False  True  True  True False
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True]
+-----
+[1 1 1 1 1 1 1 3 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['Log5', 'SLG']
+TRIAL 37 - LR Accuracy: 0.5726047011096528
+Fitting estimator with 39 features.
+[ True  True  True  True  True  True  True False  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True]
+-----
+[1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: ['Log5']
+TRIAL 38 - LR Accuracy: 0.5727240186135306
+[ True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True]
+-----
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1]
+Columns: Index(['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff',
+       'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG',
+       'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP',
+       'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d',
+       'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9',
+       'BB9_10d', 'K9_10d', 'HR9_10d'],
+      dtype='object')
+Fields toe exclude: []
+TRIAL 39 - LR Accuracy: 0.5728433361174085
+Best accuracy is 0.575110368691087
+Min accuracy is 0.5683092709700514
+Accuracy range is 0.0068011
+Overall accuracy Linear Regression is: 22.312253907648252
