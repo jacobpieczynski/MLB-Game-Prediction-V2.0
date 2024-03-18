@@ -67,4 +67,9 @@ def parse_pbp(filename='pbp/2023/2023ARI.EVN'):
         print(f'game created {game.id}')
     #except:
      #   return False
+    print('test')
+    print(len(GAMES['2023']['ARI']))
+    print(len(GAMES['2023']['ANA']))
+    print(len(GAMES['2023']['LAN']))
+    print(len(GAMES['2023']['WAS']))
     return True
