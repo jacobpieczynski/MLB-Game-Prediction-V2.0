@@ -1,6 +1,6 @@
 from const import *
 from parse import *
-from stats import log_games
+from log_games import log_games
 
 import cProfile
 
