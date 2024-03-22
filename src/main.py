@@ -59,6 +59,27 @@ def main():
     print('\nLOADED')
     print('-' * 50, end='\n\n')
     # Testing
+    
+    """home_ros = GAMES['2023']['ARI']['20230510ARIMIA'].home_starting_lineup[2:]
+    vis_ros = GAMES['2023']['MIA']['20230510ARIMIA'].visitor_starting_lineup[2:]
+    print(len(home_ros))
+    print(vis_ros)
+    home_hits, home_abs = 0, 0
+    vis_hits, vis_abs = 0, 0
+    GAMES['2023']['ARI']['20230510ARIMIA'].team_batting_stats()
+    for player in home_ros:
+        print(f'MAIN: {player.name} {player.id} {player.get_totals("ARI", "20230509")}')
+        home_hits += player.get_totals("ARI", "20230509")['H']
+        home_abs += player.get_totals("ARI", "20230509")['AB']
+    for player in vis_ros:
+        print(f'{player.name} {player.id} {player.get_totals("MIA", "20230509")}')
+        vis_hits += player.get_totals("MIA", "20230509")['H']
+        vis_abs += player.get_totals("MIA", "20230509")['AB']
+    print(f"{PLAYERS['carrc005'].get_totals('ARI', '20230510')}")
+    print(f'ARI: {home_hits} hits in {home_abs} at bats, batting average of {home_hits / home_abs}')
+    print(f'MIA: {vis_hits} hits in {vis_abs} at bats, batting average of {vis_hits / vis_abs}')
+    print(f'BA DIFF = {(home_hits / home_abs) - (vis_hits / vis_abs)}')
+    """
     """
     for i in range(2019,2024):
         print(f'{PLAYERS["gallz001"].name} {i} pitching totals: ', end="")

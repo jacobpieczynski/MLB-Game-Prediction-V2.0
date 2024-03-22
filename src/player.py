@@ -21,15 +21,18 @@ class Player:
             start_date = year + '0101'
 
         self.reset_stats()
+        game_ct = 0
         for gameid in GAMES[year][team]:
             game = GAMES[year][team][gameid]
             if self.id in game.player_stats and game.date <= end_date and game.date >= start_date:
+                game_ct += 1
                 for stat in game.player_stats[self.id]:
                     if stat not in self.stats:
                         self.stats[stat] = 0
                     #print(game.player_stats[self.id])
                     self.stats[stat] += game.player_stats[self.id][stat]
                 #if tmp == True :print(f'{self.name} in {game.id} on {game.date}, stats: {game.player_stats[self.id]}')
+        #print("Games: ", game_ct)
         self.stats['IP'] = self.op_to_ip(self.stats['OP'])
         return self.stats
 
@@ -66,4 +69,4 @@ class Player:
         return round(op / 3, 2)
 
     def __repr__(self):
-        return f'Pitcher object {self.name}, a {self.pos} for {self.team} - ID: {self.id}'
+        return f'Player object {self.name}, a {self.pos} for {self.team} - ID: {self.id}'

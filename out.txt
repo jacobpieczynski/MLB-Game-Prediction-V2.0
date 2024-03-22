@@ -716,11 +716,6 @@ game created 20230927ANATEX
 game created 20230929ANAOAK
 game created 20230930ANAOAK
 game created 20231001ANAOAK
-test
-3
-81
-2
-3
 pbp/2023/2023ANA.EVA
 game created 20230406ARILAN
 game created 20230407ARILAN
@@ -804,11 +799,6 @@ game created 20230920ARISFN
 game created 20230929ARIHOU
 game created 20230930ARIHOU
 game created 20231001ARIHOU
-test
-84
-81
-8
-6
 pbp/2023/2023ARI.EVN
 game created 20230406ATLSDN
 game created 20230407ATLSDN
@@ -896,11 +886,6 @@ game created 20230928ATLCHN
 game created 20230929ATLWAS
 game created 20230930ATLWAS
 game created 20231001ATLWAS
-test
-87
-84
-11
-12
 pbp/2023/2023ATL.EVN
 game created 20230407BALNYA
 game created 20230408BALNYA
@@ -985,11 +970,6 @@ game created 20230928BALBOS
 game created 20230929BALBOS
 game created 20230930BALBOS
 game created 20231001BALBOS
-test
-87
-88
-14
-14
 pbp/2023/2023BAL.EVA
 game created 20230330BOSBAL
 game created 20230401BOSBAL
@@ -1073,11 +1053,6 @@ game created 20230923BOSCHA
 game created 20230924BOSCHA
 game created 20230926BOSTBA
 game created 20230927BOSTBA
-test
-87
-92
-17
-14
 pbp/2023/2023BOS.EVA
 game created 20230403CHASFN
 game created 20230405CHASFN
@@ -1160,11 +1135,6 @@ game created 20230928CHAARI
 game created 20230929CHASDN
 game created 20230930CHASDN
 game created 20231001CHASDN
-test
-90
-95
-17
-14
 pbp/2023/2023CHA.EVA
 game created 20230330CHNMIL
 game created 20230401CHNMIL
@@ -1251,11 +1221,6 @@ game created 20230921CHNPIT
 game created 20230922CHNCOL
 game created 20230923CHNCOL
 game created 20230924CHNCOL
-test
-94
-95
-21
-17
 pbp/2023/2023CHN.EVN
 game created 20230330CINPIT
 game created 20230401CINPIT
@@ -1351,11 +1316,6 @@ game created 20230920CINMIN
 game created 20230922CINPIT
 game created 20230923CINPIT
 game created 20230924CINPIT
-test
-97
-95
-24
-20
 pbp/2023/2023CIN.EVN
 game created 20230407CLESEA
 game created 20230408CLESEA
@@ -1444,11 +1404,6 @@ game created 20230923CLEBAL
 game created 20230924CLEBAL
 game created 20230926CLECIN
 game created 20230927CLECIN
-test
-97
-98
-27
-20
 pbp/2023/2023CLE.EVA
 game created 20230406COLWAS
 game created 20230407COLWAS
@@ -1532,11 +1487,6 @@ game created 20230928COLLAN
 game created 20230929COLMIN
 game created 20230930COLMIN
 game created 20231001COLMIN
-test
-103
-101
-34
-24
 pbp/2023/2023COL.EVN
 game created 20230406DETBOS
 game created 20230408DETBOS
@@ -1621,11 +1571,6 @@ game created 20230928DETKCA
 game created 20230929DETCLE
 game created 20230930DETCLE
 game created 20231001DETCLE
-test
-106
-104
-34
-24
 pbp/2023/2023DET.EVA
 game created 20230330HOUCHA
 game created 20230331HOUCHA
@@ -1708,11 +1653,6 @@ game created 20230920HOUBAL
 game created 20230922HOUKCA
 game created 20230923HOUKCA
 game created 20230924HOUKCA
-test
-106
-111
-34
-27
 pbp/2023/2023HOU.EVA
 game created 20230330KCAMIN
 game created 20230401KCAMIN
@@ -1797,11 +1737,6 @@ game created 20230920KCACLE
 game created 20230929KCANYA
 game created 20230930KCANYA
 game created 20231001KCANYA
-test
-106
-114
-37
-30
 pbp/2023/2023KCA.EVA
 game created 20230330LANARI
 game created 20230331LANARI
@@ -1884,11 +1819,6 @@ game created 20230921LANSFN
 game created 20230922LANSFN
 game created 20230923LANSFN
 game created 20230924LANSFN
-test
-113
-116
-118
-33
 pbp/2023/2023LAN.EVN
 game created 20230330MIANYN
 game created 20230331MIANYN
@@ -1974,11 +1904,6 @@ badj? ['badj', 'santc002', 'R']
 game created 20230922MIAMIL
 game created 20230923MIAMIL
 game created 20230924MIAMIL
-test
-116
-116
-121
-39
 pbp/2023/2023MIA.EVN
 game created 20230403MILNYN
 game created 20230404MILNYN
@@ -2063,11 +1988,6 @@ game created 20230928MILSLN
 game created 20230929MILCHN
 game created 20230930MILCHN
 game created 20231001MILCHN
-test
-119
-119
-124
-42
 pbp/2023/2023MIL.EVN
 game created 20230407MINHOU
 game created 20230408MINHOU
@@ -2153,11 +2073,6 @@ game created 20230924MINANA
 game created 20230926MINOAK
 game created 20230927MINOAK
 game created 20230928MINOAK
-test
-122
-122
-124
-45
 pbp/2023/2023MIN.EVA
 game created 20230330NYASFN
 game created 20230401NYASFN
@@ -2240,11 +2155,6 @@ game created 20230921NYATOR
 game created 20230922NYAARI
 game created 20230924NYAARI
 game created 20230925NYAARI
-test
-125
-125
-124
-48
 pbp/2023/2023NYA.EVA
 game created 20230407NYNMIA
 game created 20230408NYNMIA
@@ -2336,11 +2246,6 @@ game created 20230928NYNMIA
 game created 20230930NYNPHI1
 game created 20230930NYNPHI2
 game created 20231001NYNPHI
-test
-129
-128
-127
-55
 pbp/2023/2023NYN.EVN
 game created 20230330OAKANA
 game created 20230401OAKANA
@@ -2424,11 +2329,6 @@ game created 20230921OAKDET
 game created 20230922OAKDET
 game created 20230923OAKDET
 game created 20230924OAKDET
-test
-132
-134
-127
-55
 pbp/2023/2023OAK.EVA
 game created 20230407PHICIN
 game created 20230408PHICIN
@@ -2512,11 +2412,6 @@ game created 20230924PHINYN
 game created 20230926PHIPIT
 game created 20230927PHIPIT
 game created 20230928PHIPIT
-test
-135
-137
-130
-62
 pbp/2023/2023PHI.EVN
 game created 20230407PITCHA
 game created 20230408PITCHA
@@ -2602,11 +2497,6 @@ game created 20230917PITNYA
 game created 20230929PITMIA
 game created 20230930PITMIA
 game created 20231001PITMIA
-test
-138
-137
-133
-66
 pbp/2023/2023PIT.EVN
 game created 20230330SDNCOL
 game created 20230331SDNCOL
@@ -2691,11 +2581,6 @@ game created 20230923SDNSLN
 badj? ['badj', 'edmat001', 'R']
 badj? ['badj', 'edmat001', 'R']
 game created 20230924SDNSLN
-test
-144
-140
-140
-69
 pbp/2023/2023SDN.EVN
 game created 20230330SEACLE
 game created 20230331SEACLE
@@ -2783,11 +2668,6 @@ game created 20230928SEATEX
 game created 20230929SEATEX
 game created 20230930SEATEX
 game created 20231001SEATEX
-test
-144
-146
-143
-72
 pbp/2023/2023SEA.EVA
 game created 20230407SFNKCA
 game created 20230408SFNKCA
@@ -2870,11 +2750,6 @@ game created 20230927SFNSDN
 game created 20230929SFNLAN
 game created 20230930SFNLAN
 game created 20231001SFNLAN
-test
-151
-146
-149
-75
 pbp/2023/2023SFN.EVN
 game created 20230330SLNTOR
 game created 20230401SLNTOR
@@ -2980,11 +2855,6 @@ game created 20230921SLNMIL
 game created 20230929SLNCIN
 game created 20230930SLNCIN
 game created 20231001SLNCIN
-test
-154
-149
-153
-78
 pbp/2023/2023SLN.EVN
 game created 20230330TBADET
 game created 20230401TBADET
@@ -3068,11 +2938,6 @@ game created 20230921TBAANA
 game created 20230922TBATOR
 game created 20230923TBATOR
 game created 20230924TBATOR
-test
-154
-152
-156
-78
 pbp/2023/2023TBA.EVA
 game created 20230330TEXPHI
 game created 20230401TEXPHI
@@ -3155,11 +3020,6 @@ game created 20230920TEXBOS
 game created 20230922TEXSEA
 game created 20230923TEXSEA
 game created 20230924TEXSEA
-test
-156
-159
-159
-78
 pbp/2023/2023TEX.EVA
 game created 20230411TORDET
 game created 20230412TORDET
@@ -3242,11 +3102,6 @@ game created 20230928TORNYA
 game created 20230929TORTBA
 game created 20230930TORTBA
 game created 20231001TORTBA
-test
-159
-162
-159
-81
 pbp/2023/2023TOR.EVA
 game created 20230330WASATL
 game created 20230401WASATL
@@ -3330,11 +3185,6 @@ game created 20230921WASATL
 game created 20230922WASATL
 game created 20230924WASATL1
 game created 20230924WASATL2
-test
-162
-162
-162
-162
 pbp/2023/2023WAS.EVN
 
 LOADED
@@ -5456,88 +5306,88 @@ LOADING DATA
 LOADED
 --------------------------------------------------
 
-         17933750 function calls in 29.577 seconds
+         17933480 function calls in 28.843 seconds
 
    Ordered by: standard name
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-        1    0.000    0.000   29.577   29.577 <string>:1(<module>)
+        1    0.000    0.000   28.843   28.843 <string>:1(<module>)
       653    0.000    0.000    0.001    0.000 _bootlocale.py:33(getpreferredencoding)
         3    0.000    0.000    0.000    0.000 codecs.py:186(__init__)
       650    0.000    0.000    0.000    0.000 codecs.py:260(__init__)
       650    0.000    0.000    0.000    0.000 codecs.py:309(__init__)
-     9011    0.003    0.000    0.013    0.000 codecs.py:319(decode)
-    23850    0.008    0.000    0.008    0.000 const.py:59(get_prior_date)
-     2750    0.002    0.000    0.272    0.000 const.py:63(above_threshold)
-     4220    0.395    0.000    0.406    0.000 const.py:68(get_prior_gameids)
+     9011    0.003    0.000    0.015    0.000 codecs.py:319(decode)
+    23850    0.007    0.000    0.007    0.000 const.py:59(get_prior_date)
+     2750    0.002    0.000    0.268    0.000 const.py:63(above_threshold)
+     4220    0.372    0.000    0.384    0.000 const.py:68(get_prior_gameids)
         3    0.000    0.000    0.000    0.000 csv.py:131(__init__)
         3    0.000    0.000    0.000    0.000 csv.py:141(writeheader)
-     4223    0.008    0.000    0.008    0.000 csv.py:145(_dict_to_list)
-   194258    0.018    0.000    0.026    0.000 csv.py:151(<genexpr>)
-     4223    0.001    0.000    0.081    0.000 csv.py:153(writerow)
-     2430    0.132    0.000    1.863    0.001 game.py:15(sort_data)
-   190416    0.282    0.000    0.684    0.000 game.py:176(parse_play)
-     2430    0.028    0.000    0.037    0.000 game.py:32(parse_info)
-     6970    0.555    0.000    0.581    0.000 game.py:368(get_team_records)
-     2110    0.130    0.000    0.131    0.000 game.py:475(head_to_head)
-     4220    0.203    0.000   11.780    0.003 game.py:519(team_batting_stats)
-     2110    0.008    0.000    0.330    0.000 game.py:561(comp_sps)
-     2430    0.170    0.000    0.236    0.000 game.py:58(set_lineup)
-     4220    0.588    0.000   12.590    0.003 game.py:591(comp_pitchers)
-     2430    0.001    0.000    1.864    0.001 game.py:6(__init__)
-     2430    0.366    0.000    1.334    0.001 game.py:83(simulate_game)
-    47061    0.740    0.000    1.169    0.000 gamelog.py:14(parse_gl_data)
-    47061    0.051    0.000    1.220    0.000 gamelog.py:4(__init__)
-        1    0.001    0.001   29.577   29.577 main.py:7(main)
-       20    0.120    0.006    1.360    0.068 parse.py:28(parse_log)
-       30    0.141    0.005    2.054    0.068 parse.py:41(parse_pbp)
-      600    0.064    0.000    0.162    0.000 parse.py:8(parse_roster)
-   334444   23.394    0.000   23.840    0.000 player.py:18(get_totals)
-   603527    0.354    0.000    0.386    0.000 player.py:37(inc_game_stat)
-    29135    0.080    0.000    0.084    0.000 player.py:4(__init__)
-    71144    0.020    0.000    0.020    0.000 player.py:49(add_game_stats)
-   334444    0.377    0.000    0.377    0.000 player.py:55(reset_stats)
-   168320    0.174    0.000    0.174    0.000 player.py:59(reset_game_stats)
-   334444    0.030    0.000    0.069    0.000 player.py:63(op_to_ip)
+     4223    0.005    0.000    0.005    0.000 csv.py:145(_dict_to_list)
+   194258    0.017    0.000    0.023    0.000 csv.py:151(<genexpr>)
+     4223    0.001    0.000    0.072    0.000 csv.py:153(writerow)
+     2430    0.126    0.000    1.741    0.001 game.py:15(sort_data)
+   190416    0.265    0.000    0.648    0.000 game.py:176(parse_play)
+     2430    0.027    0.000    0.037    0.000 game.py:32(parse_info)
+     6970    0.548    0.000    0.573    0.000 game.py:368(get_team_records)
+     2110    0.125    0.000    0.126    0.000 game.py:475(head_to_head)
+     4220    0.197    0.000   11.539    0.003 game.py:519(team_batting_stats)
+     2110    0.008    0.000    0.319    0.000 game.py:561(comp_sps)
+     2430    0.129    0.000    0.195    0.000 game.py:58(set_lineup)
+     4220    0.577    0.000   12.309    0.003 game.py:591(comp_pitchers)
+     2430    0.001    0.000    1.742    0.001 game.py:6(__init__)
+     2430    0.343    0.000    1.267    0.001 game.py:83(simulate_game)
+    47061    0.720    0.000    1.141    0.000 gamelog.py:14(parse_gl_data)
+    47061    0.051    0.000    1.192    0.000 gamelog.py:4(__init__)
+        1    0.079    0.079   25.412   25.412 log_games.py:54(log_games)
+        1    0.001    0.001   28.843   28.843 main.py:7(main)
+       20    0.117    0.006    1.330    0.066 parse.py:28(parse_log)
+       30    0.127    0.004    1.914    0.064 parse.py:41(parse_pbp)
+      600    0.086    0.000    0.187    0.000 parse.py:8(parse_roster)
+   334444   22.890    0.000   23.325    0.000 player.py:18(get_totals)
+   603527    0.339    0.000    0.369    0.000 player.py:37(inc_game_stat)
+    29135    0.082    0.000    0.086    0.000 player.py:4(__init__)
+    71144    0.019    0.000    0.019    0.000 player.py:49(add_game_stats)
+   334444    0.366    0.000    0.366    0.000 player.py:55(reset_stats)
+   168320    0.172    0.000    0.172    0.000 player.py:59(reset_game_stats)
+   334444    0.031    0.000    0.069    0.000 player.py:63(op_to_ip)
      8440    0.002    0.000    0.004    0.000 stat_calc.py:12(calc_obp)
      8440    0.001    0.000    0.003    0.000 stat_calc.py:17(calc_ops)
      8440    0.001    0.000    0.004    0.000 stat_calc.py:2(calc_avg)
      8440    0.001    0.000    0.001    0.000 stat_calc.py:20(calc_iso)
     13868    0.004    0.000    0.010    0.000 stat_calc.py:29(calc_pythag)
-     6970    0.003    0.000    0.004    0.000 stat_calc.py:34(calc_log5)
-    12660    0.003    0.000    0.005    0.000 stat_calc.py:39(calc_era)
+     6970    0.002    0.000    0.004    0.000 stat_calc.py:34(calc_log5)
+    12660    0.002    0.000    0.005    0.000 stat_calc.py:39(calc_era)
     12660    0.002    0.000    0.005    0.000 stat_calc.py:44(calc_whip)
     12660    0.002    0.000    0.005    0.000 stat_calc.py:49(calc_bb9)
     12660    0.002    0.000    0.004    0.000 stat_calc.py:54(calc_k9)
     12660    0.002    0.000    0.004    0.000 stat_calc.py:59(calc_hr9)
-    12660    0.004    0.000    0.006    0.000 stat_calc.py:66(calc_fip)
-     8440    0.003    0.000    0.004    0.000 stat_calc.py:7(calc_slg)
+    12660    0.003    0.000    0.006    0.000 stat_calc.py:66(calc_fip)
+     8440    0.002    0.000    0.004    0.000 stat_calc.py:7(calc_slg)
      2110    0.001    0.000    0.003    0.000 stat_calc.py:73(calc_whisnant)
-        1    0.086    0.086   25.999   25.999 stats.py:54(log_games)
-     9011    0.010    0.000    0.010    0.000 {built-in method _codecs.utf_8_decode}
+     9011    0.012    0.000    0.012    0.000 {built-in method _codecs.utf_8_decode}
         3    0.000    0.000    0.000    0.000 {built-in method _csv.writer}
       653    0.000    0.000    0.000    0.000 {built-in method _locale.nl_langinfo}
-        1    0.000    0.000   29.577   29.577 {built-in method builtins.exec}
-  1305793    0.034    0.000    0.034    0.000 {built-in method builtins.len}
+        1    0.000    0.000   28.843   28.843 {built-in method builtins.exec}
+  1305673    0.032    0.000    0.032    0.000 {built-in method builtins.len}
      6970    0.001    0.000    0.001    0.000 {built-in method builtins.min}
     50044    0.005    0.000    0.005    0.000 {built-in method builtins.pow}
-     5450    0.005    0.000    0.005    0.000 {built-in method builtins.print}
-   405915    0.086    0.000    0.086    0.000 {built-in method builtins.round}
-      653    0.014    0.000    0.015    0.000 {built-in method io.open}
-      653    0.005    0.000    0.005    0.000 {method '__exit__' of '_io._IOBase' objects}
-  1217083    0.042    0.000    0.042    0.000 {method 'append' of 'list' objects}
+     5300    0.004    0.000    0.004    0.000 {built-in method builtins.print}
+   405915    0.085    0.000    0.085    0.000 {built-in method builtins.round}
+      653    0.015    0.000    0.016    0.000 {built-in method io.open}
+      653    0.001    0.000    0.001    0.000 {method '__exit__' of '_io._IOBase' objects}
+  1217083    0.039    0.000    0.039    0.000 {method 'append' of 'list' objects}
      4860    0.000    0.000    0.000    0.000 {method 'copy' of 'list' objects}
-     3847    0.001    0.000    0.001    0.000 {method 'count' of 'str' objects}
+     3847    0.000    0.000    0.000    0.000 {method 'count' of 'str' objects}
         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
-   190035    0.008    0.000    0.008    0.000 {method 'get' of 'dict' objects}
-   205502    0.008    0.000    0.008    0.000 {method 'isnumeric' of 'str' objects}
+   190035    0.005    0.000    0.005    0.000 {method 'get' of 'dict' objects}
+   205502    0.007    0.000    0.007    0.000 {method 'isnumeric' of 'str' objects}
      4223    0.000    0.000    0.000    0.000 {method 'keys' of 'dict' objects}
         3    0.000    0.000    0.000    0.000 {method 'lower' of 'str' objects}
     47061    0.004    0.000    0.004    0.000 {method 'rstrip' of 'str' objects}
     47081    0.005    0.000    0.005    0.000 {method 'setdefault' of 'dict' objects}
-   961876    0.233    0.000    0.233    0.000 {method 'split' of 'str' objects}
-  2878427    0.194    0.000    0.194    0.000 {method 'startswith' of 'str' objects}
-  8006348    0.315    0.000    0.315    0.000 {method 'strip' of 'str' objects}
-     4223    0.046    0.000    0.072    0.000 {method 'writerow' of '_csv.writer' objects}
+   961876    0.227    0.000    0.227    0.000 {method 'split' of 'str' objects}
+  2878427    0.185    0.000    0.185    0.000 {method 'startswith' of 'str' objects}
+  8006348    0.310    0.000    0.310    0.000 {method 'strip' of 'str' objects}
+     4223    0.043    0.000    0.066    0.000 {method 'writerow' of '_csv.writer' objects}
 
 

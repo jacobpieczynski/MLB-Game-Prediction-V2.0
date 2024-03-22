@@ -15,28 +15,29 @@ fieldnames = ['WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff', 
 #test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'AVG', 'AVG_10d', 'SLG_10d', 'ERA_10d'], axis=1)
 #train_data = pd.read_csv('train.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'HomeAdv', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'K9_10d', 'HR9_10d'], axis=1)
 #test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'HomeAdv', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'K9_10d', 'HR9_10d'], axis=1)
-test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID'], axis=1)
-train_data = pd.read_csv('train.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID'], axis=1)
+##test_data = pd.read_csv('test.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID'], axis=1)
+##train_data = pd.read_csv('train.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID'], axis=1)
 
 #data = pd.read_csv('combined.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID', 'Year', 'HomeAdv', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'SLG', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS_10d', 'K9_10d', 'HR9_10d'], axis=1)
-correlation_matrix = train_data.corr()
-target_correlation = correlation_matrix['HWin'].abs().sort_values(ascending=False)
+data = pd.read_csv('combined.csv').drop(columns=['Date', 'Home', 'Visitor', 'GameID'], axis=1)
+##correlation_matrix = train_data.corr()
+##target_correlation = correlation_matrix['HWin'].abs().sort_values(ascending=False)
 
-print('Correlation with the target variable:')
-print(target_correlation)
-X_train = train_data.drop('HWin', axis=1)
-y_train = train_data['HWin']
-X_test = test_data.drop('HWin', axis=1)
-y_test = test_data['HWin']
-#X = data.drop('HWin', axis=1)
-#y = data['HWin']
+##print('Correlation with the target variable:')
+##print(target_correlation)
+##X_train = train_data.drop('HWin', axis=1)
+##y_train = train_data['HWin']
+##X_test = test_data.drop('HWin', axis=1)
+##y_test = test_data['HWin']
+X = data.drop('HWin', axis=1)
+y = data['HWin']
 
 
 model_average, model_best, model_min, rf_model_average = 0, 0, 1, 0
 rng = 1
 for i in range(len(fieldnames)):
 #for i in range(rng):
-    #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=705) #random_state=705
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=705) #random_state=705
 
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)

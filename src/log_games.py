@@ -48,6 +48,7 @@ Recent Success
 # TODO: Once all stats calculated, search through all calculateable stats and remove calculations for unused ones
 #fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'Year', 'WinDiff', 'HomeAdv', 'WPctDiff', 'Log5', 'RunDiff', 'RADiff', 'RPGDiff', 'H2H', 'AVG', 'SLG', 'OBP', 'ISO', 'OPS', 'DER', 'PythagDiff', 'ERA', 'WHIP', 'BB9', 'K9', 'HR9', 'FIP', 'HWin']
 fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'Year', 'WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'AVG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d', 'HWin']
+#fieldnames = ['Date', 'Home', 'Visitor', 'GameID', 'Year', 'WinDiff', 'HomeAdv', 'WPctDiff', 'RunDiff', 'RPGDiff', 'RADiff', 'PythagDiff', 'Log5', 'PythagDiff_10d', 'Whisnant', 'OBP', 'SLG', 'HOME_AVG', 'VIS_AVG', 'ISO', 'OBP_10d', 'SLG_10d', 'AVG_10d', 'ISO_10d', 'SP_ERA', 'SP_WHIP', 'SP_FIP', 'ERA', 'WHIP', 'FIP', 'H2H', 'WHIP_10d', 'ERA_10d', 'FIP_10d', 'OPS', 'OPS_10d', 'SP_BB9', 'SP_HR9', 'SP_K9', 'BB9', 'K9', 'HR9', 'BB9_10d', 'K9_10d', 'HR9_10d', 'HWin']
 train, test = [], []
 checked = []
 
@@ -57,6 +58,7 @@ def log_games():
             for gameid in GAMES[year][team]:
                 game = GAMES[year][team][gameid]
                 # Checks that both teams have played at least 7 games
+                #if above_threshold(game):
                 if gameid not in checked and above_threshold(game):
                     data = {'Date': game.date, 'Home': game.home, 'Visitor': game.visitor, 'GameID': game.id, 'Year': int(game.year)}
                     team_stats = game.get_team_records()
@@ -77,6 +79,8 @@ def log_games():
                     data['OBP'] = batting_stats['OBP']
                     data['SLG'] = batting_stats['SLG']
                     data['AVG'] = batting_stats['AVG'] ##
+                    #data['HOME_AVG'] = batting_stats['HBA'] ##
+                    #data['VIS_AVG'] = batting_stats['VBA'] ##
                     data['ISO'] = batting_stats['ISO'] ##
                     data['OPS'] = batting_stats['OPS'] ##
 
@@ -124,6 +128,7 @@ def log_games():
                     checked.append(gameid)
                     print(f'{game.id} Added')
         
+    # Splits data into train, test, and combined data
     with open('train.csv', 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()

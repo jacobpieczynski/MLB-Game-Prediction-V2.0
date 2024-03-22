@@ -9,7 +9,7 @@ class Game:
 
     def __repr__(self):
         if self.id:
-            return f'Game object: {self.id} on {self.date} - {self.info["visteam"]} at {self.info["hometeam"]}'
+            return f'Game object: {self.id} on {self.date} - {self.info["visteam"]} at {self.info["hometeam"]}. Home Lineup {self.home_starting_lineup}'
 
     # 4 different categories of data that must be treated differently
     def sort_data(self, data):
@@ -76,6 +76,11 @@ class Game:
             if is_pitcher:
                 PLAYERS[playerid].inc_game_stat(self, ['G', 'S'], [1, 1])
             self.players_in_game[playerid] = PLAYERS[playerid]
+        #self.home_starting_lineup, self.visitor_starting_lineup = [], []
+        #for h in self.home_lineup:
+         #   self.home_starting_lineup.append(h)
+        #for v in self.visitor_lineup:
+        #    self.visitor_starting_lineup.append(v)
         self.home_starting_lineup = self.home_lineup.copy()
         self.visitor_starting_lineup = self.visitor_lineup.copy()
 
@@ -415,9 +420,12 @@ class Game:
                 #print(f'Add Win {game.id}, {visitor_wins}, home wins {home_wins} Win Diff = {home_wins - visitor_wins}')
         """
                 
+        # Sorts through every game the home team played in
         for gameid in GAMES[self.year][self.home]:
             game = GAMES[self.year][self.home][gameid]
+            # Makes sure the game is within the proper date
             if game.date <= end_date and game.date >= home_start:
+                # Tallies wins, losses, and runs
                 if self.home == game.home and game.home_win:
                     home_wins += 1
                     home_hwins += 1
@@ -522,18 +530,27 @@ class Game:
         if home_start == None or visitor_start == None:
             home_start, visitor_start = self.year + '0101', self.year + '0101'
         # Goes through each player in the STARTING lineup
+        #checked = {self.home: [], self.visitor: []}
+        #print(f'In game {self.id}, home_starting_lineup = {self.home_starting_lineup}, visitor_starting_lineup = {self.visitor_starting_lineup}')
         for i in range(len(self.home_starting_lineup)):
             # 0 is None, 1 is the pitcher
             if i > 1 and self.home_starting_lineup[i] != None and self.visitor_starting_lineup[i] != None:
                 # Collects batting totals
+                #checked[self.home].append(self.home_starting_lineup[i])
+                #checked[self.visitor].append(self.visitor_starting_lineup[i])
+                #print(f'Home Start: {home_start}, end_date {end_date}')
                 htotals, vtotals = self.home_starting_lineup[i].get_totals(self.home, end_date, home_start), self.visitor_starting_lineup[i].get_totals(self.visitor, end_date, visitor_start)
+                #print(f'IN GAME: {self.home_starting_lineup[i].id}, htotals = {htotals}')
                 # Sums each statistic
                 for hstat, vstat in zip(htotals, vtotals):
                     if hstat not in home_stats:
                         home_stats[hstat] = 0
+                    if vstat not in visitor_stats:
                         visitor_stats[vstat] = 0
                     home_stats[hstat] += htotals[hstat] 
                     visitor_stats[vstat] += vtotals[vstat]
+        #print(f'IN game {self.id}, checked = {checked}, total of {len(checked[self.home])} players home and total of {len(checked[self.visitor])} players visitor')
+        #print(f'In game {self.id}, home stats = {home_stats}, visitor stats = {visitor_stats}')
         home_stats['AVG'], visitor_stats['AVG'] = calc_avg(home_stats['H'], home_stats['AB']), calc_avg(visitor_stats['H'], visitor_stats['AB'])
         home_stats['SLG'], visitor_stats['SLG'] = calc_slg(home_stats['S'], home_stats['D'], home_stats['T'], home_stats['HR'], home_stats['AB']), calc_slg(visitor_stats['S'], visitor_stats['D'], visitor_stats['T'], visitor_stats['HR'], visitor_stats['AB'])
         home_stats['OBP'], visitor_stats['OBP'] = calc_obp(home_stats['H'], home_stats['BB'], home_stats['HBP'], home_stats['AB'], home_stats['SF']), calc_obp(visitor_stats['H'], visitor_stats['BB'], visitor_stats['HBP'], visitor_stats['AB'], visitor_stats['SF'])
@@ -548,6 +565,8 @@ class Game:
         results['OPS'] = round(home_stats['OPS'] - visitor_stats['OPS'], 3)
         results['HSLG'] = home_stats['SLG']
         results['VSLG'] = visitor_stats['SLG']
+        results['HBA'] = home_stats['AVG']
+        results['VBA'] = visitor_stats['AVG']
         #results['DER'] = round(home_stats['DER'] - visitor_stats['DER'], 3)
         # Find difference between home and away stats
         """
