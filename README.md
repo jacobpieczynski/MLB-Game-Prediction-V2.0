@@ -13,4 +13,4 @@ Main.py searches through the roster, gamelog, and pbp data to create combined.cs
 
 Train.py
 ------------------------------------
-Train.py accesses data in combined.csv, or test/train.csv (depending on the configuration), builds a Linear Regresion model off of it and tests it.
+Train.py accesses data in combined.csv, or test/train.csv (depending on the configuration in log_games.py), builds a Linear Regresion model off of it and tests it.
