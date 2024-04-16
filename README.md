@@ -9,8 +9,16 @@ Executables:
 ------------------------------------
 Main.py
 ------------------------------------
-Main.py searches through the roster, gamelog, and pbp data to create combined.csv, test.csv, and train.csv. Test and train are the same data as combined, just split into prior to 2022 and after 2022 for train and test respectively.
+Main.py searches through the roster, gamelog, and pbp (Play-by-Play) data to create combined.csv, test.csv, and train.csv. Test and train are the same data as combined, just split into prior to 2022 and after 2022 for train and test respectively.
 
 Train.py
 ------------------------------------
 Train.py accesses data in combined.csv, or test/train.csv (depending on the configuration in log_games.py), builds a Linear Regresion model off of it and tests it.
+
+
+
+
+Disclaimer:
+ The information used here was obtained free of
+ charge from and is copyrighted by Retrosheet.  Interested
+ parties may contact Retrosheet at "www.retrosheet.org".
